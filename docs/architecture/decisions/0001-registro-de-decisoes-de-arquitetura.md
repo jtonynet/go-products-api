@@ -1,6 +1,6 @@
 # 1. Registrar decisões de arquitetura
 
-Data: 02 de fevereiro de 2024
+Data: 07 de fevereiro de 2024
 
 ## Status
 

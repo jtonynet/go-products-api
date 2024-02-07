@@ -53,7 +53,7 @@
 <a id="about"></a>
 ## 📗 Sobre:
 
-Uma possível solução para o seguinte desafio:
+Este repositório foi criado com a intenção de propor uma possível solução para o seguinte desafio:
 
 > 👨‍💻 __Case Dev Backend:__
 > Vamos construir uma API?

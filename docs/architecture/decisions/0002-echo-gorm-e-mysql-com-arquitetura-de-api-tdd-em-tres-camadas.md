@@ -32,7 +32,7 @@ Este documento determina o fluxo de trabalho __Branch Based com Feature Branch__
 
 Considerando ser um __CRUD simples__, entre as várias abordagens estruturais, a __Arquitetura em Três Camadas__ faz mais sentido, por se adequar bem à simplicidade do desafio proposto.
 
-__GORM__ foi escolhido como ORM por facilitar integracao aos principais BDs e facilidades como observabilidade que poderemos adotar no futuro.
+__GORM__ foi escolhido como ORM por facilitar integração aos principais BDs e facilidades como observabilidade que poderemos adotar no futuro.
 
 Como não há regras de negócio vinculadas às operações dos endpoints propostos, não parece fazer muito sentido utilizar testes unitários (a base da pirâmide), pois não desejamos testar as operações do nosso banco de dados/ORM, mas sim a integridade dos dados nessas operações. Portanto, iremos utilizar __Testes de Integração__ e iniciar a construção de nosso sistema através deles, no espírito do __TDD__. Para que exista forte integração ao GithubActions que adotaremos como processo de __CI__.
 
