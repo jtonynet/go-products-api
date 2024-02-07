@@ -1,0 +1,20 @@
+# Build directories
+/bin/
+/pkg/
+/vendor/
+/dist/
+
+# Test Binary
+*.test
+
+# Coverage
+*.out
+
+# Docker Data
+.docker
+
+# env
+.env
+
+# vscode
+.vscode/
