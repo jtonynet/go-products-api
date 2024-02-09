@@ -13,6 +13,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
+
+	"github.com/jtonynet/go-products-api/internal/handlers"
 )
 
 type SmokeSuite struct {
@@ -41,9 +43,7 @@ func setupRouter() *echo.Echo {
 
 func (suite *SmokeSuite) createAndRetrieveProductSuccessful() {
 	suite.router = setupRouter()
-	suite.router.POST("/products", func(c echo.Context) error {
-		return c.String(http.StatusNotImplemented, "Rota POST /products foi acessada mas nao implementada")
-	})
+	suite.router.POST("/products", handlers.CreateProduct)
 
 	requestProduct := fmt.Sprintf(
 		`{
@@ -64,9 +64,7 @@ func (suite *SmokeSuite) createAndRetrieveProductSuccessful() {
 	assert.Equal(suite.T(), http.StatusCreated, respProductCreate.Code)
 
 	suite.router = setupRouter()
-	suite.router.GET("/products/:id", func(c echo.Context) error {
-		return c.String(http.StatusNotImplemented, "Rota GET /products/:id foi acessada mas nao implementada")
-	})
+	suite.router.GET("/products/:id", handlers.RetrieveProductById)
 	productsUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
 	reqProductRetrieve, err := http.NewRequest("GET", productsUUIDRoute, nil)
 	assert.NoError(suite.T(), err)
