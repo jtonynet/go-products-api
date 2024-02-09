@@ -29,10 +29,10 @@ func (suite *SmokeSuite) SetupSuite() {
 }
 
 func (suite *SmokeSuite) TearDownSuite() {
-	fmt.Println("Terminei de rodar os tests")
+	fmt.Println("Terminei de rodar os smoke tests")
 }
 
-func (suite *SmokeSuite) TestIntegration() {
+func (suite *SmokeSuite) TestSmoke() {
 	suite.createAndRetrieveProductSuccessful()
 }
 
