@@ -13,7 +13,7 @@
     https://devicon.dev/
     https://simpleicons.org/
 -->
-[<img src="./docs/assets/images/icons/postman.svg" width="25px" height="25px" alt="Postman Logo" title="Postman">](https://www.postman.com/) [<img src="./docs/assets/images/icons/go.svg" width="25px" height="25px" alt="go" title="Go">](https://go.dev/) [<img src="./docs/assets/images/icons/echo.png" width="25px" height="25px" alt="Echo Framework" title="Echo Framework">](https://echo.labstack.com/) [<img src="./docs/assets/images/icons/mysql.svg" width="50px" height="50px" alt="MySQL Logo" title="MySQL">](https://www.mysql.com/) [<img src="./docs/assets/images/icons/docker.svg" width="25px" height="25px" alt="Docker Logo" title="Docker">](https://www.docker.com/) [<img src="./docs/assets/images/icons/ubuntu.svg" width="25px" height="25px Logo" title="Ubunto" alt="Ubunto" />](https://ubuntu.com/) [<img src="./docs/assets/images/icons/dotenv.svg" width="25px" height="25px" alt="Viper DotEnv Logo" title="Viper DotEnv">](https://github.com/spf13/viper) [<img src="./docs/assets/images/icons/github.svg" width="25px" height="25px" alt="GitHub Logo" title="GitHub">](https://github.com/jtonynet) [<img src="./docs/assets/images/icons/mermaidjs.svg" width="25px" height="25px" alt="MermaidJS Logo" title="MermaidJS">](https://mermaid.js.org/) [<img src="./docs/assets/images/icons/visualstudiocode.svg" width="25px" height="25px" alt="VsCode Logo" title="VsCode">](https://code.visualstudio.com/) [<img src="./docs/assets/images/icons/swagger.svg" width="25px" height="25px" alt="Swagger Logo" title="Swagger">](https://swagger.io/) [<img src="./docs/assets/images/icons/githubactions.svg" width="25px" height="25px" alt="GithubActions Logo" title="GithubActions">](https://docs.github.com/en/actions) <!-- [<img src="./docs/assets/images/icons/prometheus.svg" width="25px" height="25px" alt="Prometheus Logo" title="Prometheus">](https://prometheus.io/) [<img src="./docs/assets/images/icons/grafana.svg" width="25px" height="25px" alt="Grafana Logo" title="Grafana">](https://grafana.com/) -->
+[<img src="./docs/assets/images/icons/postman.svg" width="25px" height="25px" alt="Postman Logo" title="Postman">](https://www.postman.com/) [<img src="./docs/assets/images/icons/go.svg" width="25px" height="25px" alt="go" title="Go">](https://go.dev/) [<img src="./docs/assets/images/icons/echo.png" width="25px" height="25px" alt="Echo Framework" title="Echo Framework">](https://echo.labstack.com/) [<img src="./docs/assets/images/icons/mysql.svg" width="50px" height="50px" alt="MySQL Logo" title="MySQL">](https://www.mysql.com/) [<img src="./docs/assets/images/icons/docker.svg" width="25px" height="25px" alt="Docker Logo" title="Docker">](https://www.docker.com/) [<img src="./docs/assets/images/icons/ubuntu.svg" width="25px" height="25px Logo" title="Ubunto" alt="Ubunto" />](https://ubuntu.com/) [<img src="./docs/assets/images/icons/dotenv.svg" width="25px" height="25px" alt="Viper DotEnv Logo" title="Viper DotEnv">](https://github.com/spf13/viper) [<img src="./docs/assets/images/icons/github.svg" width="25px" height="25px" alt="GitHub Logo" title="GitHub">](https://github.com/jtonynet) [<img src="./docs/assets/images/icons/mermaidjs.svg" width="25px" height="25px" alt="MermaidJS Logo" title="MermaidJS">](https://mermaid.js.org/) [<img src="./docs/assets/images/icons/visualstudiocode.svg" width="25px" height="25px" alt="VsCode Logo" title="VsCode">](https://code.visualstudio.com/) [<img src="./docs/assets/images/icons/swagger.svg" width="25px" height="25px" alt="Swagger Logo" title="Swagger">](https://swagger.io/) [<img src="./docs/assets/images/icons/githubactions.svg" width="25px" height="25px" alt="GithubActions Logo" title="GithubActions">](https://docs.github.com/en/actions) <!-- [<img src="./docs/assets/images/icons/prometheus.svg" width="25px" height="25px" alt="Prometheus Logo" title="Prometheus">](https://prometheus.io/) [<img src="./docs/assets/images/icons/grafana.svg" width="25px" height="25px" alt="Grafana Logo" title="Grafana">](https://grafana.com/) [<img src="./docs/assets/images/icons/redis.svg" width="25px" height="25px" alt="Redis Logo" title="Redis">](https://redis.com/) [<img src="./docs/assets/images/icons/gatling.svg" width="35px" height="35px" alt="Gatling Logo" title="Gatling">](https://gatling.com/) [<img src="./docs/assets/images/icons/rabbitmq.svg" width="25px" height="25px" alt="RabbitMQ Logo" title="RabbitMQ">](https://rabbitmq.com/) -->
 
 ![Badge Status](https://img.shields.io/badge/STATUS-EM_DESENVOLVIMENTO-green) <!--![Badge GitHubActions](https://github.com/jtonynet/cine-catalogo/actions/workflows/main.yml/badge.svg?branch=main)--> [![Github Project](https://img.shields.io/badge/PROJECT%20VIEW-GITHUB-181717?logo=github&logoColor=white)](https://github.com/users/jtonynet/projects/5/views/1)
 
@@ -77,7 +77,8 @@ Este repositório foi criado com a intenção de propor uma possível solução 
 >   - API Design
 >   - Código Limpo (Clean Code)
 >   - Padrões e convenções GoLang
-> 
+
+Dada sua simplicidade, uma vez que se trata de um __CRUD simples__. Faz sentido utilizar __Arquitetura de Duas Camadas__ o que aumenta o ritmo do desenvolvimento com menos partes para se preocupar porém mantendo a qualidade do resultado final.
 
 <br/>
 
@@ -130,7 +131,7 @@ graph LR
       ADMIN --> REMOVE_PRODUCT_BY_ID("💻 Remove Product by ID")
     end
 
-    subgraph go-products-api - Three Tier Architecture -
+    subgraph go-products-api - Two Tier Architecture -
       subgraph Handlers
         API_CREATE_PRODUCT("🖥️ Create Product")
         API_GET_PRODUCTS("🖥️ Get Products")
@@ -139,9 +140,6 @@ graph LR
         API_DELETE_PRODUCT_BY_ID("🖥️ Delete Product by ID")
       end
 
-      subgraph Services
-        SERVICE_PRODUCT("⚙️ Product")
-      end
 
       subgraph Entities
         ENTITY_PRODUCT("📄 Product")
@@ -160,15 +158,19 @@ graph LR
   REMOVE_PRODUCT_BY_ID -->|http DELETE| API_DELETE_PRODUCT_BY_ID
 
 
-  API_CREATE_PRODUCT-->SERVICE_PRODUCT
-  API_GET_PRODUCTS-->SERVICE_PRODUCT
-  API_GET_PRODUCT-->SERVICE_PRODUCT
-  API_DELETE_PRODUCT_BY_ID-->SERVICE_PRODUCT
+  API_CREATE_PRODUCT-->ENTITY_PRODUCT
+  API_GET_PRODUCTS-->ENTITY_PRODUCT
+  API_GET_PRODUCT-->ENTITY_PRODUCT
+  API_UPDATE_PRODUCT-->ENTITY_PRODUCT 
+  API_DELETE_PRODUCT_BY_ID-->ENTITY_PRODUCT
 
-  SERVICE_PRODUCT-->ENTITY_PRODUCT
+
+
 
   ENTITY_PRODUCT-->CATALOGO_DB
 ```
+_*Diagrama geral com baixo nível de fidelidade_
+
 <br/>
 
 [:arrow_heading_up: de volta ao índice](#index)
@@ -178,7 +180,21 @@ graph LR
 <a id="tests"></a>
 ### :white_check_mark: Testes
 
-__TODO__
+
+
+Para testar localmente, é necessário ter o Go v1.21.1 instalado. Execute o `smoke test`  (mais próximo de um teste de integração) para garantir o funcionamento correto da API e do banco de dados. Inicie o banco de dados na raiz do projeto usando docker-compose.
+
+```bash
+docker compose up mysql-go-products-api
+```
+
+Em outro terminal mas ainda na raiz do projeto, execute o comando:
+```bash
+go test -v
+```
+
+obtendo uma saida similar a seguinte:
+<img src="./docs/assets/images/screen_captures/testing.png">
 
 <br/>
 
@@ -195,7 +211,7 @@ Utilizando o VSCode como editor de código ([maiores informações aqui](https:/
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch CineCatalogo",
+            "name": "Launch go-products-api",
             "type": "go",
             "request": "launch",
             "mode": "debug",
@@ -204,18 +220,19 @@ Utilizando o VSCode como editor de código ([maiores informações aqui](https:/
             "trace": "verbose",
         },
         {
-            "name": "Test CineCatalogo",
+            "name": "Test go-products-api",
             "type": "go",
             "request": "launch",
             "mode": "test",
-            "program":"${workspaceFolder}/main_integration_test.go",
+            "program":"${workspaceFolder}/main_smoke_test.go",
             "trace": "verbose",
         }
     ]
 }
 ```
 
-__TODO__
+Uma seção de Depuração de Testes da aplicação:
+<img src="./docs/assets/images/screen_captures/testing_debug.png">
 
 <br/>
 
@@ -245,6 +262,7 @@ __TODO__
   - [Echo](https://echo.labstack.com/)
   - [Testify](github.com/stretchr/testify)
   - [GORM](https://gorm.io/index.html)
+  - [Gjson](https://github.com/tidwall/gjson)
   - [Viper](https://github.com/spf13/viper)
   - [uuid](https://github.com/google/uuid)
   - [Delve](https://github.com/go-delve/delve)
@@ -257,8 +275,8 @@ __TODO__
   - [Docker v24.0.6](https://www.docker.com/)
   - [Docker compose v2.21.0](https://www.docker.com/)
   - [MySQL](https://www.postgresql.org/)
-  - [Prometheus](https://prometheus.io/docs/guides/go-application)
-  - [Grafana](https://grafana.com/)
+<!-- [Prometheus](https://prometheus.io/docs/guides/go-application)
+  - [Grafana](https://grafana.com/) -->
 
 
 - GUIs:
@@ -275,12 +293,12 @@ __TODO__
 <a id="best-practices"></a>
 ## 👏 Boas Práticas
 
+- [Swagger](https://swagger.io/)
 - [Layout padrão de projetos em Go](https://github.com/golang-standards/project-layout/blob/master/README_ptBR.md)
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - [ADR - Architecture Decision Records](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions)
 - [Mermaid Diagrams](https://mermaid.js.org)
-- [Swagger](https://swagger.io/)
 <!-- [Observability](https://en.wikipedia.org/wiki/Observability_(software)) com:
   - [Prometheus](https://prometheus.io/docs/guides/go-application/)
   - [Grafana](https://grafana.com/) -->
@@ -295,7 +313,7 @@ __TODO__
 ## 🧠 ADR - Architecture Decision Records:
 
 - [0001: Registro de Decisões de Arquitetura (ADR)](./docs/architecture/decisions/0001-registro-de-decisoes-de-arquitetura.md)
-- [0002: Echo, Gorm e MySQL em API TDD com arquitetura de Três camadas](./docs/architecture/decisions/0002-echo-gorm-e-mysql-com-arquitetura-de-api-tdd-em-tres-camadas.md)
+- [0002: Echo, Gorm e MySQL em API TDD com Arquitetura de Duas camadas](./docs/architecture/decisions/0002-echo-gorm-e-mysql-com-arquitetura-de-api-tdd-em-duas-camadas.md)
 
 
 <br/>
