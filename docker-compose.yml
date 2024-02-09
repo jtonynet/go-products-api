@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  mysql-go-products-api:
+    image: mysql:latest
+    container_name: mysql-go-products-api
+    restart: always
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: go-products-api
+    ports:
+      - 3306:3306
+    volumes:
+      - .docker/mysql-go-products-api:/var/lib/mysql

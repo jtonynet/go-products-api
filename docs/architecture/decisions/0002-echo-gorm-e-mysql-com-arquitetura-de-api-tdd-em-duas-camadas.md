@@ -30,15 +30,15 @@ _[Imagem retirada do artigo: The Testing Pyramid: Simplified for One and All](ht
 
 Este documento determina o fluxo de trabalho __Branch Based com Feature Branch__, design estrutural e a abordagem de testes para garantir um padrão e a estabilidade da aplicação.
 
-Para esse projeto, a __Arquitetura de Duas Camadas__ era mais do que suficiente para o escopo inicial, dada sua simplicidade, uma vez que se trata de um __CRUD simples__. No entanto, optamos pela __Arquitetura em Três Camadas__ para demonstrar um maior conhecimento sobre o assunto, já que é um padrão de mercado amplamente adotado.
+Dada sua simplicidade, uma vez que se trata de um __CRUD simples__. Faz sentido utilizar __Arquitetura de Duas Camadas__ o que aumenta o ritmo do desenvolvimento com menos partes para se preocupar porém mantendo a qualidade do resultado final.
 
 __GORM__ foi escolhido como ORM por facilitar a integração aos principais BDs e oferecer facilidades como observabilidade, que poderemos adotar no futuro.
 
-Seguimos com testes de unidade e testamos a integridade dos dados das operações através de __Smoke Test__ (mais próximo do Integration do que do Unit) e iniciamos a construção de nosso sistema através deles, no espírito do __TDD__. Para que haja forte integração ao GithubActions, que adotaremos como processo de __CI__. [Consulte este artigo para mais informações](https://novateus.com/blog/8-functional-testing-types-explained-with-examples/)
+Utilizei __Smoke Test__ (mais próximo do Integration do que do Unit) e iniciamos a construção de nosso sistema através dele, no espírito do __TDD__. Para que haja forte integração ao GithubActions, que adotaremos como processo de __CI__. [Consulte este artigo para mais informações](https://novateus.com/blog/8-functional-testing-types-explained-with-examples/)
 
 Também faz sentido adotar ferramentas de documentação e design de APIs, como o __Swagger__, utilizando a implementação __OpenAPI__, devido ao seu amplo histórico de utilização.
 
-Decidi também utilizar o __Github Projects__ como ferramenta para auxiliar na abordagem __Kanban__ para conclusão das tarefas, visando alcançar um cenário próximo ao de um time de desenvolvimento real.
+Decidi também utilizar o [Github Projects](https://github.com/users/jtonynet/projects/5/views/1) como ferramenta para auxiliar na abordagem __Kanban__ para conclusão das tarefas, visando alcançar um cenário próximo ao de um time de desenvolvimento real.
 
 ## Consequências
 

@@ -78,7 +78,7 @@ Este repositório foi criado com a intenção de propor uma possível solução 
 >   - Código Limpo (Clean Code)
 >   - Padrões e convenções GoLang
 
-Para esse projeto, a __Arquitetura de Duas Camadas__ era mais do que suficiente para o escopo inicial, dada sua simplicidade, uma vez que se trata de um __CRUD simples__. No entanto, optamos pela __Arquitetura em Três Camadas__ para demonstrar um maior conhecimento sobre o assunto, já que é um padrão de mercado amplamente adotado.
+Dada sua simplicidade, uma vez que se trata de um __CRUD simples__. Faz sentido utilizar __Arquitetura de Duas Camadas__ o que aumenta o ritmo do desenvolvimento com menos partes para se preocupar porém mantendo a qualidade do resultado final.
 
 <br/>
 
@@ -131,7 +131,7 @@ graph LR
       ADMIN --> REMOVE_PRODUCT_BY_ID("💻 Remove Product by ID")
     end
 
-    subgraph go-products-api - Three Tier Architecture -
+    subgraph go-products-api - Two Tier Architecture -
       subgraph Handlers
         API_CREATE_PRODUCT("🖥️ Create Product")
         API_GET_PRODUCTS("🖥️ Get Products")
@@ -140,13 +140,6 @@ graph LR
         API_DELETE_PRODUCT_BY_ID("🖥️ Delete Product by ID")
       end
 
-      subgraph Services
-        SERVICE_CREATE_PRODUCT("⚙️ Create Product")
-        SERVICE_GET_PRODUCT("⚙️ Get Product")
-        SERVICE_UPDATE_PRODUCT("⚙️ Update Product")
-        SERVICE_DELETE_PRODUCT("⚙️ Delete Product")
-
-      end
 
       subgraph Entities
         ENTITY_PRODUCT("📄 Product")
@@ -165,17 +158,13 @@ graph LR
   REMOVE_PRODUCT_BY_ID -->|http DELETE| API_DELETE_PRODUCT_BY_ID
 
 
-  API_CREATE_PRODUCT-->SERVICE_CREATE_PRODUCT
-  API_GET_PRODUCTS-->SERVICE_GET_PRODUCT
-  API_GET_PRODUCT-->SERVICE_GET_PRODUCT
-  API_UPDATE_PRODUCT-->SERVICE_UPDATE_PRODUCT
-  API_DELETE_PRODUCT_BY_ID-->SERVICE_DELETE_PRODUCT
+  API_CREATE_PRODUCT-->ENTITY_PRODUCT
+  API_GET_PRODUCTS-->ENTITY_PRODUCT
+  API_GET_PRODUCT-->ENTITY_PRODUCT
+  API_UPDATE_PRODUCT-->ENTITY_PRODUCT 
+  API_DELETE_PRODUCT_BY_ID-->ENTITY_PRODUCT
 
 
-  SERVICE_CREATE_PRODUCT-->ENTITY_PRODUCT
-  SERVICE_GET_PRODUCT-->ENTITY_PRODUCT
-  SERVICE_UPDATE_PRODUCT-->ENTITY_PRODUCT
-  SERVICE_DELETE_PRODUCT-->ENTITY_PRODUCT
 
 
   ENTITY_PRODUCT-->CATALOGO_DB
@@ -191,7 +180,21 @@ _*Diagrama geral com baixo nível de fidelidade_
 <a id="tests"></a>
 ### :white_check_mark: Testes
 
-__TODO__
+
+
+Para testar localmente, é necessário ter o Go v1.21.1 instalado. Execute o `smoke test`  (mais próximo de um teste de integração) para garantir o funcionamento correto da API e do banco de dados. Inicie o banco de dados na raiz do projeto usando docker-compose.
+
+```bash
+docker compose up mysql-go-products-api
+```
+
+Em outro terminal mas ainda na raiz do projeto, execute o comando:
+```bash
+go test -v
+```
+
+obtendo uma saida similar a seguinte:
+<img src="./docs/assets/images/screen_captures/testing.png">
 
 <br/>
 
@@ -228,7 +231,8 @@ Utilizando o VSCode como editor de código ([maiores informações aqui](https:/
 }
 ```
 
-__TODO__
+Uma seção de Depuração de Testes da aplicação:
+<img src="./docs/assets/images/screen_captures/testing_debug.png">
 
 <br/>
 
@@ -258,6 +262,7 @@ __TODO__
   - [Echo](https://echo.labstack.com/)
   - [Testify](github.com/stretchr/testify)
   - [GORM](https://gorm.io/index.html)
+  - [Gjson](https://github.com/tidwall/gjson)
   - [Viper](https://github.com/spf13/viper)
   - [uuid](https://github.com/google/uuid)
   - [Delve](https://github.com/go-delve/delve)
@@ -308,7 +313,7 @@ __TODO__
 ## 🧠 ADR - Architecture Decision Records:
 
 - [0001: Registro de Decisões de Arquitetura (ADR)](./docs/architecture/decisions/0001-registro-de-decisoes-de-arquitetura.md)
-- [0002: Echo, Gorm e MySQL em API TDD com arquitetura de Três camadas](./docs/architecture/decisions/0002-echo-gorm-e-mysql-com-arquitetura-de-api-tdd-em-tres-camadas.md)
+- [0002: Echo, Gorm e MySQL em API TDD com Arquitetura de Duas camadas](./docs/architecture/decisions/0002-echo-gorm-e-mysql-com-arquitetura-de-api-tdd-em-duas-camadas.md)
 
 
 <br/>

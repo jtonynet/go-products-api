@@ -15,6 +15,6 @@ func NewCreateProduct(productDB interfaces.ProductDB) *CreateProduct {
 	}
 }
 
-func (cp *CreateProduct) With(product *entity.Product) {
-	cp.ProductDB.Create(product)
+func (cp *CreateProduct) With(product entity.Product) {
+	cp.ProductDB.Create(&product)
 }
