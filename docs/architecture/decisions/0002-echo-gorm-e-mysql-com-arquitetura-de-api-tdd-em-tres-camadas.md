@@ -30,11 +30,11 @@ _[Imagem retirada do artigo: The Testing Pyramid: Simplified for One and All](ht
 
 Este documento determina o fluxo de trabalho __Branch Based com Feature Branch__, design estrutural e a abordagem de testes para garantir um padrão e a estabilidade da aplicação.
 
-Considerando ser um __CRUD simples__, entre as várias abordagens estruturais, a __Arquitetura em Três Camadas__ faz mais sentido, por se adequar bem à simplicidade do desafio proposto.
+Para esse projeto, a __Arquitetura de Duas Camadas__ era mais do que suficiente para o escopo inicial, dada sua simplicidade, uma vez que se trata de um __CRUD simples__. No entanto, optamos pela __Arquitetura em Três Camadas__ para demonstrar um maior conhecimento sobre o assunto, já que é um padrão de mercado amplamente adotado.
 
-__GORM__ foi escolhido como ORM por facilitar integracao aos principais BDs e facilidades como observabilidade que poderemos adotar no futuro.
+__GORM__ foi escolhido como ORM por facilitar a integração aos principais BDs e oferecer facilidades como observabilidade, que poderemos adotar no futuro.
 
-Como não há regras de negócio vinculadas às operações dos endpoints propostos, não parece fazer muito sentido utilizar testes unitários (a base da pirâmide) no momento, pois não desejamos testar as operações do nosso banco de dados/ORM, mas sim a integridade dos dados nessas operações. Portanto, iremos utilizar primariamente __Smoke Test__ (mais proximo do Integration do que do Unit) e iniciar a construção de nosso sistema através deles, no espírito do __TDD__. Para que exista forte integração ao GithubActions que adotaremos como processo de __CI__. [Consulte esse artigo para maiores informações](https://novateus.com/blog/8-functional-testing-types-explained-with-examples/)
+Seguimos com testes de unidade e testamos a integridade dos dados das operações através de __Smoke Test__ (mais próximo do Integration do que do Unit) e iniciamos a construção de nosso sistema através deles, no espírito do __TDD__. Para que haja forte integração ao GithubActions, que adotaremos como processo de __CI__. [Consulte este artigo para mais informações](https://novateus.com/blog/8-functional-testing-types-explained-with-examples/)
 
 Também faz sentido adotar ferramentas de documentação e design de APIs, como o __Swagger__, utilizando a implementação __OpenAPI__, devido ao seu amplo histórico de utilização.
 

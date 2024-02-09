@@ -77,7 +77,8 @@ Este repositório foi criado com a intenção de propor uma possível solução 
 >   - API Design
 >   - Código Limpo (Clean Code)
 >   - Padrões e convenções GoLang
-> 
+
+Para esse projeto, a __Arquitetura de Duas Camadas__ era mais do que suficiente para o escopo inicial, dada sua simplicidade, uma vez que se trata de um __CRUD simples__. No entanto, optamos pela __Arquitetura em Três Camadas__ para demonstrar um maior conhecimento sobre o assunto, já que é um padrão de mercado amplamente adotado.
 
 <br/>
 
@@ -140,7 +141,11 @@ graph LR
       end
 
       subgraph Services
-        SERVICE_PRODUCT("⚙️ Product")
+        SERVICE_CREATE_PRODUCT("⚙️ Create Product")
+        SERVICE_GET_PRODUCT("⚙️ Get Product")
+        SERVICE_UPDATE_PRODUCT("⚙️ Update Product")
+        SERVICE_DELETE_PRODUCT("⚙️ Delete Product")
+
       end
 
       subgraph Entities
@@ -160,16 +165,23 @@ graph LR
   REMOVE_PRODUCT_BY_ID -->|http DELETE| API_DELETE_PRODUCT_BY_ID
 
 
-  API_CREATE_PRODUCT-->SERVICE_PRODUCT
-  API_GET_PRODUCTS-->SERVICE_PRODUCT
-  API_GET_PRODUCT-->SERVICE_PRODUCT
-  API_UPDATE_PRODUCT-->SERVICE_PRODUCT
-  API_DELETE_PRODUCT_BY_ID-->SERVICE_PRODUCT
+  API_CREATE_PRODUCT-->SERVICE_CREATE_PRODUCT
+  API_GET_PRODUCTS-->SERVICE_GET_PRODUCT
+  API_GET_PRODUCT-->SERVICE_GET_PRODUCT
+  API_UPDATE_PRODUCT-->SERVICE_UPDATE_PRODUCT
+  API_DELETE_PRODUCT_BY_ID-->SERVICE_DELETE_PRODUCT
 
-  SERVICE_PRODUCT-->ENTITY_PRODUCT
+
+  SERVICE_CREATE_PRODUCT-->ENTITY_PRODUCT
+  SERVICE_GET_PRODUCT-->ENTITY_PRODUCT
+  SERVICE_UPDATE_PRODUCT-->ENTITY_PRODUCT
+  SERVICE_DELETE_PRODUCT-->ENTITY_PRODUCT
+
 
   ENTITY_PRODUCT-->CATALOGO_DB
 ```
+_*Diagrama geral com baixo nível de fidelidade_
+
 <br/>
 
 [:arrow_heading_up: de volta ao índice](#index)
@@ -196,7 +208,7 @@ Utilizando o VSCode como editor de código ([maiores informações aqui](https:/
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch CineCatalogo",
+            "name": "Launch go-products-api",
             "type": "go",
             "request": "launch",
             "mode": "debug",
@@ -205,11 +217,11 @@ Utilizando o VSCode como editor de código ([maiores informações aqui](https:/
             "trace": "verbose",
         },
         {
-            "name": "Test CineCatalogo",
+            "name": "Test go-products-api",
             "type": "go",
             "request": "launch",
             "mode": "test",
-            "program":"${workspaceFolder}/main_integration_test.go",
+            "program":"${workspaceFolder}/main_smoke_test.go",
             "trace": "verbose",
         }
     ]

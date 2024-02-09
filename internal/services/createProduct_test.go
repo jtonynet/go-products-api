@@ -27,7 +27,8 @@ func TestCreateProduct(t *testing.T) {
 	// Arrange
 	fakeProductDB := NewFakeProductDB()
 	createProduct := services.NewCreateProduct(fakeProductDB)
-	productUUID, _ := uuid.Parse("37ad0486-5ba5-47a5-b352-408b077e12c6")
+	productUUID, err := uuid.Parse("37ad0486-5ba5-47a5-b352-408b077e12c6")
+	assert.NoError(t, err)
 	product := entity.NewProduct(productUUID)
 
 	// Act
