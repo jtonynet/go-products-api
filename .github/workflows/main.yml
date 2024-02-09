@@ -23,7 +23,7 @@ jobs:
       run: docker compose up mysql-go-products-api -d
       
     - name: Wait for DB to start
-      run: sleep 3
+      run: sleep 5
       
     - name: Test
       run: go test -v main_smoke_test.go
