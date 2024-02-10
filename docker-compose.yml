@@ -1,9 +1,14 @@
 version: '3.7'
 
+networks:
+  go-products-network:
+    driver: bridge
+
 services:
   mysql-go-products-api:
     image: mysql:latest
     container_name: mysql-go-products-api
+    hostname: mysql-go-products-api
     restart: always
     environment:
       MYSQL_ROOT_USER: root
@@ -13,3 +18,22 @@ services:
       - 3306:3306
     volumes:
       - .docker/mysql-go-products-api:/var/lib/mysql
+    networks:
+      - go-products-network
+
+  go-products-api:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      target: api
+    depends_on:
+      - mysql-go-products-api
+    container_name: go-products-api
+    hostname: go-products-api
+    ports: 
+      - "8080:8080"
+    volumes: 
+      - ./:/usr/src/app/
+    tty: true
+    networks:
+      - go-products-network

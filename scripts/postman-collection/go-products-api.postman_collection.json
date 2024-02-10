@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "fcaffc49-8931-4533-826d-63734ba64d20",
+		"name": "go-products-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30919179"
+	},
+	"item": [
+		{
+			"name": "Retrieve Product List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/e5ef62fe-20e0-428d-8c89-f6a048db453c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"e5ef62fe-20e0-428d-8c89-f6a048db453c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uuid\":\"e5ef62fe-20e0-428d-8c89-f6a048db453c\",\n    \"name\":\"Nintendo Xwetter\",\n    \"description\":\"Creative Video Game\",\n    \"price\":3500\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"price\":2500\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/products/e5ef62fe-20e0-428d-8c89-f6a048db453c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"e5ef62fe-20e0-428d-8c89-f6a048db453c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"uuid\":\"e5ef62fe-20e0-428d-8c89-f6a048db453c\",\n    \"name\":\"Nintendo Xwetter\",\n    \"description\":\"Creative Video Game\",\n    \"price\":3500\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/products/e5ef62fe-20e0-428d-8c89-f6a048db453c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"e5ef62fe-20e0-428d-8c89-f6a048db453c"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

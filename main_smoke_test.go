@@ -11,9 +11,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/tidwall/gjson"
-	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"gorm.io/gorm/logger"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
@@ -21,14 +19,13 @@ import (
 
 	"github.com/jtonynet/go-products-api/config"
 	"github.com/jtonynet/go-products-api/internal/database"
-	"github.com/jtonynet/go-products-api/internal/entity"
 	"github.com/jtonynet/go-products-api/internal/handlers"
 )
 
 type SmokeSuite struct {
 	suite.Suite
-	router *echo.Echo
-	DB     *gorm.DB
+	echoRouter *echo.Echo
+	DB         *gorm.DB
 
 	productHandler *handlers.ProductHandler
 
@@ -71,7 +68,7 @@ func setupConfig() *config.Config {
 	cfg := config.Config{}
 
 	cfg.Database.Host = "localhost"
-	cfg.Database.Port = 3306
+	cfg.Database.Port = "3306"
 	cfg.Database.User = "root"
 	cfg.Database.Pass = "root"
 	cfg.Database.DB = "go-products-api"
@@ -80,24 +77,8 @@ func setupConfig() *config.Config {
 }
 
 func setupDB(cfg *config.Database) (*gorm.DB, error) {
-	strConn := fmt.Sprintf("%s:%s@tcp(%s:%v)/%s?parseTime=true",
-		cfg.User,
-		cfg.Pass,
-		cfg.Host,
-		cfg.Port,
-		cfg.DB,
-	)
-
-	db, err := gorm.Open(mysql.Open(strConn), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Silent),
-	})
-	if err != nil {
-		fmt.Println("Unable to connect to Database")
-		return nil, err
-	}
-
-	db.AutoMigrate(entity.Product{})
-	return db, nil
+	db, err := database.NewDatabase(cfg)
+	return db, err
 }
 
 func (suite *SmokeSuite) TestSmoke() {
@@ -106,15 +87,15 @@ func (suite *SmokeSuite) TestSmoke() {
 	suite.deleteProductSuccessful()
 }
 
-func setupRouter() *echo.Echo {
-	router := echo.New()
-	return router
+func setupEchoRouter() *echo.Echo {
+	echoRouter := echo.New()
+	return echoRouter
 }
 
 func (suite *SmokeSuite) createAndRetrieveProductSuccessful() {
 	// Create Product
-	suite.router = setupRouter()
-	suite.router.POST("/products", suite.productHandler.CreateProduct)
+	suite.echoRouter = setupEchoRouter()
+	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
 
 	requestProduct := fmt.Sprintf(
 		`{
@@ -134,19 +115,19 @@ func (suite *SmokeSuite) createAndRetrieveProductSuccessful() {
 	assert.NoError(suite.T(), err)
 	respProductCreate := httptest.NewRecorder()
 
-	suite.router.ServeHTTP(respProductCreate, reqProductCreate)
+	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
 	assert.Equal(suite.T(), http.StatusCreated, respProductCreate.Code)
 
 	// Retrieve Product By Id
-	suite.router = setupRouter()
-	suite.router.GET("/products/:product_id", suite.productHandler.RetrieveProductById)
+	suite.echoRouter = setupEchoRouter()
+	suite.echoRouter.GET("/products/:product_id", suite.productHandler.RetrieveProductById)
 
 	productUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
 	reqProductRetrieve, err := http.NewRequest("GET", productUUIDRoute, nil)
 	assert.NoError(suite.T(), err)
 	respProductRetrieve := httptest.NewRecorder()
 
-	suite.router.ServeHTTP(respProductRetrieve, reqProductRetrieve)
+	suite.echoRouter.ServeHTTP(respProductRetrieve, reqProductRetrieve)
 	assert.Equal(suite.T(), http.StatusOK, respProductRetrieve.Code)
 
 	bodyProduct := respProductRetrieve.Body.String()
@@ -158,8 +139,8 @@ func (suite *SmokeSuite) createAndRetrieveProductSuccessful() {
 
 func (suite *SmokeSuite) updateAndRetrieveProductListSuccessful() {
 	// Update Product
-	suite.router = setupRouter()
-	suite.router.PATCH("/products/:product_id", suite.productHandler.UpdateProductById)
+	suite.echoRouter = setupEchoRouter()
+	suite.echoRouter.PATCH("/products/:product_id", suite.productHandler.UpdateProductById)
 
 	requestProduct := fmt.Sprintf(
 		`{
@@ -178,18 +159,18 @@ func (suite *SmokeSuite) updateAndRetrieveProductListSuccessful() {
 	assert.NoError(suite.T(), err)
 	respProductUpdate := httptest.NewRecorder()
 
-	suite.router.ServeHTTP(respProductUpdate, reqProductUpdate)
+	suite.echoRouter.ServeHTTP(respProductUpdate, reqProductUpdate)
 	assert.Equal(suite.T(), http.StatusOK, respProductUpdate.Code)
 
 	// Retrieve Products List
-	suite.router = setupRouter()
-	suite.router.GET("/products", suite.productHandler.RetriveProductList)
+	suite.echoRouter = setupEchoRouter()
+	suite.echoRouter.GET("/products", suite.productHandler.RetriveProductList)
 
 	reqProductsRetrieve, err := http.NewRequest("GET", "/products", nil)
 	assert.NoError(suite.T(), err)
 	respProductsRetrieve := httptest.NewRecorder()
 
-	suite.router.ServeHTTP(respProductsRetrieve, reqProductsRetrieve)
+	suite.echoRouter.ServeHTTP(respProductsRetrieve, reqProductsRetrieve)
 	assert.Equal(suite.T(), http.StatusOK, respProductsRetrieve.Code)
 
 	bodyProducts := respProductsRetrieve.Body.String()
@@ -202,25 +183,25 @@ func (suite *SmokeSuite) updateAndRetrieveProductListSuccessful() {
 
 func (suite *SmokeSuite) deleteProductSuccessful() {
 	// Delete Product
-	suite.router = setupRouter()
-	suite.router.DELETE("/products/:product_id", suite.productHandler.DeleteProductById)
+	suite.echoRouter = setupEchoRouter()
+	suite.echoRouter.DELETE("/products/:product_id", suite.productHandler.DeleteProductById)
 
 	productUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
 	reqProductDelete, err := http.NewRequest("DELETE", productUUIDRoute, nil)
 	assert.NoError(suite.T(), err)
 	respProductDelete := httptest.NewRecorder()
-	suite.router.ServeHTTP(respProductDelete, reqProductDelete)
+	suite.echoRouter.ServeHTTP(respProductDelete, reqProductDelete)
 	assert.Equal(suite.T(), http.StatusNoContent, respProductDelete.Code)
 
 	// Retrieve Product By Id
-	suite.router = setupRouter()
-	suite.router.GET("/products/:product_id", suite.productHandler.RetrieveProductById)
+	suite.echoRouter = setupEchoRouter()
+	suite.echoRouter.GET("/products/:product_id", suite.productHandler.RetrieveProductById)
 
 	reqProductRetrieve, err := http.NewRequest("GET", productUUIDRoute, nil)
 	assert.NoError(suite.T(), err)
 	respProductRetrieve := httptest.NewRecorder()
 
-	suite.router.ServeHTTP(respProductRetrieve, reqProductRetrieve)
+	suite.echoRouter.ServeHTTP(respProductRetrieve, reqProductRetrieve)
 	assert.Equal(suite.T(), http.StatusNotFound, respProductRetrieve.Code)
 }
 
