@@ -5,7 +5,10 @@ import (
 
 	"github.com/jtonynet/go-products-api/config"
 	"github.com/jtonynet/go-products-api/internal/handlers"
+	"github.com/jtonynet/go-products-api/internal/middleware"
 	"github.com/labstack/echo/v4"
+	echoMiddleware "github.com/labstack/echo/v4/middleware"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 
 	_ "github.com/jtonynet/go-products-api/api"
 	echoSwagger "github.com/swaggo/echo-swagger"
@@ -13,14 +16,22 @@ import (
 
 func Init(cfg *config.API, productHandler *handlers.ProductHandler) {
 	r := echo.New()
+	r.Use(echoMiddleware.CORS())
 
-	initializeRoutes(productHandler, r)
+	initializeRoutes(cfg, productHandler, r)
 
 	portStr := fmt.Sprintf(":%s", cfg.Port)
 	r.Logger.Fatal(r.Start(portStr))
 }
 
-func initializeRoutes(productHandler *handlers.ProductHandler, r *echo.Echo) {
+func initializeRoutes(
+	cfg *config.API,
+	productHandler *handlers.ProductHandler,
+	r *echo.Echo) {
+
+	if cfg.MetricEnabled {
+		initializeMetricsRoute(r, cfg)
+	}
 
 	r.GET("/swagger/*", echoSwagger.WrapHandler)
 
@@ -29,4 +40,11 @@ func initializeRoutes(productHandler *handlers.ProductHandler, r *echo.Echo) {
 	r.GET("/products/:product_id", productHandler.RetrieveProductById)
 	r.PATCH("/products/:product_id", productHandler.UpdateProductById)
 	r.DELETE("/products/:product_id", productHandler.DeleteProductById)
+}
+
+func initializeMetricsRoute(r *echo.Echo, cfg *config.API) {
+	middleware.InitPrometheus(cfg)
+
+	r.Use(middleware.Prometheus())
+	r.GET("/metrics", echo.WrapHandler(promhttp.Handler()))
 }

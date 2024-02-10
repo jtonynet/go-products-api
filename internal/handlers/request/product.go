@@ -6,7 +6,7 @@ import (
 
 type Product struct {
 	UUID        uuid.UUID `json:"uuid" form:"uuid" binding:"required" example:"7829cc30-1d6e-4a5d-bcc1-ec65c8c338ab"`
-	Name        string    `json:"name" form:"name" binding:"required" example:" Exis Boxis Series G"`
+	Name        string    `json:"name" form:"name" binding:"required" example:"Exis Boxis Series G"`
 	Description string    `json:"description" form:"description" binding:"required" example:"Next Gen powerful videogame"`
 	Price       *int64    `json:"price" form:"price" binding:"required" example:"5000"`
 }

@@ -7,6 +7,9 @@ type API struct {
 	Port       string `mapstructure:"API_PORT"`
 	TagVersion string `mapstructure:"API_TAG_VERSION"`
 	Env        string `mapstructure:"API_ENV"`
+	Host       string `mapstructure:"API_HOST"`
+
+	MetricEnabled bool `mapstructure:"API_METRICS_ENABLED"`
 }
 
 type Database struct {

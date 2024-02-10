@@ -13,7 +13,7 @@
     https://devicon.dev/
     https://simpleicons.org/
 -->
-[<img src="./docs/assets/images/icons/postman.svg" width="25px" height="25px" alt="Postman Logo" title="Postman">](https://www.postman.com/) [<img src="./docs/assets/images/icons/go.svg" width="25px" height="25px" alt="go" title="Go">](https://go.dev/) [<img src="./docs/assets/images/icons/echo.png" width="25px" height="25px" alt="Echo Framework" title="Echo Framework">](https://echo.labstack.com/) [<img src="./docs/assets/images/icons/mysql.svg" width="50px" height="50px" alt="MySQL Logo" title="MySQL">](https://www.mysql.com/) [<img src="./docs/assets/images/icons/docker.svg" width="25px" height="25px" alt="Docker Logo" title="Docker">](https://www.docker.com/) [<img src="./docs/assets/images/icons/ubuntu.svg" width="25px" height="25px Logo" title="Ubunto" alt="Ubunto" />](https://ubuntu.com/) [<img src="./docs/assets/images/icons/dotenv.svg" width="25px" height="25px" alt="Viper DotEnv Logo" title="Viper DotEnv">](https://github.com/spf13/viper) [<img src="./docs/assets/images/icons/github.svg" width="25px" height="25px" alt="GitHub Logo" title="GitHub">](https://github.com/jtonynet) [<img src="./docs/assets/images/icons/mermaidjs.svg" width="25px" height="25px" alt="MermaidJS Logo" title="MermaidJS">](https://mermaid.js.org/) [<img src="./docs/assets/images/icons/visualstudiocode.svg" width="25px" height="25px" alt="VsCode Logo" title="VsCode">](https://code.visualstudio.com/) [<img src="./docs/assets/images/icons/swagger.svg" width="25px" height="25px" alt="Swagger Logo" title="Swagger">](https://swagger.io/) [<img src="./docs/assets/images/icons/githubactions.svg" width="25px" height="25px" alt="GithubActions Logo" title="GithubActions">](https://docs.github.com/en/actions) <!-- [<img src="./docs/assets/images/icons/prometheus.svg" width="25px" height="25px" alt="Prometheus Logo" title="Prometheus">](https://prometheus.io/) [<img src="./docs/assets/images/icons/grafana.svg" width="25px" height="25px" alt="Grafana Logo" title="Grafana">](https://grafana.com/) [<img src="./docs/assets/images/icons/redis.svg" width="25px" height="25px" alt="Redis Logo" title="Redis">](https://redis.com/) [<img src="./docs/assets/images/icons/gatling.svg" width="35px" height="35px" alt="Gatling Logo" title="Gatling">](https://gatling.com/) [<img src="./docs/assets/images/icons/rabbitmq.svg" width="25px" height="25px" alt="RabbitMQ Logo" title="RabbitMQ">](https://rabbitmq.com/) -->
+[<img src="./docs/assets/images/icons/postman.svg" width="25px" height="25px" alt="Postman Logo" title="Postman">](https://www.postman.com/) [<img src="./docs/assets/images/icons/go.svg" width="25px" height="25px" alt="go" title="Go">](https://go.dev/) [<img src="./docs/assets/images/icons/echo.png" width="25px" height="25px" alt="Echo Framework" title="Echo Framework">](https://echo.labstack.com/) [<img src="./docs/assets/images/icons/mysql.svg" width="50px" height="50px" alt="MySQL Logo" title="MySQL">](https://www.mysql.com/) [<img src="./docs/assets/images/icons/docker.svg" width="25px" height="25px" alt="Docker Logo" title="Docker">](https://www.docker.com/) [<img src="./docs/assets/images/icons/ubuntu.svg" width="25px" height="25px Logo" title="Ubunto" alt="Ubunto" />](https://ubuntu.com/) [<img src="./docs/assets/images/icons/dotenv.svg" width="25px" height="25px" alt="Viper DotEnv Logo" title="Viper DotEnv">](https://github.com/spf13/viper) [<img src="./docs/assets/images/icons/github.svg" width="25px" height="25px" alt="GitHub Logo" title="GitHub">](https://github.com/jtonynet) [<img src="./docs/assets/images/icons/mermaidjs.svg" width="25px" height="25px" alt="MermaidJS Logo" title="MermaidJS">](https://mermaid.js.org/) [<img src="./docs/assets/images/icons/visualstudiocode.svg" width="25px" height="25px" alt="VsCode Logo" title="VsCode">](https://code.visualstudio.com/) [<img src="./docs/assets/images/icons/swagger.svg" width="25px" height="25px" alt="Swagger Logo" title="Swagger">](https://swagger.io/) [<img src="./docs/assets/images/icons/githubactions.svg" width="25px" height="25px" alt="GithubActions Logo" title="GithubActions">](https://docs.github.com/en/actions) [<img src="./docs/assets/images/icons/prometheus.svg" width="25px" height="25px" alt="Prometheus Logo" title="Prometheus">](https://prometheus.io/) [<img src="./docs/assets/images/icons/grafana.svg" width="25px" height="25px" alt="Grafana Logo" title="Grafana">](https://grafana.com/) <!-- [<img src="./docs/assets/images/icons/redis.svg" width="25px" height="25px" alt="Redis Logo" title="Redis">](https://redis.com/) [<img src="./docs/assets/images/icons/gatling.svg" width="35px" height="35px" alt="Gatling Logo" title="Gatling">](https://gatling.com/) [<img src="./docs/assets/images/icons/rabbitmq.svg" width="25px" height="25px" alt="RabbitMQ Logo" title="RabbitMQ">](https://rabbitmq.com/) -->
 
 
 ![Badge Status](https://img.shields.io/badge/STATUS-EM_DESENVOLVIMENTO-green) [![Github Project](https://img.shields.io/badge/PROJECT%20VIEW-GITHUB-green?logo=github&logoColor=white)](https://github.com/users/jtonynet/projects/5/views/1) ![Badge GitHubActions](https://github.com/jtonynet/go-products-api/actions/workflows/main.yml/badge.svg?branch=main) 
@@ -36,14 +36,12 @@
   5.   :bar_chart: [Diagramas](#diagrams)
   6.   :white_check_mark: [Testes](#tests)
   7.   :beetle: [Debug](#debug)
-  8.   :toolbox: [Ferramentas](#tools)
-  9.   :clap: [Boas Práticas](#best-practices)
-  10.  :brain: [ADR - Architecture Decision Records](#adr)
-  11.  :1234: [Versões](#versions)
-  12.  :robot: [Uso de AI](#ia)
-
-
-<!-- 8.  :detective: [Observabilidade](#observability) -->
+  8.  :detective: [Observabilidade](#observability)
+  9.   :toolbox: [Ferramentas](#tools)
+  10.  :clap: [Boas Práticas](#best-practices)
+  11.  :brain: [ADR - Architecture Decision Records](#adr)
+  12.  :1234: [Versões](#versions)
+  13.  :robot: [Uso de AI](#ia)
 
 <br/>
 
@@ -57,8 +55,8 @@
 Este repositório foi criado com a intenção de propor uma possível solução para o seguinte desafio:
 
 > 👨‍💻 __Case Dev Backend:__
-> Vamos construir uma API?
 > 
+> __Vamos construir uma API?__
 > A API a ser desenvolvida deve conter rotas C.R.U.D. de produtos, seguindo um bom design de API.
 > - Requisitos:
 >   - Rota para criação de produtos.
@@ -99,7 +97,7 @@ $ docker compose up
 
 > :writing_hand: **Nota**:
 >
->**Solução de Problemas com [Volumes do Docker](https://betterstack.com/community/questions/what-is-the-best-way-to-manage-permissions-for-docker-shared-volumes/)**
+>__Solução de Problemas com [Volumes do Docker](https://betterstack.com/community/questions/what-is-the-best-way-to-manage-permissions-for-docker-shared-volumes/)__
 >Ao configurar o ambiente local, é possível que você encontre problemas de permissão na pasta `.docker`, que armazena os volumes dos componentes necessários para executar o ambiente. O docker-compose cria essa pasta, mas não concede as permissões necessárias para gerenciar esses volumes. A abordagem que estamos usando atualmente para lidar com isso é executar o seguinte comando caso você encontre um erro na primeira tentativa de `docker compose up`:
 >```bash
 >sudo chmod -R 777 .docker
@@ -282,7 +280,7 @@ Uma seção de Depuração de Testes da aplicação:
 
 [:arrow_heading_up: de volta ao índice](#index)
 
-<!--
+
 ---
 
 <a id="observability"></a>
@@ -291,7 +289,6 @@ Uma seção de Depuração de Testes da aplicação:
 __TODO__
 
 [:arrow_heading_up: de volta ao índice](#index)
--->
 
 ---
 
@@ -312,17 +309,17 @@ __TODO__
   - [Delve](https://github.com/go-delve/delve)
   - [Echo-Swagger](https://github.com/swaggo/echo-swagger)
   - [Exponential Backoff](https://github.com/cenkalti/backoff)
-<!-- [Client-prometheus](https://github.com/prometheus/client_golang)
+  - [Gopsutil]("github.com/shirou/gopsutil)
+  - [Client-prometheus](https://github.com/prometheus/client_golang)
   - [GORM Prometheus](https://github.com/go-gorm/prometheus)
-  - [Zap log](https://github.com/uber-go/zap) 
-  - [Gopsutil]("github.com/shirou/gopsutil)-->
+  <!-- [Zap log](https://github.com/uber-go/zap)  -->
 
 - Infra & Technologies
   - [Docker v24.0.6](https://www.docker.com/)
   - [Docker compose v2.21.0](https://www.docker.com/)
   - [MySQL](https://www.postgresql.org/)
-<!-- [Prometheus](https://prometheus.io/docs/guides/go-application)
-  - [Grafana](https://grafana.com/) -->
+  - [Prometheus](https://prometheus.io/docs/guides/go-application)
+  - [Grafana](https://grafana.com/)
 
 
 - GUIs:
@@ -345,9 +342,9 @@ __TODO__
 - [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - [ADR - Architecture Decision Records](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions)
 - [Mermaid Diagrams](https://mermaid.js.org)
-<!-- [Observability](https://en.wikipedia.org/wiki/Observability_(software)) com:
+- [Observability](https://en.wikipedia.org/wiki/Observability_(software)) com:
   - [Prometheus](https://prometheus.io/docs/guides/go-application/)
-  - [Grafana](https://grafana.com/) -->
+  - [Grafana](https://grafana.com/)
 
 <br/>
 
