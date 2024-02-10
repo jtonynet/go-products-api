@@ -90,11 +90,26 @@ Dada sua simplicidade, uma vez que se trata de um __CRUD simples__. Faz sentido 
 <a id="run"></a>
 ## 💻 Rodando o Projeto
 
-__TODO__
+Crie uma cópia do arquivo `sample.env` com o nome `.env` e rode o comando `docker compose up` (de acordo com sua versão do `docker compose`) no diretorio raiz do projeto:
+```bash
+$ docker compose up
+```
+
+<br/>
+
+> :writing_hand: **Nota**:
+>
+>**Solução de Problemas com [Volumes do Docker](https://betterstack.com/community/questions/what-is-the-best-way-to-manage-permissions-for-docker-shared-volumes/)**
+>Ao configurar o ambiente local, é possível que você encontre problemas de permissão na pasta docker_data, que armazena os volumes dos componentes necessários para executar o ambiente. O docker-compose cria essa pasta, mas não concede as permissões necessárias para gerenciar esses volumes. A abordagem que estamos usando atualmente para lidar com isso é executar o seguinte comando caso você encontre um erro na primeira tentativa de `docker compose up`:
+>```bash
+>sudo chmod -R 777 .docker
+>```
+
 
 ####  <img src="./docs/assets/images/icons/postman.svg" width="20px" height="20px" alt="Swagger" title="Swagger">  Postman collection:
 
 Dentro da pasta [./scripts/postman-collection](./scripts/postman-collection/go-products-api.postman_collection.json) encontra-se o arquivo JSON básico que pode ser importado no seu `Postman` para auxiliar em testes manuais e desenvolvimento.
+
 <br/>
 
 [:arrow_heading_up: de volta ao índice](#index)
