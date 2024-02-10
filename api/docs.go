@@ -38,7 +38,7 @@ const docTemplate = `{
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     }
                 }
@@ -70,19 +70,19 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     }
                 }
@@ -117,13 +117,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     }
                 }
@@ -153,19 +153,19 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     }
                 }
@@ -204,25 +204,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     }
                 }
@@ -230,14 +230,6 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "handlers.result": {
-            "type": "object",
-            "properties": {
-                "msg": {
-                    "type": "string"
-                }
-            }
-        },
         "request.Product": {
             "type": "object",
             "required": [
@@ -306,6 +298,14 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Result": {
+            "type": "object",
+            "properties": {
+                "msg": {
                     "type": "string"
                 }
             }

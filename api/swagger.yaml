@@ -1,9 +1,4 @@
 definitions:
-  handlers.result:
-    properties:
-      msg:
-        type: string
-    type: object
   request.Product:
     properties:
       description:
@@ -55,6 +50,11 @@ definitions:
       uuid:
         type: string
     type: object
+  response.Result:
+    properties:
+      msg:
+        type: string
+    type: object
 info:
   contact: {}
 paths:
@@ -73,7 +73,7 @@ paths:
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/handlers.result'
+            $ref: '#/definitions/response.Result'
       summary: Retrieve Product List
       tags:
       - Products
@@ -94,15 +94,15 @@ paths:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/handlers.result'
+            $ref: '#/definitions/response.Result'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/handlers.result'
+            $ref: '#/definitions/response.Result'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/handlers.result'
+            $ref: '#/definitions/response.Result'
       summary: Create Product
       tags:
       - Products
@@ -123,15 +123,15 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/handlers.result'
+            $ref: '#/definitions/response.Result'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/handlers.result'
+            $ref: '#/definitions/response.Result'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/handlers.result'
+            $ref: '#/definitions/response.Result'
       summary: Delete Product By UUID
       tags:
       - Products
@@ -153,11 +153,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/handlers.result'
+            $ref: '#/definitions/response.Result'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/handlers.result'
+            $ref: '#/definitions/response.Result'
       summary: Retrieve Product By UUID
       tags:
       - Products
@@ -183,19 +183,19 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/handlers.result'
+            $ref: '#/definitions/response.Result'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/handlers.result'
+            $ref: '#/definitions/response.Result'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/handlers.result'
+            $ref: '#/definitions/response.Result'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/handlers.result'
+            $ref: '#/definitions/response.Result'
       summary: Update Product By UUID
       tags:
       - Products

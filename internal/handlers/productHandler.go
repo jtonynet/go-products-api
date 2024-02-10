@@ -15,10 +15,6 @@ type ProductHandler struct {
 	productDB *database.ProductDB
 }
 
-type result struct {
-	Msg string `json:"msg"`
-}
-
 func NewProductHandler(productDB *database.ProductDB) *ProductHandler {
 	return &ProductHandler{
 		productDB: productDB,
@@ -31,14 +27,14 @@ func NewProductHandler(productDB *database.ProductDB) *ProductHandler {
 // @Accept json
 // @Produce json
 // @Param request body request.Product true "Request body for create"
-// @Success 201 {object} result
-// @Failure 400 {object} result
-// @Failure 500 {object} result
+// @Success 201 {object} response.Result
+// @Failure 400 {object} response.Result
+// @Failure 500 {object} response.Result
 // @Router /products [post]
 func (ph *ProductHandler) CreateProduct(c echo.Context) error {
 	reqP := new(request.Product)
 	if err := c.Bind(reqP); err != nil {
-		return c.JSON(http.StatusBadRequest, result{Msg: "bad request"})
+		return c.JSON(http.StatusBadRequest, response.Result{Msg: "bad request"})
 	}
 
 	productEntity := entity.NewProduct(
@@ -49,10 +45,10 @@ func (ph *ProductHandler) CreateProduct(c echo.Context) error {
 	)
 
 	if err := ph.productDB.DB.Create(&productEntity).Error; err != nil {
-		return c.JSON(http.StatusInternalServerError, result{Msg: "an error occurred, please try again later"})
+		return c.JSON(http.StatusInternalServerError, response.Result{Msg: "an error occurred, please try again later"})
 	}
 
-	return c.JSON(http.StatusCreated, result{Msg: "product created successfully"})
+	return c.JSON(http.StatusCreated, response.Result{Msg: "product created successfully"})
 }
 
 // @Summary Retrieve Product By UUID
@@ -61,19 +57,19 @@ func (ph *ProductHandler) CreateProduct(c echo.Context) error {
 // @Produce json
 // @Param product_id path string true "Product UUID"
 // @Success 200 {object} response.Product
-// @Failure 400 {object} result
-// @Failure 404 {object} result
+// @Failure 400 {object} response.Result
+// @Failure 404 {object} response.Result
 // @Router /products/{product_id} [get]
 func (ph *ProductHandler) RetrieveProductById(c echo.Context) error {
 	productId := c.Param("product_id")
 	if !isValidUUID(productId) {
-		return c.JSON(http.StatusBadRequest, result{Msg: "bad request"})
+		return c.JSON(http.StatusBadRequest, response.Result{Msg: "bad request"})
 	}
 	productUUID := uuid.MustParse(productId)
 
 	p := entity.Product{UUID: productUUID}
 	if err := ph.productDB.DB.Where(&entity.Product{UUID: productUUID}).First(&p).Error; err != nil {
-		return c.JSON(http.StatusNotFound, result{Msg: "product not found"})
+		return c.JSON(http.StatusNotFound, response.Result{Msg: "product not found"})
 	}
 
 	respP := response.NewProduct(p)
@@ -87,26 +83,26 @@ func (ph *ProductHandler) RetrieveProductById(c echo.Context) error {
 // @Produce json
 // @Param product_id path string true "Product UUID"
 // @Param request body request.UpdateProduct true "Request body for update"
-// @Success 200 {object} result
-// @Failure 400 {object} result
-// @Failure 404 {object} result
-// @Failure 500 {object} result
+// @Success 200 {object} response.Result
+// @Failure 400 {object} response.Result
+// @Failure 404 {object} response.Result
+// @Failure 500 {object} response.Result
 // @Router /products/{product_id} [patch]
 func (ph *ProductHandler) UpdateProductById(c echo.Context) error {
 	productId := c.Param("product_id")
 	if !isValidUUID(productId) {
-		return c.JSON(http.StatusBadRequest, result{Msg: "bad request"})
+		return c.JSON(http.StatusBadRequest, response.Result{Msg: "bad request"})
 	}
 	productUUID := uuid.MustParse(productId)
 
 	p := entity.Product{UUID: productUUID}
 	if err := ph.productDB.DB.Where(&entity.Product{UUID: productUUID}).First(&p).Error; err != nil {
-		return c.JSON(http.StatusNotFound, result{Msg: "product not found"})
+		return c.JSON(http.StatusNotFound, response.Result{Msg: "product not found"})
 	}
 
 	reqP := new(request.UpdateProduct)
 	if err := c.Bind(reqP); err != nil {
-		return c.JSON(http.StatusBadRequest, result{Msg: "bad request"})
+		return c.JSON(http.StatusBadRequest, response.Result{Msg: "bad request"})
 	}
 
 	if reqP.Name != "" {
@@ -122,10 +118,10 @@ func (ph *ProductHandler) UpdateProductById(c echo.Context) error {
 	}
 
 	if err := ph.productDB.DB.Save(&p).Error; err != nil {
-		return c.JSON(http.StatusInternalServerError, result{Msg: "an error occurred, please try again later"})
+		return c.JSON(http.StatusInternalServerError, response.Result{Msg: "an error occurred, please try again later"})
 	}
 
-	return c.JSON(http.StatusOK, result{Msg: "product updated successfully"})
+	return c.JSON(http.StatusOK, response.Result{Msg: "product updated successfully"})
 }
 
 // @Summary Retrieve Product List
@@ -133,12 +129,12 @@ func (ph *ProductHandler) UpdateProductById(c echo.Context) error {
 // @Tags Products
 // @Produce json
 // @Success 200 {object} []response.Product
-// @Failure 500 {object} result
+// @Failure 500 {object} response.Result
 // @Router /products [get]
 func (ph *ProductHandler) RetriveProductList(c echo.Context) error {
 	products := []entity.Product{}
 	if err := ph.productDB.DB.Find(&products).Order("id desc").Error; err != nil {
-		return c.JSON(http.StatusInternalServerError, result{Msg: "an error occurred, please try again later"})
+		return c.JSON(http.StatusInternalServerError, response.Result{Msg: "an error occurred, please try again later"})
 	}
 
 	resp := []response.Product{}
@@ -158,27 +154,27 @@ func (ph *ProductHandler) RetriveProductList(c echo.Context) error {
 // @Produce json
 // @Param product_id path string true "Product UUID"
 // @Success 204
-// @Failure 400 {object} result
-// @Failure 404 {object} result
-// @Failure 500 {object} result
+// @Failure 400 {object} response.Result
+// @Failure 404 {object} response.Result
+// @Failure 500 {object} response.Result
 // @Router /products/{product_id} [delete]
 func (ph *ProductHandler) DeleteProductById(c echo.Context) error {
 	productId := c.Param("product_id")
 	if !isValidUUID(productId) {
-		return c.JSON(http.StatusBadRequest, result{Msg: "bad request"})
+		return c.JSON(http.StatusBadRequest, response.Result{Msg: "bad request"})
 	}
 	productUUID := uuid.MustParse(productId)
 
 	p := entity.Product{UUID: productUUID}
 	if err := ph.productDB.DB.Where(&entity.Product{UUID: productUUID}).First(&p).Error; err != nil {
-		return c.JSON(http.StatusNotFound, result{Msg: "product not found"})
+		return c.JSON(http.StatusNotFound, response.Result{Msg: "product not found"})
 	}
 
 	if delP := ph.productDB.DB.Delete(&p); delP.Error != nil {
-		return c.JSON(http.StatusInternalServerError, result{Msg: "an error occurred, please try again later"})
+		return c.JSON(http.StatusInternalServerError, response.Result{Msg: "an error occurred, please try again later"})
 	}
 
-	return c.JSON(http.StatusNoContent, result{Msg: "product removed successfully"})
+	return c.JSON(http.StatusNoContent, response.Result{Msg: "product removed successfully"})
 }
 
 func isValidUUID(u string) bool {

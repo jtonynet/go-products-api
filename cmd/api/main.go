@@ -21,6 +21,7 @@ func main() {
 	// Retry connecting to the database for RetryMaxElapsedTimeInMs Milliseconds
 	var dbErr error
 	var db *gorm.DB
+
 	retry := backoff.NewExponentialBackOff()
 	retry.MaxElapsedTime = time.Duration(cfg.API.RetryMaxElapsedTimeInMs) * time.Millisecond
 	backoff.RetryNotify(func() error {
