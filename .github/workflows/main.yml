@@ -24,6 +24,6 @@ jobs:
       
     - name: Wait for DB to start
       run: sleep 8
-      
+
     - name: Test
       run: go test -v main_smoke_test.go
