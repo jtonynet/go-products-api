@@ -4,6 +4,7 @@ go 1.21.1
 
 require (
 	github.com/google/uuid v1.6.0
+	github.com/labstack/echo v3.3.10+incompatible
 	github.com/labstack/echo/v4 v4.11.4
 	github.com/stretchr/testify v1.8.4
 	github.com/tidwall/gjson v1.17.0

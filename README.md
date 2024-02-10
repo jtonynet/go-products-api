@@ -92,6 +92,9 @@ Dada sua simplicidade, uma vez que se trata de um __CRUD simples__. Faz sentido 
 
 __TODO__
 
+####  <img src="./docs/assets/images/icons/postman.svg" width="20px" height="20px" alt="Swagger" title="Swagger">  Postman collection:
+
+Dentro da pasta [./scripts/postman-collection](./scripts/postman-collection/go-products-api.postman_collection.json) encontra-se o arquivo JSON básico que pode ser importado no seu `Postman` para auxiliar em testes manuais e desenvolvimento.
 <br/>
 
 [:arrow_heading_up: de volta ao índice](#index)
@@ -196,6 +199,11 @@ go test -v
 
 obtendo uma saida similar a seguinte:<br/>
 <img src="./docs/assets/images/screen_captures/testing.png">
+
+<br/>
+
+Os testes também são executados como parte da rotina de CI do Github Actions, garantindo que versões estáveis sejam mescladas na branch principal. O badge `smoke_test` no cabeçalho do arquivo readme é uma ajuda visual para verificar rapidamente a integridade do desenvolvimento.
+<img src="./docs/assets/images/screen_captures/testing_ci.png">
 
 <br/>
 

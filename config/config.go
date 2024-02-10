@@ -1,5 +1,8 @@
 package config
 
+type API struct {
+	Port int
+}
 type Database struct {
 	Host string
 	Port int
@@ -9,5 +12,6 @@ type Database struct {
 }
 
 type Config struct {
+	API
 	Database
 }
