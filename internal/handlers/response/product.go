@@ -7,6 +7,10 @@ import (
 	"github.com/jtonynet/go-products-api/internal/entity"
 )
 
+type Result struct {
+	Msg string `json:"msg"`
+}
+
 type Product struct {
 	UUID        uuid.UUID `json:"uuid"`
 	Name        string    `json:"name"`

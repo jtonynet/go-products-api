@@ -27,7 +27,7 @@
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     }
                 }
@@ -59,19 +59,19 @@
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     }
                 }
@@ -106,13 +106,13 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     }
                 }
@@ -142,19 +142,19 @@
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     }
                 }
@@ -193,25 +193,25 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/handlers.result"
+                            "$ref": "#/definitions/response.Result"
                         }
                     }
                 }
@@ -219,14 +219,6 @@
         }
     },
     "definitions": {
-        "handlers.result": {
-            "type": "object",
-            "properties": {
-                "msg": {
-                    "type": "string"
-                }
-            }
-        },
         "request.Product": {
             "type": "object",
             "required": [
@@ -295,6 +287,14 @@
                     "type": "string"
                 },
                 "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.Result": {
+            "type": "object",
+            "properties": {
+                "msg": {
                     "type": "string"
                 }
             }
