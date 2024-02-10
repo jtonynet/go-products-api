@@ -1,0 +1,202 @@
+definitions:
+  handlers.result:
+    properties:
+      msg:
+        type: string
+    type: object
+  request.Product:
+    properties:
+      description:
+        example: Next Gen powerful videogame
+        type: string
+      name:
+        example: ' Exis Boxis Series G'
+        type: string
+      price:
+        example: 5000
+        type: integer
+      uuid:
+        example: 7829cc30-1d6e-4a5d-bcc1-ec65c8c338ab
+        type: string
+    required:
+    - description
+    - name
+    - price
+    - uuid
+    type: object
+  request.UpdateProduct:
+    properties:
+      description:
+        example: The best experience of Powerfull
+        type: string
+      name:
+        example: Exis Boxis Series S
+        type: string
+      price:
+        example: 6500
+        type: integer
+    required:
+    - description
+    - name
+    - price
+    type: object
+  response.Product:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      name:
+        type: string
+      price:
+        type: integer
+      updated_at:
+        type: string
+      uuid:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /products:
+    get:
+      description: Retrieve List of Products
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/response.Product'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.result'
+      summary: Retrieve Product List
+      tags:
+      - Products
+    post:
+      consumes:
+      - application/json
+      description: Create One Product
+      parameters:
+      - description: Request body for create
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.Product'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/handlers.result'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.result'
+      summary: Create Product
+      tags:
+      - Products
+  /products/{product_id}:
+    delete:
+      description: Delete one Product
+      parameters:
+      - description: Product UUID
+        in: path
+        name: product_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.result'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.result'
+      summary: Delete Product By UUID
+      tags:
+      - Products
+    get:
+      description: Retrieve one Product
+      parameters:
+      - description: Product UUID
+        in: path
+        name: product_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Product'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.result'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.result'
+      summary: Retrieve Product By UUID
+      tags:
+      - Products
+    patch:
+      consumes:
+      - application/json
+      description: Update One Product
+      parameters:
+      - description: Product UUID
+        in: path
+        name: product_id
+        required: true
+        type: string
+      - description: Request body for update
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/request.UpdateProduct'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.result'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.result'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.result'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.result'
+      summary: Update Product By UUID
+      tags:
+      - Products
+swagger: "2.0"
