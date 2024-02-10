@@ -194,7 +194,7 @@ Em outro terminal mas ainda na raiz do projeto, execute o comando:
 go test -v
 ```
 
-obtendo uma saida similar a seguinte:
+obtendo uma saida similar a seguinte:<br/>
 <img src="./docs/assets/images/screen_captures/testing.png">
 
 <br/>

@@ -2,6 +2,8 @@ package main_smoke_test
 
 import (
 	"bytes"
+	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
@@ -27,20 +29,34 @@ type SmokeSuite struct {
 	router *echo.Echo
 	DB     *gorm.DB
 
+	productHandler *handlers.ProductHandler
+
 	productUUID        uuid.UUID
 	productName        string
 	productDescription string
 	productPrice       int64
+
+	productUpdateName        string
+	productUpdateDescription string
+	productUpdatePrice       int64
 }
 
 func (suite *SmokeSuite) SetupSuite() {
 	cfg := setupConfig()
 	suite.DB, _ = setupDB(&cfg.Database)
 
+	productDB := database.NewProductsDB(suite.DB)
+	suite.productHandler = handlers.NewProductHandler(productDB)
+
 	suite.productUUID, _ = uuid.Parse("37ad0486-5ba5-47a5-b352-408b077e12c6")
 	suite.productName = "Playstation 7"
 	suite.productDescription = "Next generation video game"
 	suite.productPrice = 4000
+
+	suite.productUpdateName = "Playstation 8"
+	suite.productUpdateDescription = "The best experience of next generation video game"
+	suite.productUpdatePrice = 4500
+
 }
 
 func (suite *SmokeSuite) TearDownSuite() {
@@ -84,6 +100,7 @@ func setupDB(cfg *config.Database) (*gorm.DB, error) {
 
 func (suite *SmokeSuite) TestSmoke() {
 	suite.createAndRetrieveProductSuccessful()
+	suite.updateAndRetrieveProductListSuccessful()
 }
 
 func setupRouter() *echo.Echo {
@@ -93,11 +110,8 @@ func setupRouter() *echo.Echo {
 
 func (suite *SmokeSuite) createAndRetrieveProductSuccessful() {
 	// Create Product
-	productDB := database.NewProductsDB(suite.DB)
-	productHandler := handlers.NewProductHandler(productDB)
-
 	suite.router = setupRouter()
-	suite.router.POST("/products", productHandler.CreateProduct)
+	suite.router.POST("/products", suite.productHandler.CreateProduct)
 
 	requestProduct := fmt.Sprintf(
 		`{
@@ -122,7 +136,7 @@ func (suite *SmokeSuite) createAndRetrieveProductSuccessful() {
 
 	// Retrieve Product By Id
 	suite.router = setupRouter()
-	suite.router.GET("/products/:product_id", productHandler.RetrieveProductById)
+	suite.router.GET("/products/:product_id", suite.productHandler.RetrieveProductById)
 
 	productsUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
 	reqProductRetrieve, err := http.NewRequest("GET", productsUUIDRoute, nil)
@@ -137,6 +151,70 @@ func (suite *SmokeSuite) createAndRetrieveProductSuccessful() {
 	assert.Equal(suite.T(), gjson.Get(bodyProduct, "name").String(), suite.productName)
 	assert.Equal(suite.T(), gjson.Get(bodyProduct, "description").String(), suite.productDescription)
 	assert.Equal(suite.T(), gjson.Get(bodyProduct, "price").Int(), suite.productPrice)
+}
+
+func (suite *SmokeSuite) updateAndRetrieveProductListSuccessful() {
+	// Update Product
+	suite.router = setupRouter()
+	suite.router.PATCH("/products/:product_id", suite.productHandler.UpdateProductById)
+
+	requestProduct := fmt.Sprintf(
+		`{
+			"name":"%s",
+			"description":"%s",
+			"price":%v
+		}`,
+		suite.productUpdateName,
+		suite.productUpdateDescription,
+		suite.productUpdatePrice,
+	)
+
+	productsUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
+	reqProductUpdate, err := http.NewRequest("PATCH", productsUUIDRoute, bytes.NewBuffer([]byte(requestProduct)))
+	reqProductUpdate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	assert.NoError(suite.T(), err)
+	respProductUpdate := httptest.NewRecorder()
+
+	suite.router.ServeHTTP(respProductUpdate, reqProductUpdate)
+	assert.Equal(suite.T(), http.StatusOK, respProductUpdate.Code)
+
+	// Retrieve Products List
+	suite.router = setupRouter()
+	suite.router.GET("/products", suite.productHandler.RetriveProductList)
+
+	reqProductsRetrieve, err := http.NewRequest("GET", "/products", nil)
+	assert.NoError(suite.T(), err)
+	respProductsRetrieve := httptest.NewRecorder()
+
+	suite.router.ServeHTTP(respProductsRetrieve, reqProductsRetrieve)
+	assert.Equal(suite.T(), http.StatusOK, respProductsRetrieve.Code)
+
+	bodyProducts := respProductsRetrieve.Body.String()
+	productInList, err := getProductJSONByUUID(bodyProducts, suite.productUUID.String())
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), gjson.Get(productInList, "name").String(), suite.productUpdateName)
+	assert.Equal(suite.T(), gjson.Get(productInList, "description").String(), suite.productUpdateDescription)
+	assert.Equal(suite.T(), gjson.Get(productInList, "price").Int(), suite.productUpdatePrice)
+
+}
+
+func getProductJSONByUUID(productsJSON string, uuidToFind string) (string, error) {
+	var products []map[string]interface{}
+	err := json.Unmarshal([]byte(productsJSON), &products)
+	if err != nil {
+		return "", err
+	}
+
+	for _, p := range products {
+		if p["uuid"].(string) == uuidToFind {
+			productJSON, err := json.Marshal(p)
+			if err != nil {
+				return "", err
+			}
+			return string(productJSON), nil
+		}
+	}
+	return "", errors.New("json document not found")
 }
 
 func TestSmokeSuite(t *testing.T) {

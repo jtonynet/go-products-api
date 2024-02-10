@@ -14,6 +14,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.0.2] - 2023-02-09
+### Added
+
+- Utilizando GithubAction para performar o Smoke Test a cada commit e push na main conforma descrito na __[Issue-4](https://github.com/jtonynet/go-products-api/issues/4)__ do projeto.
+- Criação dos Endpoints de Alteração e Listagem de um Produtos conforme descrito na __[Issue-6](https://github.com/jtonynet/go-products-api/issues/6)__ do projeto.
+
+---
+
 ## [0.0.1] - 2023-02-09
 ### Added
 
@@ -29,5 +37,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Sabemos o que fazer, graças às definições do arquivo __README.md__. Sabemos como fazer graças aos __ADRs__ e documentações vinculadas. Devemos nos organizar em estrutura __Kanban__, guiados pelo modelo Agile, em nosso __Github Project__, e dar o devido prosseguimento às tarefas.
 
 
+[0.0.2]: https://github.com/jtonynet/go-products-api/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/jtonynet/go-products-api/compare/v0.0.0...v0.0.1
 [0.0.0]: https://github.com/jtonynet/go-products-api/releases/tag/v0.0.0
