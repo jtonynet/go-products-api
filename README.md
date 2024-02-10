@@ -119,9 +119,31 @@ Dentro da pasta [./scripts/postman-collection](./scripts/postman-collection/go-p
 <a id="api-docs"></a>
 ## 📰  Documentação da API
 
-####  <img src="./docs/assets/images/icons/swagger.svg" width="20px" height="20px" alt="Swagger" title="Swagger"> Swagger docs:
+Com a aplicação em execução, a rota de documentação Swagger fica disponível em http://localhost:8080/swagger/index.html#/ .
 
+Acesse-a para realizar validações, caso prefira ao usar o Postman. Utilizar o Swagger-API também é uma boa maneira de tornar a aplicação aderente às boas práticas e ao design de API.
 
+####  <img src="./docs/assets/images/icons/swagger.svg" width="20px" height="20px" alt="Swagger" title="Swagger"/> Swagger docs:
+
+<img src="./docs/assets/images/screen_captures/swagger.png"/>
+
+<br/>
+
+__Gerando a Documentação:__
+Para gerar a documentação, você precisa ter o Golang e o projeto instalados localmente e executar o seguinte comando no diretório raiz do projeto:
+
+```bash
+swag init --generalInfo cmd/api/main.go -o ./api
+```
+
+<br/>
+
+Existe um bug na geração da documentação do Echo Swagger. O [docs.go](./api/docs.go) gera duas propriedades na struct `swag.Spec` que não são reconhecidas. A solução encontrada no momento é remover manualmente essas propriedades a cada geração da documentação.
+
+```go
+	LeftDelim:        "{{",
+	RightDelim:       "}}",
+```
 <br/>
 
 __TODO__
@@ -148,16 +170,16 @@ graph LR
       ADMIN --> RETRIEVE_PRODUCT_LIST("💻 Retrieve Product List")
       ADMIN --> RETRIEVE_PRODUCT("💻 Retrieve Product")
       ADMIN --> UPDATE_PRODUCT("💻 Update Product")
-      ADMIN --> REMOVE_PRODUCT_BY_ID("💻 Remove Product by ID")
+      ADMIN --> REMOVE_PRODUCT("💻 Remove Product")
     end
 
     subgraph go-products-api - Two Tier Architecture -
       subgraph Handlers
         API_CREATE_PRODUCT("🖥️ Create Product")
         API_GET_PRODUCTS("🖥️ Get Products")
-        API_GET_PRODUCT("🖥️ Get Product by ID")
-        API_UPDATE_PRODUCT("🖥️ Update Product by ID")
-        API_DELETE_PRODUCT_BY_ID("🖥️ Delete Product by ID")
+        API_GET_PRODUCT("🖥️ Get Product by UUID")
+        API_UPDATE_PRODUCT("🖥️ Update Product by UUID")
+        API_DELETE_PRODUCT_BY_ID("🖥️ Delete Product by UUID")
       end
 
 
@@ -175,7 +197,7 @@ graph LR
   RETRIEVE_PRODUCT_LIST -->|http GET| API_GET_PRODUCTS
   RETRIEVE_PRODUCT -->|http GET| API_GET_PRODUCT
   UPDATE_PRODUCT -->|http PATCH| API_UPDATE_PRODUCT
-  REMOVE_PRODUCT_BY_ID -->|http DELETE| API_DELETE_PRODUCT_BY_ID
+  REMOVE_PRODUCT -->|http DELETE| API_DELETE_PRODUCT_BY_ID
 
 
   API_CREATE_PRODUCT-->ENTITY_PRODUCT
@@ -291,6 +313,7 @@ __TODO__
   - [Viper](https://github.com/spf13/viper)
   - [uuid](https://github.com/google/uuid)
   - [Delve](https://github.com/go-delve/delve)
+  - [Echo-Swagger](https://github.com/swaggo/echo-swagger)
 <!-- [Client-prometheus](https://github.com/prometheus/client_golang)
   - [GORM Prometheus](https://github.com/go-gorm/prometheus)
   - [Zap log](https://github.com/uber-go/zap) 

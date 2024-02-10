@@ -6,6 +6,9 @@ import (
 	"github.com/jtonynet/go-products-api/config"
 	"github.com/jtonynet/go-products-api/internal/handlers"
 	"github.com/labstack/echo/v4"
+
+	_ "github.com/jtonynet/go-products-api/api"
+	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
 func Init(cfg *config.API, productHandler *handlers.ProductHandler) {
@@ -18,6 +21,9 @@ func Init(cfg *config.API, productHandler *handlers.ProductHandler) {
 }
 
 func initializeRoutes(productHandler *handlers.ProductHandler, r *echo.Echo) {
+
+	r.GET("/swagger/*", echoSwagger.WrapHandler)
+
 	r.POST("/products", productHandler.CreateProduct)
 	r.GET("/products", productHandler.RetriveProductList)
 	r.GET("/products/:product_id", productHandler.RetrieveProductById)

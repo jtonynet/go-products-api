@@ -1,6 +1,8 @@
 package main
 
 import (
+	"time"
+
 	"github.com/jtonynet/go-products-api/config"
 	"github.com/jtonynet/go-products-api/internal/database"
 	"github.com/jtonynet/go-products-api/internal/handlers"
@@ -12,6 +14,10 @@ func main() {
 	if err != nil {
 		panic("cannot load enviroment variables")
 	}
+
+	// TODO: Implements retry lib to fix timeout of docker-compose
+	// The MySQL Database takes too long to start. Use it: https://github.com/cenkalti/backoff
+	time.Sleep(5 * time.Second)
 
 	db, err := database.NewDatabase(&cfg.Database)
 	if err != nil {
