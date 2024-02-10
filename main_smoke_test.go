@@ -13,6 +13,7 @@ import (
 	"github.com/tidwall/gjson"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
@@ -55,8 +56,7 @@ func (suite *SmokeSuite) SetupSuite() {
 
 	suite.productUpdateName = "Playstation 8"
 	suite.productUpdateDescription = "The best experience of next generation video game"
-	suite.productUpdatePrice = 4500
-
+	suite.productUpdatePrice = 5500
 }
 
 func (suite *SmokeSuite) TearDownSuite() {
@@ -88,7 +88,9 @@ func setupDB(cfg *config.Database) (*gorm.DB, error) {
 		cfg.DB,
 	)
 
-	db, err := gorm.Open(mysql.Open(strConn))
+	db, err := gorm.Open(mysql.Open(strConn), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Silent),
+	})
 	if err != nil {
 		fmt.Println("Unable to connect to Database")
 		return nil, err
@@ -101,6 +103,7 @@ func setupDB(cfg *config.Database) (*gorm.DB, error) {
 func (suite *SmokeSuite) TestSmoke() {
 	suite.createAndRetrieveProductSuccessful()
 	suite.updateAndRetrieveProductListSuccessful()
+	suite.deleteProductSuccessful()
 }
 
 func setupRouter() *echo.Echo {
@@ -138,8 +141,8 @@ func (suite *SmokeSuite) createAndRetrieveProductSuccessful() {
 	suite.router = setupRouter()
 	suite.router.GET("/products/:product_id", suite.productHandler.RetrieveProductById)
 
-	productsUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
-	reqProductRetrieve, err := http.NewRequest("GET", productsUUIDRoute, nil)
+	productUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
+	reqProductRetrieve, err := http.NewRequest("GET", productUUIDRoute, nil)
 	assert.NoError(suite.T(), err)
 	respProductRetrieve := httptest.NewRecorder()
 
@@ -169,8 +172,8 @@ func (suite *SmokeSuite) updateAndRetrieveProductListSuccessful() {
 		suite.productUpdatePrice,
 	)
 
-	productsUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
-	reqProductUpdate, err := http.NewRequest("PATCH", productsUUIDRoute, bytes.NewBuffer([]byte(requestProduct)))
+	productUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
+	reqProductUpdate, err := http.NewRequest("PATCH", productUUIDRoute, bytes.NewBuffer([]byte(requestProduct)))
 	reqProductUpdate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
 	assert.NoError(suite.T(), err)
 	respProductUpdate := httptest.NewRecorder()
@@ -195,7 +198,30 @@ func (suite *SmokeSuite) updateAndRetrieveProductListSuccessful() {
 	assert.Equal(suite.T(), gjson.Get(productInList, "name").String(), suite.productUpdateName)
 	assert.Equal(suite.T(), gjson.Get(productInList, "description").String(), suite.productUpdateDescription)
 	assert.Equal(suite.T(), gjson.Get(productInList, "price").Int(), suite.productUpdatePrice)
+}
 
+func (suite *SmokeSuite) deleteProductSuccessful() {
+	// Delete Product
+	suite.router = setupRouter()
+	suite.router.DELETE("/products/:product_id", suite.productHandler.DeleteProductById)
+
+	productUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
+	reqProductDelete, err := http.NewRequest("DELETE", productUUIDRoute, nil)
+	assert.NoError(suite.T(), err)
+	respProductDelete := httptest.NewRecorder()
+	suite.router.ServeHTTP(respProductDelete, reqProductDelete)
+	assert.Equal(suite.T(), http.StatusNoContent, respProductDelete.Code)
+
+	// Retrieve Product By Id
+	suite.router = setupRouter()
+	suite.router.GET("/products/:product_id", suite.productHandler.RetrieveProductById)
+
+	reqProductRetrieve, err := http.NewRequest("GET", productUUIDRoute, nil)
+	assert.NoError(suite.T(), err)
+	respProductRetrieve := httptest.NewRecorder()
+
+	suite.router.ServeHTTP(respProductRetrieve, reqProductRetrieve)
+	assert.Equal(suite.T(), http.StatusNotFound, respProductRetrieve.Code)
 }
 
 func getProductJSONByUUID(productsJSON string, uuidToFind string) (string, error) {
