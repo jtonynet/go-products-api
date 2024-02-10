@@ -3,6 +3,7 @@ module github.com/jtonynet/go-products-api
 go 1.21.1
 
 require (
+	github.com/cenkalti/backoff v2.2.1+incompatible
 	github.com/google/uuid v1.6.0
 	github.com/labstack/echo/v4 v4.11.4
 	github.com/spf13/viper v1.18.2
