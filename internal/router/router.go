@@ -29,7 +29,7 @@ func initializeRoutes(
 	productHandler *handlers.ProductHandler,
 	r *echo.Echo) {
 
-	if cfg.MetricEnabled {
+	if cfg.MetricsEnabled {
 		initializeMetricsRoute(r, cfg)
 	}
 

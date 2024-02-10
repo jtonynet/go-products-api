@@ -11,6 +11,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+	"gorm.io/plugin/prometheus"
 )
 
 func NewDatabase(cfg *config.Database) (*gorm.DB, error) {
@@ -39,6 +40,18 @@ func NewDatabase(cfg *config.Database) (*gorm.DB, error) {
 
 	if dbErr != nil {
 		return nil, dbErr
+	}
+
+	if cfg.MetricsEnabled {
+		db.Use(prometheus.New(prometheus.Config{
+			DBName:          cfg.MetricsDBName,               // `DBName` as metrics label
+			RefreshInterval: cfg.MetricsRefreshIntervalInSec, // refresh metrics interval (default 15 seconds)
+			StartServer:     cfg.MetricStartServer,           // start http server to expose metrics
+			HTTPServerPort:  cfg.MetricServerPort,            // configure http server port, default port 8080 (if you have configured multiple instances, only the first `HTTPServerPort` will be used to start server)
+			MetricsCollector: []prometheus.MetricsCollector{
+				&prometheus.MySQL{VariableNames: []string{"Threads_running"}},
+			},
+		}))
 	}
 
 	db.AutoMigrate(entity.Product{})

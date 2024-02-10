@@ -160,7 +160,7 @@ func metricsLoop(cfg *config.API) {
 				processMemoryLimit.WithLabelValues(cfg.Host).Set(float64(memInfo.Total))
 			}
 
-			time.Sleep(1 * time.Second)
+			time.Sleep(time.Duration(cfg.MetricsRefreshIntervalInSec) * time.Second)
 		}
 	}()
 }
