@@ -144,9 +144,6 @@ Existe um bug na geração da documentação do Echo Swagger. O [docs.go](./api/
 	LeftDelim:        "{{",
 	RightDelim:       "}}",
 ```
-<br/>
-
-__TODO__
 
 <br/>
 
