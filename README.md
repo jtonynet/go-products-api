@@ -311,6 +311,7 @@ __TODO__
   - [uuid](https://github.com/google/uuid)
   - [Delve](https://github.com/go-delve/delve)
   - [Echo-Swagger](https://github.com/swaggo/echo-swagger)
+  - [Exponential Backoff](https://github.com/cenkalti/backoff)
 <!-- [Client-prometheus](https://github.com/prometheus/client_golang)
   - [GORM Prometheus](https://github.com/go-gorm/prometheus)
   - [Zap log](https://github.com/uber-go/zap) 

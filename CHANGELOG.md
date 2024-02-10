@@ -14,6 +14,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.0.6] - 2023-02-10
+### Fixed
+
+- Corrigido bug de a aplicação iniciar mas o banco ainda não estar respondendo a solicitações, bug conhecido do docker-compose.Paratanto foi adicionado [Exponential Backoff](https://github.com/cenkalti/backoff), que tenta se conectar ao banco por `API_RETRY_MAX_ELAPSED_TIME_IN_MS` __[Issue-14](https://github.com/jtonynet/go-products-api/issues/14)__ 
+
+
+---
+
 ## [0.0.5] - 2023-02-10
 ### Added
 
@@ -59,6 +67,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Sabemos o que fazer, graças às definições do arquivo __README.md__. Sabemos como fazer graças aos __ADRs__ e documentações vinculadas. Devemos nos organizar em estrutura __Kanban__, guiados pelo modelo Agile, em nosso __Github Project__, e dar o devido prosseguimento às tarefas.
 
 
+[0.0.6]: https://github.com/jtonynet/go-products-api/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/jtonynet/go-products-api/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/jtonynet/go-products-api/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/jtonynet/go-products-api/compare/v0.0.2...v0.0.3

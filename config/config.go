@@ -7,6 +7,8 @@ type API struct {
 	Port       string `mapstructure:"API_PORT"`
 	TagVersion string `mapstructure:"API_TAG_VERSION"`
 	Env        string `mapstructure:"API_ENV"`
+
+	RetryMaxElapsedTimeInMs int `mapstructure:"API_RETRY_MAX_ELAPSED_TIME_IN_MS"`
 }
 
 type Database struct {
