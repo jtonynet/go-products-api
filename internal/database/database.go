@@ -2,7 +2,10 @@ package database
 
 import (
 	"fmt"
+	"log/slog"
+	"time"
 
+	"github.com/cenkalti/backoff"
 	"github.com/jtonynet/go-products-api/config"
 	"github.com/jtonynet/go-products-api/internal/entity"
 	"gorm.io/driver/mysql"
@@ -19,11 +22,23 @@ func NewDatabase(cfg *config.Database) (*gorm.DB, error) {
 		cfg.DB,
 	)
 
-	db, err := gorm.Open(mysql.Open(strConn), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Silent),
+	var dbErr error
+	var db *gorm.DB
+
+	// Retry connecting to the database for RetryMaxElapsedTimeInMs Milliseconds
+	retry := backoff.NewExponentialBackOff()
+	retry.MaxElapsedTime = time.Duration(cfg.RetryMaxElapsedTimeInMs) * time.Millisecond
+	backoff.RetryNotify(func() error {
+		db, dbErr = gorm.Open(mysql.Open(strConn), &gorm.Config{
+			Logger: logger.Default.LogMode(logger.Silent),
+		})
+		return dbErr
+	}, retry, func(err error, t time.Duration) {
+		slog.Info("Retrying connect to Database after error: %v", err)
 	})
-	if err != nil {
-		return nil, err
+
+	if dbErr != nil {
+		return nil, dbErr
 	}
 
 	db.AutoMigrate(entity.Product{})
