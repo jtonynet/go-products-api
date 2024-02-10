@@ -67,7 +67,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Sabemos o que fazer, graças às definições do arquivo __README.md__. Sabemos como fazer graças aos __ADRs__ e documentações vinculadas. Devemos nos organizar em estrutura __Kanban__, guiados pelo modelo Agile, em nosso __Github Project__, e dar o devido prosseguimento às tarefas.
 
 
-[0.0.5]: https://github.com/jtonynet/go-products-api/compare/v0.0.5...v0.0.6
+[0.0.6]: https://github.com/jtonynet/go-products-api/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/jtonynet/go-products-api/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/jtonynet/go-products-api/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/jtonynet/go-products-api/compare/v0.0.2...v0.0.3
