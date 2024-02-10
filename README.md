@@ -100,11 +100,12 @@ $ docker compose up
 > :writing_hand: **Nota**:
 >
 >**Solução de Problemas com [Volumes do Docker](https://betterstack.com/community/questions/what-is-the-best-way-to-manage-permissions-for-docker-shared-volumes/)**
->Ao configurar o ambiente local, é possível que você encontre problemas de permissão na pasta docker_data, que armazena os volumes dos componentes necessários para executar o ambiente. O docker-compose cria essa pasta, mas não concede as permissões necessárias para gerenciar esses volumes. A abordagem que estamos usando atualmente para lidar com isso é executar o seguinte comando caso você encontre um erro na primeira tentativa de `docker compose up`:
+>Ao configurar o ambiente local, é possível que você encontre problemas de permissão na pasta `.docker`, que armazena os volumes dos componentes necessários para executar o ambiente. O docker-compose cria essa pasta, mas não concede as permissões necessárias para gerenciar esses volumes. A abordagem que estamos usando atualmente para lidar com isso é executar o seguinte comando caso você encontre um erro na primeira tentativa de `docker compose up`:
 >```bash
 >sudo chmod -R 777 .docker
 >```
 
+<br/>
 
 ####  <img src="./docs/assets/images/icons/postman.svg" width="20px" height="20px" alt="Swagger" title="Swagger">  Postman collection:
 
