@@ -72,6 +72,7 @@ func setupConfig() *config.Config {
 	cfg.Database.User = "root"
 	cfg.Database.Pass = "root"
 	cfg.Database.DB = "go-products-api"
+	cfg.Database.RetryMaxElapsedTimeInMs = 1000
 
 	return &cfg
 }
