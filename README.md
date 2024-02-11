@@ -77,9 +77,9 @@ Este repositório foi criado com a intenção de propor uma possível solução 
 >   - Código Limpo (Clean Code)
 >   - Padrões e convenções GoLang
 
-Dada sua simplicidade, uma vez que se trata de um __CRUD simples__. Faz sentido utilizar __Arquitetura de Duas Camadas__ o que aumenta o ritmo do desenvolvimento porém mantendo a qualidade do resultado final.
+Dada sua simplicidade, uma vez que se trata de um __CRUD simples__. Faz sentido utilizar __Arquitetura de Duas Camadas__ o que aumenta o ritmo do desenvolvimento porém mantendo a qualidade do resultado final. Construido junto a uma visualização estilo __Kanbam__ no [Github Project](https://github.com/users/jtonynet/projects/5/views/1)
 
-Foco em garantir estabilidade com TDD, boas práticas de design de codigo e __Observabilidade__ com a robustez necessária e devidos aprimoramentos
+Foco em garantir estabilidade com __TDD__ e uma implementação minima de __CI__ no [GitHub Actions](https://github.com/jtonynet/go-products-api/actions), boas práticas de design de código e __Observabilidade__ com Prometheus e Grafana garantindo a robustez necessária e devidos aprimoramentos
 
 Exatamente por parecer ser "simples", é necessário ter um bom nível de qualidade.
 
@@ -258,7 +258,7 @@ obtendo uma saida similar a seguinte:<br/>
 <br/>
 
 <details>
-  <summary>Os testes também são executados como parte da rotina de <b>CI</b> do Github Actions, garantindo que versões estáveis sejam mescladas na branch principal. O badge <i>smoke_test</i> no cabeçalho do arquivo readme é uma ajuda visual para verificar rapidamente a integridade do desenvolvimento.</summary>
+  <summary>Os testes também são executados como parte da rotina minima de <b>CI</b> do <a href="https://github.com/jtonynet/go-products-api/actions">GitHub Actions</a>, garantindo que versões estáveis sejam mescladas na branch principal. O badge <i>smoke_test</i> no cabeçalho do arquivo readme é uma ajuda visual para verificar rapidamente a integridade do desenvolvimento.</summary>
   <img src="./docs/assets/images/screen_captures/testing_ci.png">
 </details>
 
@@ -334,7 +334,7 @@ A primeira vez que executarmos o Grafana, entramos com `usuário/senha` padrão 
 <br/>
 
 <details>
-  <summary>Agora você pode usar o menu <i>`Dashboards > New > Import`</i> para importar o arquivo <b>dash-go-products-api.json</b> que está localizado no diretório: <a href="./scripts/grafana-dashboards/">./scripts/grafana-dashboards</a>. Acesse o diretório clique e arraste o arquivo para o campo correto especificado pela tela <b>Upload Dashboard JSON File</b></summary>
+  <summary>Agora você pode usar o menu <i>`Dashboards > New > Import`</i> para importar o arquivo <b>dash-go-products-api.json</b> que está localizado no diretório: <a href="./scripts/grafana-dashboards/">./scripts/grafana-dashboards</a>. Acesse o diretório, clique e arraste o arquivo para o campo correto especificado pela tela <b>Upload Dashboard JSON File</b></summary>
   <img src="./docs/assets/images/screen_captures/grafana_import_dashboard.png">
 </details>
 
@@ -353,7 +353,7 @@ Quando adequadamente importado, o Dashboard estará disponível e responderá à
 
 A partir dessas métricas dos dashboards, temos uma ideia da saúde da API e quais são as reais necessidades de escala que ela deve ter, o que nos dá uma ideia de quais arquiteturas e abordagens poderão ser utilizadas para atender às suas demandas, incluindo testes de carga, possíveis caches defensivos, filas, etc.
 
-Nossas decisões de `Arquitetura` e `Design de Sistemas` devem sempre serem baseadas em dados!
+Nossas decisões de `Arquitetura` e `Design de Sistemas` devem sempre ser baseadas em dados!
 
 <br/>
 
@@ -394,7 +394,7 @@ Nossas decisões de `Arquitetura` e `Design de Sistemas` devem sempre serem base
 - GUIs:
   - [VsCode](https://code.visualstudio.com/)
   - [Postman](https://blog.postman.com/introducing-the-postman-vs-code-extension/)
-  - [DBeaver](https://dbeaver.io/)
+  - [MySQL Workbench](https://www.mysql.com/products/workbench/)
 
 <br/>
 
