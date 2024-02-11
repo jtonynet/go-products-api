@@ -118,7 +118,7 @@ $ docker compose up
 >```bash
 >sudo chmod -R 777 .docker
 >```
-> e liberar as permissões para os volumes das imagens necessárias, lembrando que o desenvolvimento e os testes foram executados no sistema __Linux Ubuntu 20.04.6 LTS__.
+> e liberar as permissões para os volumes das imagens necessárias, lembrando que o desenvolvimento e os testes foram executados no sistema __Linux Ubuntu 20.04.6 LTS__ e testada em __Linux Ubuntu 22.04.3 LTS__.
 
 <br/>
 
