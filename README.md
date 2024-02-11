@@ -13,7 +13,7 @@
     https://devicon.dev/
     https://simpleicons.org/
 -->
-[<img src="./docs/assets/images/icons/postman.svg" width="25px" height="25px" alt="Postman Logo" title="Postman">](https://www.postman.com/) [<img src="./docs/assets/images/icons/go.svg" width="25px" height="25px" alt="go" title="Go">](https://go.dev/) [<img src="./docs/assets/images/icons/echo.png" width="25px" height="25px" alt="Echo Framework" title="Echo Framework">](https://echo.labstack.com/) [<img src="./docs/assets/images/icons/mysql.svg" width="50px" height="50px" alt="MySQL Logo" title="MySQL">](https://www.mysql.com/) [<img src="./docs/assets/images/icons/docker.svg" width="25px" height="25px" alt="Docker Logo" title="Docker">](https://www.docker.com/) [<img src="./docs/assets/images/icons/ubuntu.svg" width="25px" height="25px Logo" title="Ubunto" alt="Ubunto" />](https://ubuntu.com/) [<img src="./docs/assets/images/icons/dotenv.svg" width="25px" height="25px" alt="Viper DotEnv Logo" title="Viper DotEnv">](https://github.com/spf13/viper) [<img src="./docs/assets/images/icons/github.svg" width="25px" height="25px" alt="GitHub Logo" title="GitHub">](https://github.com/jtonynet) [<img src="./docs/assets/images/icons/mermaidjs.svg" width="25px" height="25px" alt="MermaidJS Logo" title="MermaidJS">](https://mermaid.js.org/) [<img src="./docs/assets/images/icons/visualstudiocode.svg" width="25px" height="25px" alt="VsCode Logo" title="VsCode">](https://code.visualstudio.com/) [<img src="./docs/assets/images/icons/swagger.svg" width="25px" height="25px" alt="Swagger Logo" title="Swagger">](https://swagger.io/) [<img src="./docs/assets/images/icons/githubactions.svg" width="25px" height="25px" alt="GithubActions Logo" title="GithubActions">](https://docs.github.com/en/actions) <!-- [<img src="./docs/assets/images/icons/prometheus.svg" width="25px" height="25px" alt="Prometheus Logo" title="Prometheus">](https://prometheus.io/) [<img src="./docs/assets/images/icons/grafana.svg" width="25px" height="25px" alt="Grafana Logo" title="Grafana">](https://grafana.com/) [<img src="./docs/assets/images/icons/redis.svg" width="25px" height="25px" alt="Redis Logo" title="Redis">](https://redis.com/) [<img src="./docs/assets/images/icons/gatling.svg" width="35px" height="35px" alt="Gatling Logo" title="Gatling">](https://gatling.com/) [<img src="./docs/assets/images/icons/rabbitmq.svg" width="25px" height="25px" alt="RabbitMQ Logo" title="RabbitMQ">](https://rabbitmq.com/) -->
+[<img src="./docs/assets/images/icons/postman.svg" width="25px" height="25px" alt="Postman Logo" title="Postman">](https://www.postman.com/) [<img src="./docs/assets/images/icons/go.svg" width="25px" height="25px" alt="go" title="Go">](https://go.dev/) [<img src="./docs/assets/images/icons/echo.png" width="25px" height="25px" alt="Echo Framework" title="Echo Framework">](https://echo.labstack.com/) [<img src="./docs/assets/images/icons/mysql.svg" width="50px" height="50px" alt="MySQL Logo" title="MySQL">](https://www.mysql.com/) [<img src="./docs/assets/images/icons/docker.svg" width="25px" height="25px" alt="Docker Logo" title="Docker">](https://www.docker.com/) [<img src="./docs/assets/images/icons/ubuntu.svg" width="25px" height="25px Logo" title="Ubunto" alt="Ubunto" />](https://ubuntu.com/) [<img src="./docs/assets/images/icons/dotenv.svg" width="25px" height="25px" alt="Viper DotEnv Logo" title="Viper DotEnv">](https://github.com/spf13/viper) [<img src="./docs/assets/images/icons/github.svg" width="25px" height="25px" alt="GitHub Logo" title="GitHub">](https://github.com/jtonynet) [<img src="./docs/assets/images/icons/mermaidjs.svg" width="25px" height="25px" alt="MermaidJS Logo" title="MermaidJS">](https://mermaid.js.org/) [<img src="./docs/assets/images/icons/visualstudiocode.svg" width="25px" height="25px" alt="VsCode Logo" title="VsCode">](https://code.visualstudio.com/) [<img src="./docs/assets/images/icons/swagger.svg" width="25px" height="25px" alt="Swagger Logo" title="Swagger">](https://swagger.io/) [<img src="./docs/assets/images/icons/githubactions.svg" width="25px" height="25px" alt="GithubActions Logo" title="GithubActions">](https://docs.github.com/en/actions) [<img src="./docs/assets/images/icons/prometheus.svg" width="25px" height="25px" alt="Prometheus Logo" title="Prometheus">](https://prometheus.io/) [<img src="./docs/assets/images/icons/grafana.svg" width="25px" height="25px" alt="Grafana Logo" title="Grafana">](https://grafana.com/) <!-- [<img src="./docs/assets/images/icons/gatling.svg" width="35px" height="35px" alt="Gatling Logo" title="Gatling">](https://gatling.com/) [<img src="./docs/assets/images/icons/redis.svg" width="25px" height="25px" alt="Redis Logo" title="Redis">](https://redis.com/) [<img src="./docs/assets/images/icons/rabbitmq.svg" width="25px" height="25px" alt="RabbitMQ Logo" title="RabbitMQ">](https://rabbitmq.com/) -->
 
 
 ![Badge Status](https://img.shields.io/badge/STATUS-EM_DESENVOLVIMENTO-green) [![Github Project](https://img.shields.io/badge/PROJECT%20VIEW-GITHUB-green?logo=github&logoColor=white)](https://github.com/users/jtonynet/projects/5/views/1) ![Badge GitHubActions](https://github.com/jtonynet/go-products-api/actions/workflows/main.yml/badge.svg?branch=main) 
@@ -36,14 +36,12 @@
   5.   :bar_chart: [Diagramas](#diagrams)
   6.   :white_check_mark: [Testes](#tests)
   7.   :beetle: [Debug](#debug)
-  8.   :toolbox: [Ferramentas](#tools)
-  9.   :clap: [Boas Práticas](#best-practices)
-  10.  :brain: [ADR - Architecture Decision Records](#adr)
-  11.  :1234: [Versões](#versions)
-  12.  :robot: [Uso de AI](#ia)
-
-
-<!-- 8.  :detective: [Observabilidade](#observability) -->
+  8.   :detective: [Observabilidade](#observability)
+  9.   :toolbox: [Ferramentas](#tools)
+  10.  :clap: [Boas Práticas](#best-practices)
+  11.  :brain: [ADR - Architecture Decision Records](#adr)
+  12.  :1234: [Versões](#versions)
+  13.  :robot: [Uso de AI](#ia)
 
 <br/>
 
@@ -57,8 +55,8 @@
 Este repositório foi criado com a intenção de propor uma possível solução para o seguinte desafio:
 
 > 👨‍💻 __Case Dev Backend:__
-> Vamos construir uma API?
 > 
+> __Vamos construir uma API?__
 > A API a ser desenvolvida deve conter rotas C.R.U.D. de produtos, seguindo um bom design de API.
 > - Requisitos:
 >   - Rota para criação de produtos.
@@ -79,11 +77,12 @@ Este repositório foi criado com a intenção de propor uma possível solução 
 >   - Código Limpo (Clean Code)
 >   - Padrões e convenções GoLang
 
-Dada sua simplicidade, uma vez que se trata de um CRUD simples. Faz sentido utilizar Arquitetura de Duas Camadas o que aumenta o ritmo do desenvolvimento porém mantendo a qualidade do resultado final.
+Dada sua simplicidade, uma vez que se trata de um __CRUD simples__. Faz sentido utilizar __Arquitetura de Duas Camadas__ o que aumenta o ritmo do desenvolvimento porém mantendo a qualidade do resultado final. Construido junto a uma visualização estilo __Kanbam__ no [Github Project](https://github.com/users/jtonynet/projects/5/views/1)
 
-Foco em garantir estabilidade com TDD, boas práticas de design de codigo com a robustez necessária e devidos aprimoramentos
+Foco em garantir estabilidade com __TDD__ e uma implementação minima de __CI__ no [GitHub Actions](https://github.com/jtonynet/go-products-api/actions), boas práticas de design de código e __Observabilidade__ com Prometheus e Grafana garantindo a robustez necessária e devidos aprimoramentos
 
 Exatamente por parecer ser "simples", é necessário ter um bom nível de qualidade.
+
 
 <br/>
 
@@ -94,8 +93,9 @@ Exatamente por parecer ser "simples", é necessário ter um bom nível de qualid
 <a id="run"></a>
 ## 💻 Rodando o Projeto
 
-Crie uma cópia do arquivo `sample.env` com o nome `.env` e rode o comando `docker compose up` (de acordo com sua versão do `docker compose`) no diretorio raiz do projeto:
+Crie uma cópia do arquivo `sample.env` com o nome `.env` e rode o comando `docker compose` (de acordo com sua versão do `docker compose`) no diretorio raiz do projeto:
 ```bash
+$ docker compose build
 $ docker compose up
 ```
 
@@ -103,17 +103,31 @@ $ docker compose up
 
 > :writing_hand: **Nota**:
 >
->**Solução de Problemas com [Volumes do Docker](https://betterstack.com/community/questions/what-is-the-best-way-to-manage-permissions-for-docker-shared-volumes/)**
->Ao configurar o ambiente local, é possível que você encontre problemas de permissão na pasta `.docker`, que armazena os volumes dos componentes necessários para executar o ambiente. O docker-compose cria essa pasta, mas não concede as permissões necessárias para gerenciar esses volumes. A abordagem que estamos usando atualmente para lidar com isso é executar o seguinte comando caso você encontre um erro na primeira tentativa de `docker compose up`:
+>__Solução de Problemas com [Volumes do Docker](https://betterstack.com/community/questions/what-is-the-best-way-to-manage-permissions-for-docker-shared-volumes/)__
+>Ao configurar o ambiente local, é possível que você encontre problemas de permissão na pasta `.docker`, que armazena os volumes dos componentes necessários para executar o ambiente. O docker-compose cria essa pasta, mas não concede as permissões necessárias para gerenciar esses volumes. A abordagem que estamos usando atualmente para lidar com isso, caso você encontre um erro na primeira tentativa de `docker compose up` como:
+>```bash
+>prometheus-go-products-api  | goroutine 1 [running]:
+>prometheus-go-products-api  | github.com/prometheus/prometheus/promql.NewActiveQueryTracker({0x7fff5a1ffef7, 0xb}, 0x14, {0x3e94c60, 0xc0008b6370})
+>prometheus-go-products-api  |   /app/promql/query_logger.go:123 +0x411
+>prometheus-go-products-api  | main.main()
+>prometheus-go-products-api  |   /app/cmd/prometheus/main.go:645 +0x7812
+>prometheus-go-products-api exited with code 2
+>```
+>
+>  ou problemas ao subir o Grafana, basta executar o seguinte comando:
 >```bash
 >sudo chmod -R 777 .docker
 >```
+> e liberar as permissões para os volumes das imagens necessárias, lembrando que o desenvolvimento e os testes foram executados no sistema __Linux Ubuntu 20.04.6 LTS__ e testada em __Linux Ubuntu 22.04.3 LTS__.
 
 <br/>
 
 ####  <img src="./docs/assets/images/icons/postman.svg" width="20px" height="20px" alt="Swagger" title="Swagger">  Postman collection:
 
-Dentro da pasta [./scripts/postman-collection](./scripts/postman-collection/go-products-api.postman_collection.json) encontra-se o arquivo JSON básico que pode ser importado no seu `Postman` para auxiliar em testes manuais e desenvolvimento.
+<details>
+  <summary>Dentro da pasta <a href="./scripts/postman-collections/go-products-api.postman_collection.json">./scripts/postman-collection/go-products-api.postman_collection.json</a> encontra-se o arquivo JSON básico que pode ser importado no seu <i>Postman</i> para auxiliar em testes manuais e desenvolvimento.</summary>
+  <img src="./docs/assets/images/screen_captures/postman.png">
+</details>
 
 <br/>
 
@@ -142,12 +156,14 @@ swag init --generalInfo cmd/api/main.go -o ./api
 
 <br/>
 
-Existe um bug na geração da documentação do Echo Swagger. O [docs.go](./api/docs.go) gera duas propriedades na struct `swag.Spec` que não são reconhecidas. A solução encontrada no momento é remover manualmente essas propriedades a cada geração da documentação.
-
-```go
-	LeftDelim:        "{{",
-	RightDelim:       "}}",
-```
+> :writing_hand: **Nota**:
+>
+> Existe um bug na geração da documentação do Echo Swagger. No arquivo [./api/docs.go](./api/docs.go) está gerando duas propriedades na struct `swag.Spec` que não são reconhecidas. A solução encontrada no momento é remover manualmente essas propriedades a cada geração da documentação.
+>
+> ```go
+>	LeftDelim:        "{{",
+>	RightDelim:       "}}",
+>```
 
 <br/>
 
@@ -241,8 +257,10 @@ obtendo uma saida similar a seguinte:<br/>
 
 <br/>
 
-Os testes também são executados como parte da rotina de CI do Github Actions, garantindo que versões estáveis sejam mescladas na branch principal. O badge `smoke_test` no cabeçalho do arquivo readme é uma ajuda visual para verificar rapidamente a integridade do desenvolvimento.
-<img src="./docs/assets/images/screen_captures/testing_ci.png">
+<details>
+  <summary>Os testes também são executados como parte da rotina minima de <b>CI</b> do <a href="https://github.com/jtonynet/go-products-api/actions">GitHub Actions</a>, garantindo que versões estáveis sejam mescladas na branch principal. O badge <i>smoke_test</i> no cabeçalho do arquivo readme é uma ajuda visual para verificar rapidamente a integridade do desenvolvimento.</summary>
+  <img src="./docs/assets/images/screen_captures/testing_ci.png">
+</details>
 
 <br/>
 
@@ -279,23 +297,67 @@ Utilizando o VSCode como editor de código ([maiores informações aqui](https:/
 }
 ```
 
-Uma seção de Depuração de Testes da aplicação:
-<img src="./docs/assets/images/screen_captures/testing_debug.png">
+<details>
+  <summary>Uma seção de Depuração de Testes da aplicação pode ser vista aqui:</summary>
+  <img src="./docs/assets/images/screen_captures/testing_debug.png">
+</details>
 
 <br/>
 
 [:arrow_heading_up: de volta ao índice](#index)
 
-<!--
+
 ---
 
 <a id="observability"></a>
 ## 🕵️ Observabilidade:
 
-__TODO__
+__Prometheus:__
+
+Apos rodar com sucesso o `docker compose up` como visto anteriormente, acesse:
+- Prometheus - http://localhost:9090/
+
+<img src="./docs/assets/images/screen_captures/prometheus.png">
+
+<br/>
+
+__Configurando o Grafana:__
+
+A primeira vez que executarmos o Grafana, entramos com `usuário/senha` padrão de `admin/admin`. Ele solicita a alteração da senha, para facilitar o desenvolvimento local, alteramos para `admin/12345`.
+- Grafana - http://localhost:3000/ (usuário/senha: admin/admin | admin/12345)
+  
+<details>
+  <summary>Uma vez dentro do Grafana em sua primeira execução, também precisamos criar uma conexão Datasource com o Prometheus (que acessamos acima). Procure por <i>`Connection > Add New Connection`</i> digite <i>Prometheus</i> no campo de Search, selecione-o, clique em <i>`Add New Datasource`</i> e configure-o com a URL: <i>http://prometheus-go-products-api:9090</i></summary>
+  <img src="./docs/assets/images/screen_captures/grafana_create_prometheus_conn.png">
+</details>
+
+<br/>
+
+<details>
+  <summary>Agora você pode usar o menu <i>`Dashboards > New > Import`</i> para importar o arquivo <b>dash-go-products-api.json</b> que está localizado no diretório: <a href="./scripts/grafana-dashboards/">./scripts/grafana-dashboards</a>. Acesse o diretório, clique e arraste o arquivo para o campo correto especificado pela tela <b>Upload Dashboard JSON File</b></summary>
+  <img src="./docs/assets/images/screen_captures/grafana_import_dashboard.png">
+</details>
+
+<br/>
+
+<details>
+  <summary>Vincule o Dashboard a conexão previamente criada e acesse-o</summary>
+  <img src="./docs/assets/images/screen_captures/grafana_import_dashboard_prometheus.png">
+</details>
+
+<br/>
+
+Quando adequadamente importado, o Dashboard estará disponível e responderá às solicitações que você pode simular pelo `Postman` ou `Swagger`.
+
+<img src="./docs/assets/images/screen_captures/grafana_red.png">
+
+A partir dessas métricas dos dashboards, temos uma ideia da saúde da API e quais são as reais necessidades de escala que ela deve ter, o que nos dá uma ideia de quais arquiteturas e abordagens poderão ser utilizadas para atender às suas demandas, incluindo testes de carga, possíveis caches defensivos, filas, etc.
+
+Nossas decisões de `Arquitetura` e `Design de Sistemas` devem sempre ser baseadas em dados!
+
+<br/>
 
 [:arrow_heading_up: de volta ao índice](#index)
--->
 
 ---
 
@@ -316,23 +378,23 @@ __TODO__
   - [Delve](https://github.com/go-delve/delve)
   - [Echo-Swagger](https://github.com/swaggo/echo-swagger)
   - [Exponential Backoff](https://github.com/cenkalti/backoff)
-<!-- [Client-prometheus](https://github.com/prometheus/client_golang)
+  - [Gopsutil]("github.com/shirou/gopsutil)
+  - [Client-prometheus](https://github.com/prometheus/client_golang)
   - [GORM Prometheus](https://github.com/go-gorm/prometheus)
-  - [Zap log](https://github.com/uber-go/zap) 
-  - [Gopsutil]("github.com/shirou/gopsutil)-->
+  <!-- [Zap log](https://github.com/uber-go/zap)  -->
 
 - Infra & Technologies
   - [Docker v24.0.6](https://www.docker.com/)
   - [Docker compose v2.21.0](https://www.docker.com/)
   - [MySQL](https://www.postgresql.org/)
-<!-- [Prometheus](https://prometheus.io/docs/guides/go-application)
-  - [Grafana](https://grafana.com/) -->
+  - [Prometheus](https://prometheus.io/docs/guides/go-application)
+  - [Grafana](https://grafana.com/)
 
 
 - GUIs:
   - [VsCode](https://code.visualstudio.com/)
   - [Postman](https://blog.postman.com/introducing-the-postman-vs-code-extension/)
-  - [DBeaver](https://dbeaver.io/)
+  - [MySQL Workbench](https://www.mysql.com/products/workbench/)
 
 <br/>
 
@@ -344,14 +406,15 @@ __TODO__
 ## 👏 Boas Práticas
 
 - [Swagger](https://swagger.io/)
+- [Github Project - Kanbam](https://github.com/users/jtonynet/projects/5/views/1)
 - [Layout padrão de projetos em Go](https://github.com/golang-standards/project-layout/blob/master/README_ptBR.md)
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - [ADR - Architecture Decision Records](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions)
 - [Mermaid Diagrams](https://mermaid.js.org)
-<!-- [Observability](https://en.wikipedia.org/wiki/Observability_(software)) com:
+- [Observabilidade](https://en.wikipedia.org/wiki/Observability_(software)) com:
   - [Prometheus](https://prometheus.io/docs/guides/go-application/)
-  - [Grafana](https://grafana.com/) -->
+  - [Grafana](https://grafana.com/)
 
 <br/>
 
@@ -364,6 +427,8 @@ __TODO__
 
 - [0001: Registro de Decisões de Arquitetura (ADR)](./docs/architecture/decisions/0001-registro-de-decisoes-de-arquitetura.md)
 - [0002: Echo, Gorm e MySQL em API TDD com Arquitetura de Duas camadas](./docs/architecture/decisions/0002-echo-gorm-e-mysql-com-arquitetura-de-api-tdd-em-duas-camadas.md)
+- [0003: Observabilidade com Prometheus e Grafana](./docs/architecture/decisions/0003-observabilidade-com-prometheus-e-api-tdd-em-duas-camadas.md)
+
 
 
 <br/>
@@ -386,7 +451,7 @@ Para obter mais informações, consulte o [Histórico de Versões](./CHANGELOG.m
 ---
 
 <a id="ia"></a>
-### 🤖 Use of AI:
+### 🤖 Uso de AI:
 
 A [imagem do cabeçalho](#go-products-api) desta página foi criada com o auxílio de inteligência artificial e um mínimo de retoque e construção no Gimp [<img src="./docs/assets/images/icons/gimp.svg" width="30" height="30 " title="Gimp" alt="Gimp Logo" />](https://www.gimp.org/)
 
