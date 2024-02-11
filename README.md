@@ -351,6 +351,10 @@ Quando adequadamente importado, o Dashboard estará disponível e responderá à
 
 <img src="./docs/assets/images/screen_captures/grafana_red.png">
 
+A partir dessas métricas dos dashboards, temos uma ideia da saúde da API e quais são as reais necessidades de escala que ela deve ter, o que nos dá uma ideia de quais arquiteturas e abordagens poderão ser utilizadas para atender às suas demandas, incluindo testes de carga, possíveis caches defensivos, filas, etc.
+
+Nossas decisões de `Arquitetura` e `Design de Sistemas` devem sempre serem baseadas em dados!
+
 <br/>
 
 [:arrow_heading_up: de volta ao índice](#index)
