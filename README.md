@@ -334,7 +334,7 @@ A primeira vez que executarmos o Grafana, entramos com `usuário/senha` padrão 
 <br/>
 
 <details>
-  <summary>Agora você pode usar o menu <i>`Dashboards > New > Import`</i> para importar o arquivo que está localizado no diretório: <a href="./scripts/grafana-dashboards/dash-go-products-api.json">./scripts/grafana-dashboards/dash-go-products-api.json</a>. Acesse o diretório clique e arraste o arquivo especificado para o campo esepcificado pela tela</summary>
+  <summary>Agora você pode usar o menu <i>`Dashboards > New > Import`</i> para importar o arquivo <b>dash-go-products-api.json</b> que está localizado no diretório: <a href="./scripts/grafana-dashboards/">./scripts/grafana-dashboards</a>. Acesse o diretório clique e arraste o arquivo para o campo correto especificado pela tela <b>Upload Dashboard JSON File</b></summary>
   <img src="./docs/assets/images/screen_captures/grafana_import_dashboard.png">
 </details>
 
