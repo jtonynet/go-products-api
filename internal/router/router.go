@@ -15,36 +15,37 @@ import (
 )
 
 func Init(cfg *config.API, productHandler *handlers.ProductHandler) {
-	r := echo.New()
-	r.Use(echoMiddleware.CORS())
+	e := echo.New()
+	e.Use(echoMiddleware.CORS())
+	e.Use(echoMiddleware.Logger())
 
-	initializeRoutes(cfg, productHandler, r)
+	initializeRoutes(cfg, productHandler, e)
 
 	portStr := fmt.Sprintf(":%s", cfg.Port)
-	r.Logger.Fatal(r.Start(portStr))
+	e.Logger.Fatal(e.Start(portStr))
 }
 
 func initializeRoutes(
 	cfg *config.API,
 	productHandler *handlers.ProductHandler,
-	r *echo.Echo) {
+	e *echo.Echo) {
 
 	if cfg.MetricsEnabled {
-		initializeMetricsRoute(r, cfg)
+		initializeMetricsRoute(e, cfg)
 	}
 
-	r.GET("/swagger/*", echoSwagger.WrapHandler)
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
-	r.POST("/products", productHandler.CreateProduct)
-	r.GET("/products", productHandler.RetriveProductList)
-	r.GET("/products/:product_id", productHandler.RetrieveProductById)
-	r.PATCH("/products/:product_id", productHandler.UpdateProductById)
-	r.DELETE("/products/:product_id", productHandler.DeleteProductById)
+	e.POST("/products", productHandler.CreateProduct)
+	e.GET("/products", productHandler.RetriveProductList)
+	e.GET("/products/:product_id", productHandler.RetrieveProductById)
+	e.PATCH("/products/:product_id", productHandler.UpdateProductById)
+	e.DELETE("/products/:product_id", productHandler.DeleteProductById)
 }
 
-func initializeMetricsRoute(r *echo.Echo, cfg *config.API) {
+func initializeMetricsRoute(e *echo.Echo, cfg *config.API) {
 	middleware.InitPrometheus(cfg)
 
-	r.Use(middleware.Prometheus())
-	r.GET("/metrics", echo.WrapHandler(promhttp.Handler()))
+	e.Use(middleware.Prometheus())
+	e.GET("/metrics", echo.WrapHandler(promhttp.Handler()))
 }

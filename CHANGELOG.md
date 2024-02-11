@@ -10,11 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 
+- Solução de __Observabilidade__ minima para __[Issue-17](https://github.com/jtonynet/go-products-api/issues/17)__
 - Criado `middleware Prometheus` customizado para disponibilizar métricas.
 - Utilizando `Gorm Prometheus` para métricas de banco de dados.
 - Utilizando middleware `Prometheus` e `Gorm` a partir de configurações de variáveis de ambiente.
 - Docker Compose disponibilizando `Prometheus` e `Grafana`.
-- Outras alterações no projeto para atender à __Observabilidade__.
+- Criado Dashboard a partir das métricas disponibilizadas
+- Outras alterações no projeto para atender à documentação.
 
 ### Fixed
 
@@ -23,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.6] - 2023-02-10
 ### Fixed
 
-- Corrigido bug de a aplicação iniciar mas o banco ainda não estar respondendo a solicitações, bug conhecido do docker-compose.Paratanto foi adicionado [Exponential Backoff](https://github.com/cenkalti/backoff), que tenta se conectar ao banco por `API_RETRY_MAX_ELAPSED_TIME_IN_MS` __[Issue-14](https://github.com/jtonynet/go-products-api/issues/14)__ 
+- Corrigido bug de a aplicação iniciar mas o banco ainda não estar respondendo a solicitações, bug conhecido do docker-compose.Para tanto foi adicionado [Exponential Backoff](https://github.com/cenkalti/backoff), que tenta se conectar ao banco por `API_RETRY_MAX_ELAPSED_TIME_IN_MS` __[Issue-14](https://github.com/jtonynet/go-products-api/issues/14)__ 
 
 
 ---
