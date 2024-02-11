@@ -293,7 +293,7 @@ Utilizando o VSCode como editor de código ([maiores informações aqui](https:/
 ```
 
 <details>
-  <summary>Uma seção de Depuração de Testes da aplicaçãopode ser vista aqui:</summary>
+  <summary>Uma seção de Depuração de Testes da aplicação pode ser vista aqui:</summary>
   <img src="./docs/assets/images/screen_captures/testing_debug.png">
 </details>
 
@@ -322,7 +322,7 @@ A primeira vez que executarmos o Grafana, será necessário alterar a senha padr
 - Grafana - http://localhost:3000/ (usuário/senha: admin - admin | admin - 12345)
   
 <details>
-  <summary>Uma vez dentro do Grafana em sua primeira execução, também precisamos criar uma conexão com o Prometheus (que acessamos acima) na URL: <i>http://prometheus-go-product-api:9090</i></summary>
+  <summary>Uma vez dentro do Grafana em sua primeira execução, também precisamos criar uma conexão Datasource com o Prometheus (que acessamos acima) na URL: <i>http://prometheus-go-product-api:9090</i></summary>
   <img src="./docs/assets/images/screen_captures/grafana_create_prometheus_conn.png">
 </details>
 
@@ -397,6 +397,7 @@ Quando adequadamente importado, o Dashboard estará disponível e responderá à
 ## 👏 Boas Práticas
 
 - [Swagger](https://swagger.io/)
+- [Github Project - Kanbam](https://github.com/users/jtonynet/projects/5/views/1)
 - [Layout padrão de projetos em Go](https://github.com/golang-standards/project-layout/blob/master/README_ptBR.md)
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
@@ -417,6 +418,7 @@ Quando adequadamente importado, o Dashboard estará disponível e responderá à
 
 - [0001: Registro de Decisões de Arquitetura (ADR)](./docs/architecture/decisions/0001-registro-de-decisoes-de-arquitetura.md)
 - [0002: Echo, Gorm e MySQL em API TDD com Arquitetura de Duas camadas](./docs/architecture/decisions/0002-echo-gorm-e-mysql-com-arquitetura-de-api-tdd-em-duas-camadas.md)
+- [0003: Observabilidade com Prometheus e Grafana](./docs/architecture/decisions/0003-observabilidade-com-prometheus-e-api-tdd-em-duas-camadas.md)
 
 
 

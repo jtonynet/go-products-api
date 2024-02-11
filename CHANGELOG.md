@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 
+- Criado `middleware Prometheus` customizado para disponibilizar métricas.
+- Utilizando `Gorm Prometheus` para métricas de banco de dados.
+- Utilizando middleware `Prometheus` e `Gorm` a partir de configurações de variáveis de ambiente.
+- Docker Compose disponibilizando `Prometheus` e `Grafana`.
+- Outras alterações no projeto para atender à __Observabilidade__.
+
 ### Fixed
 
 ---
@@ -67,6 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Sabemos o que fazer, graças às definições do arquivo __README.md__. Sabemos como fazer graças aos __ADRs__ e documentações vinculadas. Devemos nos organizar em estrutura __Kanban__, guiados pelo modelo Agile, em nosso __Github Project__, e dar o devido prosseguimento às tarefas.
 
 
+[0.0.7]: https://github.com/jtonynet/go-products-api/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/jtonynet/go-products-api/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/jtonynet/go-products-api/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/jtonynet/go-products-api/compare/v0.0.3...v0.0.4
