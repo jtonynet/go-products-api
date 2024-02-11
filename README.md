@@ -328,7 +328,7 @@ A primeira vez que executarmos o Grafana, entramos com `usuário/senha` padrão 
   
 <details>
   <summary>Uma vez dentro do Grafana em sua primeira execução, também precisamos criar uma conexão Datasource com o Prometheus (que acessamos acima) na URL: <i>http://prometheus-go-product-api:9090</i>
-  Procure por <i>Connection > Add New Connection</i> digite <i>Prometheus</i> no campo de Search, selecione-o e configure</summary>
+  Procure por <i>Connection > Add New Connection</i> digite <i>Prometheus</i> no campo de Search, selecione-o, clique em <i>Add New Datasource</i> e configure</summary>
   <img src="./docs/assets/images/screen_captures/grafana_create_prometheus_conn.png">
 </details>
 
