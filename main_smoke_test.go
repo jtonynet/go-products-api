@@ -17,28 +17,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/jtonynet/go-products-api/config"
 	"github.com/jtonynet/go-products-api/internal/database"
 	"github.com/jtonynet/go-products-api/internal/handlers"
+	"github.com/jtonynet/go-products-api/test/helpers"
 )
-
-func setupConfig() *config.Config {
-	cfg := config.Config{}
-
-	cfg.Database.Host = "localhost"
-	cfg.Database.Port = "3306"
-	cfg.Database.User = "root"
-	cfg.Database.Pass = "root"
-	cfg.Database.DB = "go-products-api"
-	cfg.Database.RetryMaxElapsedTimeInMs = 1000
-
-	return &cfg
-}
-
-func setupDB(cfg *config.Database) (*gorm.DB, error) {
-	db, err := database.NewDatabase(cfg)
-	return db, err
-}
 
 type HappyPathSuite struct {
 	suite.Suite
@@ -58,8 +40,8 @@ type HappyPathSuite struct {
 }
 
 func (suite *HappyPathSuite) SetupSuite() {
-	cfg := setupConfig()
-	suite.DB, _ = setupDB(&cfg.Database)
+	cfg := helpers.SetupConfig()
+	suite.DB, _ = helpers.SetupDB(&cfg.Database)
 
 	productDB := database.NewProductsDB(suite.DB)
 	suite.productHandler = handlers.NewProductHandler(productDB)
@@ -88,14 +70,9 @@ func (suite *HappyPathSuite) TestSmoke() {
 	suite.deleteProductSuccessful()
 }
 
-func setupEchoRouter() *echo.Echo {
-	echoRouter := echo.New()
-	return echoRouter
-}
-
 func (suite *HappyPathSuite) createAndRetrieveProductSuccessful() {
 	// Create Product
-	suite.echoRouter = setupEchoRouter()
+	suite.echoRouter = helpers.SetupEchoRouter()
 	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
 
 	requestProduct := fmt.Sprintf(
@@ -120,7 +97,7 @@ func (suite *HappyPathSuite) createAndRetrieveProductSuccessful() {
 	assert.Equal(suite.T(), http.StatusCreated, respProductCreate.Code)
 
 	// Retrieve Product By Id
-	suite.echoRouter = setupEchoRouter()
+	suite.echoRouter = helpers.SetupEchoRouter()
 	suite.echoRouter.GET("/products/:product_id", suite.productHandler.RetrieveProductById)
 
 	productUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
@@ -140,7 +117,7 @@ func (suite *HappyPathSuite) createAndRetrieveProductSuccessful() {
 
 func (suite *HappyPathSuite) updateAndRetrieveProductListSuccessful() {
 	// Update Product
-	suite.echoRouter = setupEchoRouter()
+	suite.echoRouter = helpers.SetupEchoRouter()
 	suite.echoRouter.PATCH("/products/:product_id", suite.productHandler.UpdateProductById)
 
 	requestProduct := fmt.Sprintf(
@@ -164,7 +141,7 @@ func (suite *HappyPathSuite) updateAndRetrieveProductListSuccessful() {
 	assert.Equal(suite.T(), http.StatusOK, respProductUpdate.Code)
 
 	// Retrieve Products List
-	suite.echoRouter = setupEchoRouter()
+	suite.echoRouter = helpers.SetupEchoRouter()
 	suite.echoRouter.GET("/products", suite.productHandler.RetriveProductList)
 
 	reqProductsRetrieve, err := http.NewRequest("GET", "/products", nil)
@@ -184,7 +161,7 @@ func (suite *HappyPathSuite) updateAndRetrieveProductListSuccessful() {
 
 func (suite *HappyPathSuite) deleteProductSuccessful() {
 	// Delete Product
-	suite.echoRouter = setupEchoRouter()
+	suite.echoRouter = helpers.SetupEchoRouter()
 	suite.echoRouter.DELETE("/products/:product_id", suite.productHandler.DeleteProductById)
 
 	productUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
@@ -195,7 +172,7 @@ func (suite *HappyPathSuite) deleteProductSuccessful() {
 	assert.Equal(suite.T(), http.StatusNoContent, respProductDelete.Code)
 
 	// Retrieve Product By Id
-	suite.echoRouter = setupEchoRouter()
+	suite.echoRouter = helpers.SetupEchoRouter()
 	suite.echoRouter.GET("/products/:product_id", suite.productHandler.RetrieveProductById)
 
 	reqProductRetrieve, err := http.NewRequest("GET", productUUIDRoute, nil)
@@ -228,5 +205,4 @@ func getProductJSONByUUID(bodyProductsJSON string, uuidToFind string) (string, e
 
 func TestSmokeSuite(t *testing.T) {
 	suite.Run(t, new(HappyPathSuite))
-	//suite.Run(t, new(ValidationSuite))
 }
