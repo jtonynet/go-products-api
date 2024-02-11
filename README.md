@@ -323,11 +323,12 @@ Apos rodar com sucesso o `docker compose up` como visto anteriormente, acesse:
 
 __Configurando o Grafana:__
 
-A primeira vez que executarmos o Grafana, será necessário alterar a senha padrão de `admin - admin`. Para facilitar o desenvolvimento local, alteramos para `admin - 12345`.
-- Grafana - http://localhost:3000/ (usuário/senha: admin - admin | admin - 12345)
+A primeira vez que executarmos o Grafana, será necessário alterar a senha padrão de `admin/admin`. Para facilitar o desenvolvimento local, alteramos para `admin/12345`.
+- Grafana - http://localhost:3000/ (usuário/senha: admin/admin | admin/12345)
   
 <details>
-  <summary>Uma vez dentro do Grafana em sua primeira execução, também precisamos criar uma conexão Datasource com o Prometheus (que acessamos acima) na URL: <i>http://prometheus-go-product-api:9090</i></summary>
+  <summary>Uma vez dentro do Grafana em sua primeira execução, também precisamos criar uma conexão Datasource com o Prometheus (que acessamos acima) na URL: <i>http://prometheus-go-product-api:9090</i>
+  Procure por <i>Connection > Add New Connection</i> digite <i>Prometheus</i> no campo de Search, selecione-o e configure</summary>
   <img src="./docs/assets/images/screen_captures/grafana_create_prometheus_conn.png">
 </details>
 
