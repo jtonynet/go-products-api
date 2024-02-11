@@ -79,7 +79,11 @@ Este repositório foi criado com a intenção de propor uma possível solução 
 >   - Código Limpo (Clean Code)
 >   - Padrões e convenções GoLang
 
-Dada sua simplicidade, uma vez que se trata de um __CRUD simples__. Faz sentido utilizar __Arquitetura de Duas Camadas__ o que aumenta o ritmo do desenvolvimento com menos partes para se preocupar porém mantendo a qualidade do resultado final.
+Dada sua simplicidade, uma vez que se trata de um CRUD simples. Faz sentido utilizar Arquitetura de Duas Camadas o que aumenta o ritmo do desenvolvimento porém mantendo a qualidade do resultado final.
+
+Foco em garantir estabilidade com TDD, boas práticas de design de codigo com a robustez necessária e devidos aprimoramentos
+
+Exatamente por parecer ser "simples", é necessário ter um bom nível de qualidade.
 
 <br/>
 
