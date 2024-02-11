@@ -13,7 +13,7 @@
     https://devicon.dev/
     https://simpleicons.org/
 -->
-[<img src="./docs/assets/images/icons/postman.svg" width="25px" height="25px" alt="Postman Logo" title="Postman">](https://www.postman.com/) [<img src="./docs/assets/images/icons/go.svg" width="25px" height="25px" alt="go" title="Go">](https://go.dev/) [<img src="./docs/assets/images/icons/echo.png" width="25px" height="25px" alt="Echo Framework" title="Echo Framework">](https://echo.labstack.com/) [<img src="./docs/assets/images/icons/mysql.svg" width="50px" height="50px" alt="MySQL Logo" title="MySQL">](https://www.mysql.com/) [<img src="./docs/assets/images/icons/docker.svg" width="25px" height="25px" alt="Docker Logo" title="Docker">](https://www.docker.com/) [<img src="./docs/assets/images/icons/ubuntu.svg" width="25px" height="25px Logo" title="Ubunto" alt="Ubunto" />](https://ubuntu.com/) [<img src="./docs/assets/images/icons/dotenv.svg" width="25px" height="25px" alt="Viper DotEnv Logo" title="Viper DotEnv">](https://github.com/spf13/viper) [<img src="./docs/assets/images/icons/github.svg" width="25px" height="25px" alt="GitHub Logo" title="GitHub">](https://github.com/jtonynet) [<img src="./docs/assets/images/icons/mermaidjs.svg" width="25px" height="25px" alt="MermaidJS Logo" title="MermaidJS">](https://mermaid.js.org/) [<img src="./docs/assets/images/icons/visualstudiocode.svg" width="25px" height="25px" alt="VsCode Logo" title="VsCode">](https://code.visualstudio.com/) [<img src="./docs/assets/images/icons/swagger.svg" width="25px" height="25px" alt="Swagger Logo" title="Swagger">](https://swagger.io/) [<img src="./docs/assets/images/icons/githubactions.svg" width="25px" height="25px" alt="GithubActions Logo" title="GithubActions">](https://docs.github.com/en/actions) [<img src="./docs/assets/images/icons/prometheus.svg" width="25px" height="25px" alt="Prometheus Logo" title="Prometheus">](https://prometheus.io/) [<img src="./docs/assets/images/icons/grafana.svg" width="25px" height="25px" alt="Grafana Logo" title="Grafana">](https://grafana.com/) <!-- [<img src="./docs/assets/images/icons/redis.svg" width="25px" height="25px" alt="Redis Logo" title="Redis">](https://redis.com/) [<img src="./docs/assets/images/icons/gatling.svg" width="35px" height="35px" alt="Gatling Logo" title="Gatling">](https://gatling.com/) [<img src="./docs/assets/images/icons/rabbitmq.svg" width="25px" height="25px" alt="RabbitMQ Logo" title="RabbitMQ">](https://rabbitmq.com/) -->
+[<img src="./docs/assets/images/icons/postman.svg" width="25px" height="25px" alt="Postman Logo" title="Postman">](https://www.postman.com/) [<img src="./docs/assets/images/icons/go.svg" width="25px" height="25px" alt="go" title="Go">](https://go.dev/) [<img src="./docs/assets/images/icons/echo.png" width="25px" height="25px" alt="Echo Framework" title="Echo Framework">](https://echo.labstack.com/) [<img src="./docs/assets/images/icons/mysql.svg" width="50px" height="50px" alt="MySQL Logo" title="MySQL">](https://www.mysql.com/) [<img src="./docs/assets/images/icons/docker.svg" width="25px" height="25px" alt="Docker Logo" title="Docker">](https://www.docker.com/) [<img src="./docs/assets/images/icons/ubuntu.svg" width="25px" height="25px Logo" title="Ubunto" alt="Ubunto" />](https://ubuntu.com/) [<img src="./docs/assets/images/icons/dotenv.svg" width="25px" height="25px" alt="Viper DotEnv Logo" title="Viper DotEnv">](https://github.com/spf13/viper) [<img src="./docs/assets/images/icons/github.svg" width="25px" height="25px" alt="GitHub Logo" title="GitHub">](https://github.com/jtonynet) [<img src="./docs/assets/images/icons/mermaidjs.svg" width="25px" height="25px" alt="MermaidJS Logo" title="MermaidJS">](https://mermaid.js.org/) [<img src="./docs/assets/images/icons/visualstudiocode.svg" width="25px" height="25px" alt="VsCode Logo" title="VsCode">](https://code.visualstudio.com/) [<img src="./docs/assets/images/icons/swagger.svg" width="25px" height="25px" alt="Swagger Logo" title="Swagger">](https://swagger.io/) [<img src="./docs/assets/images/icons/githubactions.svg" width="25px" height="25px" alt="GithubActions Logo" title="GithubActions">](https://docs.github.com/en/actions) [<img src="./docs/assets/images/icons/prometheus.svg" width="25px" height="25px" alt="Prometheus Logo" title="Prometheus">](https://prometheus.io/) [<img src="./docs/assets/images/icons/grafana.svg" width="25px" height="25px" alt="Grafana Logo" title="Grafana">](https://grafana.com/) <!-- [<img src="./docs/assets/images/icons/gatling.svg" width="35px" height="35px" alt="Gatling Logo" title="Gatling">](https://gatling.com/) [<img src="./docs/assets/images/icons/redis.svg" width="25px" height="25px" alt="Redis Logo" title="Redis">](https://redis.com/) [<img src="./docs/assets/images/icons/rabbitmq.svg" width="25px" height="25px" alt="RabbitMQ Logo" title="RabbitMQ">](https://rabbitmq.com/) -->
 
 
 ![Badge Status](https://img.shields.io/badge/STATUS-EM_DESENVOLVIMENTO-green) [![Github Project](https://img.shields.io/badge/PROJECT%20VIEW-GITHUB-green?logo=github&logoColor=white)](https://github.com/users/jtonynet/projects/5/views/1) ![Badge GitHubActions](https://github.com/jtonynet/go-products-api/actions/workflows/main.yml/badge.svg?branch=main) 
@@ -88,8 +88,9 @@ Dada sua simplicidade, uma vez que se trata de um __CRUD simples__. Faz sentido 
 <a id="run"></a>
 ## 💻 Rodando o Projeto
 
-Crie uma cópia do arquivo `sample.env` com o nome `.env` e rode o comando `docker compose up` (de acordo com sua versão do `docker compose`) no diretorio raiz do projeto:
+Crie uma cópia do arquivo `sample.env` com o nome `.env` e rode o comando `docker compose` (de acordo com sua versão do `docker compose`) no diretorio raiz do projeto:
 ```bash
+$ docker compose build
 $ docker compose up
 ```
 
@@ -98,16 +99,30 @@ $ docker compose up
 > :writing_hand: **Nota**:
 >
 >__Solução de Problemas com [Volumes do Docker](https://betterstack.com/community/questions/what-is-the-best-way-to-manage-permissions-for-docker-shared-volumes/)__
->Ao configurar o ambiente local, é possível que você encontre problemas de permissão na pasta `.docker`, que armazena os volumes dos componentes necessários para executar o ambiente. O docker-compose cria essa pasta, mas não concede as permissões necessárias para gerenciar esses volumes. A abordagem que estamos usando atualmente para lidar com isso é executar o seguinte comando caso você encontre um erro na primeira tentativa de `docker compose up`:
+>Ao configurar o ambiente local, é possível que você encontre problemas de permissão na pasta `.docker`, que armazena os volumes dos componentes necessários para executar o ambiente. O docker-compose cria essa pasta, mas não concede as permissões necessárias para gerenciar esses volumes. A abordagem que estamos usando atualmente para lidar com isso, caso você encontre um erro na primeira tentativa de `docker compose up` como:
+>```bash
+>prometheus-go-products-api  | goroutine 1 [running]:
+>prometheus-go-products-api  | github.com/prometheus/prometheus/promql.NewActiveQueryTracker({0x7fff5a1ffef7, 0xb}, 0x14, {0x3e94c60, 0xc0008b6370})
+>prometheus-go-products-api  |   /app/promql/query_logger.go:123 +0x411
+>prometheus-go-products-api  | main.main()
+>prometheus-go-products-api  |   /app/cmd/prometheus/main.go:645 +0x7812
+>prometheus-go-products-api exited with code 2
+>```
+>
+>  ou problemas ao subir o Grafana, basta executar o seguinte comando:
 >```bash
 >sudo chmod -R 777 .docker
 >```
+> e liberar as permissões para os volumes das imagens necessárias, lembrando que o desenvolvimento e os testes foram executados no sistema __Linux Ubuntu 20.04.6 LTS__.
 
 <br/>
 
 ####  <img src="./docs/assets/images/icons/postman.svg" width="20px" height="20px" alt="Swagger" title="Swagger">  Postman collection:
 
-Dentro da pasta [./scripts/postman-collection](./scripts/postman-collection/go-products-api.postman_collection.json) encontra-se o arquivo JSON básico que pode ser importado no seu `Postman` para auxiliar em testes manuais e desenvolvimento.
+<details>
+  <summary>Dentro da pasta <a href="./scripts/postman-collections/go-products-api.postman_collection.json">./scripts/postman-collection/go-products-api.postman_collection.json</a> encontra-se o arquivo JSON básico que pode ser importado no seu <i>Postman</i> para auxiliar em testes manuais e desenvolvimento.</summary>
+  <img src="./docs/assets/images/screen_captures/postman.png">
+</details>
 
 <br/>
 
@@ -136,12 +151,14 @@ swag init --generalInfo cmd/api/main.go -o ./api
 
 <br/>
 
-Existe um bug na geração da documentação do Echo Swagger. O [docs.go](./api/docs.go) gera duas propriedades na struct `swag.Spec` que não são reconhecidas. A solução encontrada no momento é remover manualmente essas propriedades a cada geração da documentação.
-
-```go
-	LeftDelim:        "{{",
-	RightDelim:       "}}",
-```
+> :writing_hand: **Nota**:
+>
+> Existe um bug na geração da documentação do Echo Swagger. No arquivo [./api/docs.go](./api/docs.go) está gerando duas propriedades na struct `swag.Spec` que não são reconhecidas. A solução encontrada no momento é remover manualmente essas propriedades a cada geração da documentação.
+>
+> ```go
+>	LeftDelim:        "{{",
+>	RightDelim:       "}}",
+>```
 
 <br/>
 
@@ -235,8 +252,10 @@ obtendo uma saida similar a seguinte:<br/>
 
 <br/>
 
-Os testes também são executados como parte da rotina de CI do Github Actions, garantindo que versões estáveis sejam mescladas na branch principal. O badge `smoke_test` no cabeçalho do arquivo readme é uma ajuda visual para verificar rapidamente a integridade do desenvolvimento.
-<img src="./docs/assets/images/screen_captures/testing_ci.png">
+<details>
+  <summary>Os testes também são executados como parte da rotina de <b>CI</b> do Github Actions, garantindo que versões estáveis sejam mescladas na branch principal. O badge <i>smoke_test</i> no cabeçalho do arquivo readme é uma ajuda visual para verificar rapidamente a integridade do desenvolvimento.</summary>
+  <img src="./docs/assets/images/screen_captures/testing_ci.png">
+</details>
 
 <br/>
 
@@ -273,8 +292,10 @@ Utilizando o VSCode como editor de código ([maiores informações aqui](https:/
 }
 ```
 
-Uma seção de Depuração de Testes da aplicação:
-<img src="./docs/assets/images/screen_captures/testing_debug.png">
+<details>
+  <summary>Uma seção de Depuração de Testes da aplicaçãopode ser vista aqui:</summary>
+  <img src="./docs/assets/images/screen_captures/testing_debug.png">
+</details>
 
 <br/>
 
@@ -286,7 +307,46 @@ Uma seção de Depuração de Testes da aplicação:
 <a id="observability"></a>
 ## 🕵️ Observabilidade:
 
-__TODO__
+__Prometheus:__
+
+Apos rodar com sucesso o `docker compose up` como visto anteriormente, acesse:
+- Prometheus - http://localhost:9090/
+
+<img src="./docs/assets/images/screen_captures/prometheus.png">
+
+<br/>
+
+__Configurando o Grafana:__
+
+A primeira vez que executarmos o Grafana, será necessário alterar a senha padrão de `admin - admin`. Para facilitar o desenvolvimento local, alteramos para `admin - 12345`.
+- Grafana - http://localhost:3000/ (usuário/senha: admin - admin | admin - 12345)
+  
+<details>
+  <summary>Uma vez dentro do Grafana em sua primeira execução, também precisamos criar uma conexão com o Prometheus (que acessamos acima) na URL: <i>http://prometheus-go-product-api:9090</i></summary>
+  <img src="./docs/assets/images/screen_captures/grafana_create_prometheus_conn.png">
+</details>
+
+<br/>
+
+<details>
+  <summary>Agora você pode usar o menu <i>Dashboards > New > Import</i> para importar o arquivo que está localizado em: <a href="./scripts/grafana-dashboards/dash-go-products-api.json">./scripts/grafana-dashboards/dash-go-products-api.json</a></summary>
+  <img src="./docs/assets/images/screen_captures/grafana_import_dashboard.png">
+</details>
+
+<br/>
+
+<details>
+  <summary>Vincule o Dashboard a conexão previamente criada</summary>
+  <img src="./docs/assets/images/screen_captures/grafana_import_dashboard_prometheus.png">
+</details>
+
+<br/>
+
+Quando adequadamente importado, o Dashboard estará disponível e responderá às solicitações que você pode simular pelo `Postman` ou `Swagger`.
+
+<img src="./docs/assets/images/screen_captures/grafana_red.png">
+
+<br/>
 
 [:arrow_heading_up: de volta ao índice](#index)
 
@@ -342,7 +402,7 @@ __TODO__
 - [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - [ADR - Architecture Decision Records](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions)
 - [Mermaid Diagrams](https://mermaid.js.org)
-- [Observability](https://en.wikipedia.org/wiki/Observability_(software)) com:
+- [Observabilidade](https://en.wikipedia.org/wiki/Observability_(software)) com:
   - [Prometheus](https://prometheus.io/docs/guides/go-application/)
   - [Grafana](https://grafana.com/)
 
@@ -357,6 +417,7 @@ __TODO__
 
 - [0001: Registro de Decisões de Arquitetura (ADR)](./docs/architecture/decisions/0001-registro-de-decisoes-de-arquitetura.md)
 - [0002: Echo, Gorm e MySQL em API TDD com Arquitetura de Duas camadas](./docs/architecture/decisions/0002-echo-gorm-e-mysql-com-arquitetura-de-api-tdd-em-duas-camadas.md)
+
 
 
 <br/>

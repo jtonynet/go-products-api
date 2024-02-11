@@ -37,3 +37,36 @@ services:
     tty: true
     networks:
       - go-products-network
+
+  prometheus-go-products-api:
+    image: prom/prometheus:latest
+    container_name: prometheus-go-products-api
+    restart: unless-stopped
+    volumes:
+      - ./tools/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - .docker/prometheus/prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    ports:
+      - 9090:9090
+    networks:
+      - go-products-network
+    depends_on:
+      - go-products-api
+
+  grafana-go-products-api:
+    image: grafana/grafana
+    container_name: grafana-go-products-api
+    volumes:
+      - .docker/grafana:/var/lib/grafana
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    networks:
+      - go-products-network
+    depends_on:
+      - prometheus-go-products-api

@@ -1,0 +1,21 @@
+global:
+  scrape_interval: 5s
+scrape_configs:
+- job_name: prometheus-go-products-api
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: http
+  static_configs:
+  - targets:
+    - prometheus-go-products-api:9090
+    labels:
+      application: 'prometheus-go-products-api'
+- job_name: go-products-api
+  metrics_path: /metrics
+  static_configs:
+  - targets:
+    - go-products-api:8080
+    labels: 
+      application: 'go-products-api'
+
