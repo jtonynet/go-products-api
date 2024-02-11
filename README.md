@@ -447,7 +447,7 @@ Para obter mais informações, consulte o [Histórico de Versões](./CHANGELOG.m
 ---
 
 <a id="ia"></a>
-### 🤖 Use of AI:
+### 🤖 Uso de AI:
 
 A [imagem do cabeçalho](#go-products-api) desta página foi criada com o auxílio de inteligência artificial e um mínimo de retoque e construção no Gimp [<img src="./docs/assets/images/icons/gimp.svg" width="30" height="30 " title="Gimp" alt="Gimp Logo" />](https://www.gimp.org/)
 
