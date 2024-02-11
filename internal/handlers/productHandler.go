@@ -128,7 +128,7 @@ func (ph *ProductHandler) UpdateProductById(c echo.Context) error {
 // @Description Retrieve List of Products
 // @Tags Products
 // @Produce json
-// @Success 200 {object} []response.Product
+// @Success 200 {object} response.ResultProductList
 // @Failure 500 {object} response.Result
 // @Router /products [get]
 func (ph *ProductHandler) RetriveProductList(c echo.Context) error {
@@ -137,15 +137,18 @@ func (ph *ProductHandler) RetriveProductList(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, response.Result{Msg: "an error occurred, please try again later"})
 	}
 
-	resp := []response.Product{}
+	productList := []response.Product{}
 	for _, p := range products {
-		resp = append(
-			resp,
+		productList = append(
+			productList,
 			*response.NewProduct(p),
 		)
 	}
 
-	return c.JSON(http.StatusOK, resp)
+	return c.JSON(http.StatusOK, response.ResultProductList{
+		Msg:   "all products list",
+		Items: productList,
+	})
 }
 
 // @Summary Delete Product By UUID

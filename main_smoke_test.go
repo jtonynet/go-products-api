@@ -22,48 +22,6 @@ import (
 	"github.com/jtonynet/go-products-api/internal/handlers"
 )
 
-type SmokeSuite struct {
-	suite.Suite
-	echoRouter *echo.Echo
-	DB         *gorm.DB
-
-	productHandler *handlers.ProductHandler
-
-	productUUID        uuid.UUID
-	productName        string
-	productDescription string
-	productPrice       int64
-
-	productUpdateName        string
-	productUpdateDescription string
-	productUpdatePrice       int64
-}
-
-func (suite *SmokeSuite) SetupSuite() {
-	cfg := setupConfig()
-	suite.DB, _ = setupDB(&cfg.Database)
-
-	productDB := database.NewProductsDB(suite.DB)
-	suite.productHandler = handlers.NewProductHandler(productDB)
-
-	suite.productUUID, _ = uuid.Parse("37ad0486-5ba5-47a5-b352-408b077e12c6")
-	suite.productName = "Playstation 7"
-	suite.productDescription = "Next generation video game"
-	suite.productPrice = 4000
-
-	suite.productUpdateName = "Playstation 8"
-	suite.productUpdateDescription = "The best experience of next generation video game"
-	suite.productUpdatePrice = 5500
-}
-
-func (suite *SmokeSuite) TearDownSuite() {
-	deleteProduct := fmt.Sprintf(
-		`delete from products where uuid = "%s";`,
-		suite.productUUID.String(),
-	)
-	suite.DB.Exec(deleteProduct)
-}
-
 func setupConfig() *config.Config {
 	cfg := config.Config{}
 
@@ -82,7 +40,49 @@ func setupDB(cfg *config.Database) (*gorm.DB, error) {
 	return db, err
 }
 
-func (suite *SmokeSuite) TestSmoke() {
+type HappyPathSuite struct {
+	suite.Suite
+	echoRouter *echo.Echo
+	DB         *gorm.DB
+
+	productHandler *handlers.ProductHandler
+
+	productUUID        uuid.UUID
+	productName        string
+	productDescription string
+	productPrice       int64
+
+	productUpdateName        string
+	productUpdateDescription string
+	productUpdatePrice       int64
+}
+
+func (suite *HappyPathSuite) SetupSuite() {
+	cfg := setupConfig()
+	suite.DB, _ = setupDB(&cfg.Database)
+
+	productDB := database.NewProductsDB(suite.DB)
+	suite.productHandler = handlers.NewProductHandler(productDB)
+
+	suite.productUUID, _ = uuid.Parse("37ad0486-5ba5-47a5-b352-408b077e12c6")
+	suite.productName = "Playstation 7"
+	suite.productDescription = "Next generation video game"
+	suite.productPrice = 4000
+
+	suite.productUpdateName = "Playstation 8"
+	suite.productUpdateDescription = "The best experience of next generation video game"
+	suite.productUpdatePrice = 5500
+}
+
+func (suite *HappyPathSuite) TearDownSuite() {
+	deleteProduct := fmt.Sprintf(
+		`delete from products where uuid = "%s";`,
+		suite.productUUID.String(),
+	)
+	suite.DB.Exec(deleteProduct)
+}
+
+func (suite *HappyPathSuite) TestSmoke() {
 	suite.createAndRetrieveProductSuccessful()
 	suite.updateAndRetrieveProductListSuccessful()
 	suite.deleteProductSuccessful()
@@ -93,7 +93,7 @@ func setupEchoRouter() *echo.Echo {
 	return echoRouter
 }
 
-func (suite *SmokeSuite) createAndRetrieveProductSuccessful() {
+func (suite *HappyPathSuite) createAndRetrieveProductSuccessful() {
 	// Create Product
 	suite.echoRouter = setupEchoRouter()
 	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
@@ -138,7 +138,7 @@ func (suite *SmokeSuite) createAndRetrieveProductSuccessful() {
 	assert.Equal(suite.T(), gjson.Get(bodyProduct, "price").Int(), suite.productPrice)
 }
 
-func (suite *SmokeSuite) updateAndRetrieveProductListSuccessful() {
+func (suite *HappyPathSuite) updateAndRetrieveProductListSuccessful() {
 	// Update Product
 	suite.echoRouter = setupEchoRouter()
 	suite.echoRouter.PATCH("/products/:product_id", suite.productHandler.UpdateProductById)
@@ -182,7 +182,7 @@ func (suite *SmokeSuite) updateAndRetrieveProductListSuccessful() {
 	assert.Equal(suite.T(), gjson.Get(productInList, "price").Int(), suite.productUpdatePrice)
 }
 
-func (suite *SmokeSuite) deleteProductSuccessful() {
+func (suite *HappyPathSuite) deleteProductSuccessful() {
 	// Delete Product
 	suite.echoRouter = setupEchoRouter()
 	suite.echoRouter.DELETE("/products/:product_id", suite.productHandler.DeleteProductById)
@@ -206,9 +206,10 @@ func (suite *SmokeSuite) deleteProductSuccessful() {
 	assert.Equal(suite.T(), http.StatusNotFound, respProductRetrieve.Code)
 }
 
-func getProductJSONByUUID(productsJSON string, uuidToFind string) (string, error) {
+func getProductJSONByUUID(bodyProductsJSON string, uuidToFind string) (string, error) {
+	productItems := gjson.Get(bodyProductsJSON, "items").String()
 	var products []map[string]interface{}
-	err := json.Unmarshal([]byte(productsJSON), &products)
+	err := json.Unmarshal([]byte(productItems), &products)
 	if err != nil {
 		return "", err
 	}
@@ -226,5 +227,6 @@ func getProductJSONByUUID(productsJSON string, uuidToFind string) (string, error
 }
 
 func TestSmokeSuite(t *testing.T) {
-	suite.Run(t, new(SmokeSuite))
+	suite.Run(t, new(HappyPathSuite))
+	//suite.Run(t, new(ValidationSuite))
 }
