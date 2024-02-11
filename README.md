@@ -327,22 +327,21 @@ A primeira vez que executarmos o Grafana, entramos com `usuário/senha` padrão 
 - Grafana - http://localhost:3000/ (usuário/senha: admin/admin | admin/12345)
   
 <details>
-  <summary>Uma vez dentro do Grafana em sua primeira execução, também precisamos criar uma conexão Datasource com o Prometheus (que acessamos acima) na URL: <i>http://prometheus-go-product-api:9090</i>
-  Procure por <i>Connection > Add New Connection</i> digite <i>Prometheus</i> no campo de Search, selecione-o, clique em <i>Add New Datasource</i> e configure</summary>
+  <summary>Uma vez dentro do Grafana em sua primeira execução, também precisamos criar uma conexão Datasource com o Prometheus (que acessamos acima). Procure por <i>`Connection > Add New Connection`</i> digite <i>Prometheus</i> no campo de Search, selecione-o, clique em <i>`Add New Datasource`</i> e configure-o com a URL: <i>http://prometheus-go-products-api:9090</i></summary>
   <img src="./docs/assets/images/screen_captures/grafana_create_prometheus_conn.png">
 </details>
 
 <br/>
 
 <details>
-  <summary>Agora você pode usar o menu <i>Dashboards > New > Import</i> para importar o arquivo que está localizado em: <a href="./scripts/grafana-dashboards/dash-go-products-api.json">./scripts/grafana-dashboards/dash-go-products-api.json</a> clique e arraste no campo esepcificado pela tela</summary>
+  <summary>Agora você pode usar o menu <i>`Dashboards > New > Import`</i> para importar o arquivo que está localizado em: <a href="./scripts/grafana-dashboards/dash-go-products-api.json">./scripts/grafana-dashboards/dash-go-products-api.json</a> clique e arraste o arquivo para o campo esepcificado pela tela</summary>
   <img src="./docs/assets/images/screen_captures/grafana_import_dashboard.png">
 </details>
 
 <br/>
 
 <details>
-  <summary>Vincule o Dashboard a conexão previamente criada</summary>
+  <summary>Vincule o Dashboard a conexão previamente criada e acesse-o</summary>
   <img src="./docs/assets/images/screen_captures/grafana_import_dashboard_prometheus.png">
 </details>
 
