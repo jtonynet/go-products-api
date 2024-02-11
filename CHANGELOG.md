@@ -10,6 +10,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 
+### Fixed
+
+---
+
+## [0.0.7] - 2023-02-11
+### Added
+
 - Solução de __Observabilidade__ minima para __[Issue-17](https://github.com/jtonynet/go-products-api/issues/17)__
 - Criado `middleware Prometheus` customizado para disponibilizar métricas.
 - Utilizando `Gorm Prometheus` para métricas de banco de dados.
@@ -17,8 +24,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Docker Compose disponibilizando `Prometheus` e `Grafana`.
 - Criado Dashboard a partir das métricas disponibilizadas
 - Outras alterações no projeto para atender à documentação.
-
-### Fixed
 
 ---
 
