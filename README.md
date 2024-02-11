@@ -36,7 +36,7 @@
   5.   :bar_chart: [Diagramas](#diagrams)
   6.   :white_check_mark: [Testes](#tests)
   7.   :beetle: [Debug](#debug)
-  8.  :detective: [Observabilidade](#observability)
+  8.   :detective: [Observabilidade](#observability)
   9.   :toolbox: [Ferramentas](#tools)
   10.  :clap: [Boas Práticas](#best-practices)
   11.  :brain: [ADR - Architecture Decision Records](#adr)
@@ -323,7 +323,7 @@ Apos rodar com sucesso o `docker compose up` como visto anteriormente, acesse:
 
 __Configurando o Grafana:__
 
-A primeira vez que executarmos o Grafana, será necessário alterar a senha padrão de `admin/admin`. Para facilitar o desenvolvimento local, alteramos para `admin/12345`.
+A primeira vez que executarmos o Grafana, entramos com `usuário/senha` padrão de `admin/admin`. Ele solicita a alteração da senha, para facilitar o desenvolvimento local, alteramos para `admin/12345`.
 - Grafana - http://localhost:3000/ (usuário/senha: admin/admin | admin/12345)
   
 <details>
