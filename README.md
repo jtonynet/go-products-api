@@ -289,6 +289,16 @@ Utilizando o VSCode como editor de código ([maiores informações aqui](https:/
 }
 ```
 
+Altere a connection com a database para localhost em seu arquivo `.env`
+```
+DATABASE_HOST=localhost  # mysql-go-products-api | localhost - To run localy (without all docker compose dependency) or debug use localhost
+```
+
+E suba o Banco de Dados antes de iniciar seu debug:
+```bash
+docker compose up mysql-go-products-api
+```
+
 <details>
   <summary>Uma seção de Depuração de Testes da aplicação pode ser vista aqui:</summary>
   <img src="./docs/assets/images/screen_captures/testing_debug.png">
