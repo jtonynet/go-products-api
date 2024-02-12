@@ -68,37 +68,32 @@ func (suite *ValidationSuite) TearDownTest() {
 	suite.db.Exec(deleteProduct)
 }
 
-func (suite *ValidationSuite) TestCreateSameProductTwiceAndAfterSoftDeletion() {
+func (suite *ValidationSuite) TestCreateSameProductTwice() {
 	// Create Product
-	suite.createProductSuccesfully()
-
-	// Create Same Product Again
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
-
-	requestProduct := fmt.Sprintf(
-		`{
-			"uuid":"%s",
-			"name":"%s",
-			"description":"%s",
-			"price":%v
-		}`,
-		suite.productUUID,
-		suite.productName,
-		suite.productDescription,
-		suite.productPrice,
-	)
-
-	reqProductCreate, err := http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
-	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	respProductCreate, err := suite.createProduct()
 	assert.NoError(suite.T(), err)
-	respProductCreate := httptest.NewRecorder()
-
-	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
-	assert.Equal(suite.T(), http.StatusConflict, respProductCreate.Code)
+	assert.Equal(suite.T(), http.StatusCreated, respProductCreate.Code)
 
 	respBody := respProductCreate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "resource created successfully")
+
+	// Create Same Product Again
+	respProductCreate, err = suite.createProduct()
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), http.StatusConflict, respProductCreate.Code)
+
+	respBody = respProductCreate.Body.String()
 	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "resource conflict")
+}
+
+func (suite *ValidationSuite) TestCreateSameProductAfterSoftDeletion() {
+	// Create Product
+	respProductCreate, err := suite.createProduct()
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), http.StatusCreated, respProductCreate.Code)
+
+	respBody := respProductCreate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "resource created successfully")
 
 	// Delete Product
 	suite.echoRouter = helpers.SetupEchoRouter()
@@ -115,16 +110,9 @@ func (suite *ValidationSuite) TestCreateSameProductTwiceAndAfterSoftDeletion() {
 	respBody = respProductDelete.Body.String()
 	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "resource deleted successfully")
 
-	// Create Same Product Deleted
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
-
-	reqProductCreate, err = http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
-	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	// Create Same Product After Soft Deleted
+	respProductCreate, err = suite.createProduct()
 	assert.NoError(suite.T(), err)
-	respProductCreate = httptest.NewRecorder()
-
-	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
 	assert.Equal(suite.T(), http.StatusConflict, respProductCreate.Code)
 
 	respBody = respProductCreate.Body.String()
@@ -133,13 +121,7 @@ func (suite *ValidationSuite) TestCreateSameProductTwiceAndAfterSoftDeletion() {
 
 func (suite *ValidationSuite) TestCreateProductWithIncorrectUUID() {
 	// Create Product
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
-
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
-
-	requestProduct := fmt.Sprintf(
+	requestProductJSON := fmt.Sprintf(
 		`{
 			"uuid":"%s",
 			"name":"%s",
@@ -152,12 +134,8 @@ func (suite *ValidationSuite) TestCreateProductWithIncorrectUUID() {
 		suite.productPrice,
 	)
 
-	reqProductCreate, err := http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
-	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	respProductCreate, err := suite.createProductWithJSONParam(requestProductJSON)
 	assert.NoError(suite.T(), err)
-	respProductCreate := httptest.NewRecorder()
-
-	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
 	assert.Equal(suite.T(), http.StatusBadRequest, respProductCreate.Code)
 
 	respBody := respProductCreate.Body.String()
@@ -166,13 +144,7 @@ func (suite *ValidationSuite) TestCreateProductWithIncorrectUUID() {
 
 func (suite *ValidationSuite) TestCreateProductWithNameLengthLessThanThreeChars() {
 	// Create Product
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
-
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
-
-	requestProduct := fmt.Sprintf(
+	requestProductJSON := fmt.Sprintf(
 		`{
 			"uuid":"%s",
 			"name":"%s",
@@ -185,12 +157,8 @@ func (suite *ValidationSuite) TestCreateProductWithNameLengthLessThanThreeChars(
 		suite.productPrice,
 	)
 
-	reqProductCreate, err := http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
-	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	respProductCreate, err := suite.createProductWithJSONParam(requestProductJSON)
 	assert.NoError(suite.T(), err)
-	respProductCreate := httptest.NewRecorder()
-
-	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
 	assert.Equal(suite.T(), http.StatusBadRequest, respProductCreate.Code)
 
 	respBody := respProductCreate.Body.String()
@@ -199,13 +167,7 @@ func (suite *ValidationSuite) TestCreateProductWithNameLengthLessThanThreeChars(
 
 func (suite *ValidationSuite) TestCreateProductWithDescriptionLengthLessThanThreeChars() {
 	// Create Product
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
-
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
-
-	requestProduct := fmt.Sprintf(
+	requestProductJSON := fmt.Sprintf(
 		`{
 			"uuid":"%s",
 			"name":"%s",
@@ -218,12 +180,8 @@ func (suite *ValidationSuite) TestCreateProductWithDescriptionLengthLessThanThre
 		suite.productPrice,
 	)
 
-	reqProductCreate, err := http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
-	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	respProductCreate, err := suite.createProductWithJSONParam(requestProductJSON)
 	assert.NoError(suite.T(), err)
-	respProductCreate := httptest.NewRecorder()
-
-	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
 	assert.Equal(suite.T(), http.StatusBadRequest, respProductCreate.Code)
 
 	respBody := respProductCreate.Body.String()
@@ -232,13 +190,7 @@ func (suite *ValidationSuite) TestCreateProductWithDescriptionLengthLessThanThre
 
 func (suite *ValidationSuite) TestCreateProductWithPriceIsZero() {
 	// Create Product
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
-
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
-
-	requestProduct := fmt.Sprintf(
+	requestProductJSON := fmt.Sprintf(
 		`{
 			"uuid":"%s",
 			"name":"%s",
@@ -251,12 +203,8 @@ func (suite *ValidationSuite) TestCreateProductWithPriceIsZero() {
 		0,
 	)
 
-	reqProductCreate, err := http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
-	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	respProductCreate, err := suite.createProductWithJSONParam(requestProductJSON)
 	assert.NoError(suite.T(), err)
-	respProductCreate := httptest.NewRecorder()
-
-	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
 	assert.Equal(suite.T(), http.StatusBadRequest, respProductCreate.Code)
 
 	respBody := respProductCreate.Body.String()
@@ -265,21 +213,14 @@ func (suite *ValidationSuite) TestCreateProductWithPriceIsZero() {
 
 func (suite *ValidationSuite) TestUpdateProductWithNameLengthLessThanThreeChars() {
 	// Create Product
-	suite.createProductSuccesfully()
+	respProductCreate, err := suite.createProduct()
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), http.StatusCreated, respProductCreate.Code)
 
 	// Update Product
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.PATCH("/products/:product_id", suite.productHandler.UpdateProductById)
-
-	requestProduct := `{"name":"ab"}`
-
-	productUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
-	reqProductUpdate, err := http.NewRequest("PATCH", productUUIDRoute, bytes.NewBuffer([]byte(requestProduct)))
-	reqProductUpdate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	requestProductJSON := `{"name":"ab"}`
+	respProductUpdate, err := suite.updateProductWithParams(suite.productUUID, requestProductJSON)
 	assert.NoError(suite.T(), err)
-	respProductUpdate := httptest.NewRecorder()
-
-	suite.echoRouter.ServeHTTP(respProductUpdate, reqProductUpdate)
 	assert.Equal(suite.T(), http.StatusBadRequest, respProductUpdate.Code)
 
 	respBody := respProductUpdate.Body.String()
@@ -288,21 +229,14 @@ func (suite *ValidationSuite) TestUpdateProductWithNameLengthLessThanThreeChars(
 
 func (suite *ValidationSuite) TestUpdateProductWithDescriptionLengthLessThanThreeChars() {
 	// Create Product
-	suite.createProductSuccesfully()
+	respProductCreate, err := suite.createProduct()
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), http.StatusCreated, respProductCreate.Code)
 
 	// Update Product
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.PATCH("/products/:product_id", suite.productHandler.UpdateProductById)
-
-	requestProduct := `{"description":"ab"}`
-
-	productUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
-	reqProductUpdate, err := http.NewRequest("PATCH", productUUIDRoute, bytes.NewBuffer([]byte(requestProduct)))
-	reqProductUpdate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	requestProductJSON := `{"description":"ab"}`
+	respProductUpdate, err := suite.updateProductWithParams(suite.productUUID, requestProductJSON)
 	assert.NoError(suite.T(), err)
-	respProductUpdate := httptest.NewRecorder()
-
-	suite.echoRouter.ServeHTTP(respProductUpdate, reqProductUpdate)
 	assert.Equal(suite.T(), http.StatusBadRequest, respProductUpdate.Code)
 
 	respBody := respProductUpdate.Body.String()
@@ -311,33 +245,23 @@ func (suite *ValidationSuite) TestUpdateProductWithDescriptionLengthLessThanThre
 
 func (suite *ValidationSuite) TestUpdateProductWithPriceIsZero() {
 	// Create Product
-	suite.createProductSuccesfully()
+	respProductCreate, err := suite.createProduct()
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), http.StatusCreated, respProductCreate.Code)
 
 	// Update Product
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.PATCH("/products/:product_id", suite.productHandler.UpdateProductById)
-
-	requestProduct := `{"price":0}`
-
-	productUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
-	reqProductUpdate, err := http.NewRequest("PATCH", productUUIDRoute, bytes.NewBuffer([]byte(requestProduct)))
-	reqProductUpdate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	requestProductJSON := `{"price":0}`
+	respProductUpdate, err := suite.updateProductWithParams(suite.productUUID, requestProductJSON)
 	assert.NoError(suite.T(), err)
-	respProductUpdate := httptest.NewRecorder()
-
-	suite.echoRouter.ServeHTTP(respProductUpdate, reqProductUpdate)
 	assert.Equal(suite.T(), http.StatusBadRequest, respProductUpdate.Code)
 
 	respBody := respProductUpdate.Body.String()
 	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "field Price is invalid")
 }
 
-func (suite *ValidationSuite) createProductSuccesfully() {
+func (suite *ValidationSuite) createProduct() (*httptest.ResponseRecorder, error) {
 	// Create Product
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
-
-	requestProduct := fmt.Sprintf(
+	requestProductJSON := fmt.Sprintf(
 		`{
 			"uuid":"%s",
 			"name":"%s",
@@ -350,16 +274,46 @@ func (suite *ValidationSuite) createProductSuccesfully() {
 		suite.productPrice,
 	)
 
-	reqProductCreate, err := http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
+	respProductCreate, err := suite.createProductWithJSONParam(requestProductJSON)
+
+	return respProductCreate, err
+}
+
+func (suite *ValidationSuite) createProductWithJSONParam(requestProductJSON string) (*httptest.ResponseRecorder, error) {
+	// Create Product
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
+
+	reqProductCreate, err := http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProductJSON)))
+
+	if err != nil {
+		return nil, err
+	}
+
 	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
-	assert.NoError(suite.T(), err)
 	respProductCreate := httptest.NewRecorder()
-
 	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
-	assert.Equal(suite.T(), http.StatusCreated, respProductCreate.Code)
 
-	respBody := respProductCreate.Body.String()
-	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "resource created successfully")
+	return respProductCreate, nil
+}
+
+func (suite *ValidationSuite) updateProductWithParams(productUUID uuid.UUID, requestProductJSON string) (*httptest.ResponseRecorder, error) {
+	// Update Product
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.PATCH("/products/:product_id", suite.productHandler.UpdateProductById)
+
+	productUUIDRoute := fmt.Sprintf("/products/%s", productUUID)
+	reqProductUpdate, err := http.NewRequest("PATCH", productUUIDRoute, bytes.NewBuffer([]byte(requestProductJSON)))
+
+	if err != nil {
+		return nil, err
+	}
+
+	reqProductUpdate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	respProductUpdate := httptest.NewRecorder()
+	suite.echoRouter.ServeHTTP(respProductUpdate, reqProductUpdate)
+
+	return respProductUpdate, nil
 }
 
 func TestValidadionSuite(t *testing.T) {
