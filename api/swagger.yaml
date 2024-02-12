@@ -5,7 +5,7 @@ definitions:
         example: Next Gen powerful videogame
         type: string
       name:
-        example: ' Exis Boxis Series G'
+        example: Exis Boxis Series G
         type: string
       price:
         example: 5000
@@ -55,6 +55,15 @@ definitions:
       msg:
         type: string
     type: object
+  response.ResultProductList:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/response.Product'
+        type: array
+      msg:
+        type: string
+    type: object
 info:
   contact: {}
 paths:
@@ -67,9 +76,7 @@ paths:
         "200":
           description: OK
           schema:
-            items:
-              $ref: '#/definitions/response.Product'
-            type: array
+            $ref: '#/definitions/response.ResultProductList'
         "500":
           description: Internal Server Error
           schema:

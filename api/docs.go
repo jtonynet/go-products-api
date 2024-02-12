@@ -29,10 +29,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/response.Product"
-                            }
+                            "$ref": "#/definitions/response.ResultProductList"
                         }
                     },
                     "500": {
@@ -245,7 +242,7 @@ const docTemplate = `{
                 },
                 "name": {
                     "type": "string",
-                    "example": " Exis Boxis Series G"
+                    "example": "Exis Boxis Series G"
                 },
                 "price": {
                     "type": "integer",
@@ -305,6 +302,20 @@ const docTemplate = `{
         "response.Result": {
             "type": "object",
             "properties": {
+                "msg": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.ResultProductList": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/response.Product"
+                    }
+                },
                 "msg": {
                     "type": "string"
                 }

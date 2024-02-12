@@ -11,6 +11,11 @@ type Result struct {
 	Msg string `json:"msg"`
 }
 
+type ResultProductList struct {
+	Msg   string    `json:"msg"`
+	Items []Product `json:"items"`
+}
+
 type Product struct {
 	UUID        uuid.UUID `json:"uuid"`
 	Name        string    `json:"name"`

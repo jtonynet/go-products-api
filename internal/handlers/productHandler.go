@@ -37,18 +37,27 @@ func (ph *ProductHandler) CreateProduct(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, response.Result{Msg: "bad request"})
 	}
 
+	errMsg, ok := reqP.IsValid()
+	if !ok {
+		return c.JSON(http.StatusBadRequest, response.Result{Msg: errMsg})
+	}
+
 	productEntity := entity.NewProduct(
-		reqP.UUID,
+		uuid.MustParse(reqP.UUID),
 		reqP.Name,
 		reqP.Description,
 		*reqP.Price,
 	)
 
 	if err := ph.productDB.DB.Create(&productEntity).Error; err != nil {
+		if ph.productDB.ErrIsDuplicateKey(err) {
+			return c.JSON(http.StatusConflict, response.Result{Msg: "resource conflict"})
+		}
+
 		return c.JSON(http.StatusInternalServerError, response.Result{Msg: "an error occurred, please try again later"})
 	}
 
-	return c.JSON(http.StatusCreated, response.Result{Msg: "product created successfully"})
+	return c.JSON(http.StatusCreated, response.Result{Msg: "resource created successfully"})
 }
 
 // @Summary Retrieve Product By UUID
@@ -105,6 +114,11 @@ func (ph *ProductHandler) UpdateProductById(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, response.Result{Msg: "bad request"})
 	}
 
+	errMsg, ok := reqP.IsValid()
+	if !ok {
+		return c.JSON(http.StatusBadRequest, response.Result{Msg: errMsg})
+	}
+
 	if reqP.Name != "" {
 		p.Name = reqP.Name
 	}
@@ -128,24 +142,27 @@ func (ph *ProductHandler) UpdateProductById(c echo.Context) error {
 // @Description Retrieve List of Products
 // @Tags Products
 // @Produce json
-// @Success 200 {object} []response.Product
+// @Success 200 {object} response.ResultProductList
 // @Failure 500 {object} response.Result
 // @Router /products [get]
 func (ph *ProductHandler) RetriveProductList(c echo.Context) error {
 	products := []entity.Product{}
-	if err := ph.productDB.DB.Find(&products).Order("id desc").Error; err != nil {
+	if err := ph.productDB.DB.Find(&products).Order("id asc").Error; err != nil {
 		return c.JSON(http.StatusInternalServerError, response.Result{Msg: "an error occurred, please try again later"})
 	}
 
-	resp := []response.Product{}
+	productList := []response.Product{}
 	for _, p := range products {
-		resp = append(
-			resp,
+		productList = append(
+			productList,
 			*response.NewProduct(p),
 		)
 	}
 
-	return c.JSON(http.StatusOK, resp)
+	return c.JSON(http.StatusOK, response.ResultProductList{
+		Msg:   "all products list",
+		Items: productList,
+	})
 }
 
 // @Summary Delete Product By UUID
@@ -167,14 +184,14 @@ func (ph *ProductHandler) DeleteProductById(c echo.Context) error {
 
 	p := entity.Product{UUID: productUUID}
 	if err := ph.productDB.DB.Where(&entity.Product{UUID: productUUID}).First(&p).Error; err != nil {
-		return c.JSON(http.StatusNotFound, response.Result{Msg: "product not found"})
+		return c.JSON(http.StatusNotFound, response.Result{Msg: "resource not found"})
 	}
 
 	if delP := ph.productDB.DB.Delete(&p); delP.Error != nil {
 		return c.JSON(http.StatusInternalServerError, response.Result{Msg: "an error occurred, please try again later"})
 	}
 
-	return c.JSON(http.StatusNoContent, response.Result{Msg: "product removed successfully"})
+	return c.JSON(http.StatusNoContent, response.Result{Msg: "resource deleted successfully"})
 }
 
 func isValidUUID(u string) bool {

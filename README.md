@@ -220,7 +220,7 @@ _*Diagrama geral com baixo nível de fidelidade_
 
 
 
-Para testar localmente, é necessário ter o Go v1.21.1 instalado. Execute o `smoke test`  (mais próximo de um teste de integração) para garantir o funcionamento correto da API e do banco de dados. Inicie o banco de dados na raiz do projeto usando docker-compose.
+Para testar localmente, é necessário ter o Go v1.21.1 instalado. Execute o `tests`  (mais próximo de um teste de integração) para garantir o funcionamento correto da API e do banco de dados. Inicie o banco de dados na raiz do projeto usando docker-compose.
 
 ```bash
 docker compose up mysql-go-products-api
@@ -228,8 +228,10 @@ docker compose up mysql-go-products-api
 
 Em outro terminal mas ainda na raiz do projeto, execute o comando:
 ```bash
-go test -v
+go test -v ./ ./internal/handlers/
 ```
+
+<!-- go test -v -->
 
 obtendo uma saida similar a seguinte:<br/>
 <img src="./docs/assets/images/screen_captures/testing.png">
@@ -237,7 +239,7 @@ obtendo uma saida similar a seguinte:<br/>
 <br/>
 
 <details>
-  <summary>Os testes também são executados como parte da rotina minima de <b>CI</b> do <a href="https://github.com/jtonynet/go-products-api/actions">GitHub Actions</a>, garantindo que versões estáveis sejam mescladas na branch principal. O badge <i>smoke_test</i> no cabeçalho do arquivo readme é uma ajuda visual para verificar rapidamente a integridade do desenvolvimento.</summary>
+  <summary>Os testes também são executados como parte da rotina minima de <b>CI</b> do <a href="https://github.com/jtonynet/go-products-api/actions">GitHub Actions</a>, garantindo que versões estáveis sejam mescladas na branch principal. O badge <i>tests</i> no cabeçalho do arquivo readme é uma ajuda visual para verificar rapidamente a integridade do desenvolvimento.</summary>
   <img src="./docs/assets/images/screen_captures/testing_ci.png">
 </details>
 
@@ -265,11 +267,19 @@ Utilizando o VSCode como editor de código ([maiores informações aqui](https:/
             "trace": "verbose",
         },
         {
-            "name": "Test go-products-api",
+            "name": "Test Smoke Happy Path",
             "type": "go",
             "request": "launch",
             "mode": "test",
             "program":"${workspaceFolder}/main_smoke_test.go",
+            "trace": "verbose",
+        },
+        {
+            "name": "Test Integration Corner Cases",
+            "type": "go",
+            "request": "launch",
+            "mode": "test",
+            "program":"${workspaceFolder}/internal/handlers/productHandler_integration_test.go",
             "trace": "verbose",
         }
     ]
@@ -313,7 +323,7 @@ A primeira vez que executarmos o Grafana, entramos com `usuário/senha` padrão 
 <br/>
 
 <details>
-  <summary>Agora você pode usar o menu <i>`Dashboards > New > Import`</i> para importar o arquivo <b>dash-go-products-api.json</b> que está localizado no diretório: <a href="./scripts/grafana-dashboards/">./scripts/grafana-dashboards</a>. Acesse o diretório, clique e arraste o arquivo para o campo correto especificado pela tela <b>Upload Dashboard JSON File</b></summary>
+  <summary>Agora você pode usar o menu <i>`Dashboards > New > Import`</i> para importar o arquivo <b>dash-go-products-api.json</b> que está localizado no diretório: <a href="./scripts/grafana-dashboards/">./scripts/grafana-dashboards</a>. Acesse o diretório em seu computador, clique e arraste o arquivo para o campo correto especificado pela tela <b>Upload Dashboard JSON File</b></summary>
   <img src="./docs/assets/images/screen_captures/grafana_import_dashboard.png">
 </details>
 
@@ -330,7 +340,7 @@ Quando adequadamente importado, o Dashboard estará disponível e responderá à
 
 <img src="./docs/assets/images/screen_captures/grafana_red.png">
 
-A partir dessas métricas dos dashboards, temos uma ideia da saúde da API e quais são as reais necessidades de escala que ela deve ter, o que nos dá uma ideia de quais arquiteturas e abordagens poderão ser utilizadas para atender às suas demandas, incluindo testes de carga, possíveis caches defensivos, filas, etc.
+A partir dessas métricas dos dashboards, temos uma ideia da saúde da API e quais são as reais necessidades de escala que ela deve ter em produção, o que nos dá uma ideia de quais arquiteturas e abordagens poderão ser utilizadas para atender às suas demandas, incluindo testes de carga, possíveis caches defensivos, filas, etc.
 
 Nossas decisões de `Arquitetura` e `Design de Sistemas` devem sempre ser baseadas em dados!
 
@@ -358,11 +368,12 @@ Nossas decisões de `Arquitetura` e `Design de Sistemas` devem sempre ser basead
   - [Echo-Swagger](https://github.com/swaggo/echo-swagger)
   - [Exponential Backoff](https://github.com/cenkalti/backoff)
   - [Gopsutil]("github.com/shirou/gopsutil)
-  - [Client-prometheus](https://github.com/prometheus/client_golang)
+  - [Client Prometheus](https://github.com/prometheus/client_golang)
   - [GORM Prometheus](https://github.com/go-gorm/prometheus)
+  - [Go Playground Validator](https://github.com/go-playground/validator)
   <!-- [Zap log](https://github.com/uber-go/zap)  -->
 
-- Infra & Technologies
+- Infra & Technologias
   - [Docker v24.0.6](https://www.docker.com/)
   - [Docker compose v2.21.0](https://www.docker.com/)
   - [MySQL](https://www.postgresql.org/)
