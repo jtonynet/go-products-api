@@ -18,7 +18,7 @@ Como o [Prometheus](https://prometheus.io/) e o [Grafana](https://grafana.com/) 
 
 Farei a implementação de um middleware usando o [Prometheus](https://github.com/prometheus/client_golang) e o [Gorm-Prometheus](https://github.com/go-gorm/prometheus) customizado no framework Echo, juntamente com suas devidas configurações em variáveis de ambiente. Também preparamos nosso `docker-compose.yml` para atender à estrutura dessas ferramentas, permitindo um desenvolvimento na máquina local que esteja alinhado com essa diretriz.
 
-Durante minhas pesquisas pesquisas, também nos deparamos com o [Echo-Prometheus](https://github.com/globocom/echo-prometheus) da Globo.com, mas optei pela abordagem customizada devido à baixa popularidade (estrelas) que o projeto possui e minha familiaridade com essa abordagem no `Gin Framework`.
+Durante minhas pesquisas, também me deparei com o [Echo-Prometheus](https://github.com/globocom/echo-prometheus) da Globo.com, mas optei pela abordagem customizada devido à baixa popularidade (estrelas) que o projeto possui e minha familiaridade com essa abordagem no `Gin Framework`.
 
 ## Consequências
 
