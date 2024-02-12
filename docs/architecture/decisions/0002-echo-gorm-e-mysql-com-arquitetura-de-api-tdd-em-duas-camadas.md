@@ -38,7 +38,7 @@ Utilizaremos __Smoke Test__ (mais próximo do Integration do que do Unit) e inic
 
 Também faz sentido adotar ferramentas de documentação e design de APIs, como o __Swagger__, utilizando a implementação __OpenAPI__, devido ao seu amplo histórico de utilização.
 
-Decidi também utilizar o [Github Projects](https://github.com/users/jtonynet/projects/5/views/1) como ferramenta para auxiliar na abordagem __Kanban__ para conclusão das tarefas, visando alcançar um cenário próximo ao de um time de desenvolvimento real.
+Decidi também utilizar o [Github Projects](https://github.com/users/jtonynet/projects/5/views/1) como ferramenta para auxiliar na abordagem __Kanbam__ para conclusão das tarefas, visando alcançar um cenário próximo ao de um time de desenvolvimento real.
 
 ## Consequências
 
