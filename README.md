@@ -416,7 +416,7 @@ Para obter mais informações, consulte o [Histórico de Versões](./CHANGELOG.m
 <a id="tools"></a>
 ## 🧰 Ferramentas
 
-- Language:
+- Linguagem:
   - [Go v1.21.1](https://go.dev/)
   - [GVM v1.0.22](https://github.com/moovweb/gvm)
 
