@@ -16,7 +16,7 @@
 [<img src="./docs/assets/images/icons/postman.svg" width="25px" height="25px" alt="Postman Logo" title="Postman">](https://www.postman.com/) [<img src="./docs/assets/images/icons/go.svg" width="25px" height="25px" alt="go" title="Go">](https://go.dev/) [<img src="./docs/assets/images/icons/echo.png" width="25px" height="25px" alt="Echo Framework" title="Echo Framework">](https://echo.labstack.com/) [<img src="./docs/assets/images/icons/mysql.svg" width="50px" height="50px" alt="MySQL Logo" title="MySQL">](https://www.mysql.com/) [<img src="./docs/assets/images/icons/docker.svg" width="25px" height="25px" alt="Docker Logo" title="Docker">](https://www.docker.com/) [<img src="./docs/assets/images/icons/ubuntu.svg" width="25px" height="25px Logo" title="Ubunto" alt="Ubunto" />](https://ubuntu.com/) [<img src="./docs/assets/images/icons/dotenv.svg" width="25px" height="25px" alt="Viper DotEnv Logo" title="Viper DotEnv">](https://github.com/spf13/viper) [<img src="./docs/assets/images/icons/github.svg" width="25px" height="25px" alt="GitHub Logo" title="GitHub">](https://github.com/jtonynet) [<img src="./docs/assets/images/icons/mermaidjs.svg" width="25px" height="25px" alt="MermaidJS Logo" title="MermaidJS">](https://mermaid.js.org/) [<img src="./docs/assets/images/icons/visualstudiocode.svg" width="25px" height="25px" alt="VsCode Logo" title="VsCode">](https://code.visualstudio.com/) [<img src="./docs/assets/images/icons/swagger.svg" width="25px" height="25px" alt="Swagger Logo" title="Swagger">](https://swagger.io/) [<img src="./docs/assets/images/icons/githubactions.svg" width="25px" height="25px" alt="GithubActions Logo" title="GithubActions">](https://docs.github.com/en/actions) [<img src="./docs/assets/images/icons/prometheus.svg" width="25px" height="25px" alt="Prometheus Logo" title="Prometheus">](https://prometheus.io/) [<img src="./docs/assets/images/icons/grafana.svg" width="25px" height="25px" alt="Grafana Logo" title="Grafana">](https://grafana.com/) <!-- [<img src="./docs/assets/images/icons/gatling.svg" width="35px" height="35px" alt="Gatling Logo" title="Gatling">](https://gatling.com/) [<img src="./docs/assets/images/icons/redis.svg" width="25px" height="25px" alt="Redis Logo" title="Redis">](https://redis.com/) [<img src="./docs/assets/images/icons/rabbitmq.svg" width="25px" height="25px" alt="RabbitMQ Logo" title="RabbitMQ">](https://rabbitmq.com/) -->
 
 
-![Badge Status](https://img.shields.io/badge/STATUS-EM_DESENVOLVIMENTO-green) [![Github Project](https://img.shields.io/badge/PROJECT%20VIEW-GITHUB-green?logo=github&logoColor=white)](https://github.com/users/jtonynet/projects/5/views/1) ![Badge GitHubActions](https://github.com/jtonynet/go-products-api/actions/workflows/main.yml/badge.svg?branch=main) 
+![Badge Status](https://img.shields.io/badge/STATUS-AGUARDANDO_AVALIA&Ccedil;&Atilde;O-yellow) [![Github Project](https://img.shields.io/badge/PROJECT%20VIEW%20KANBAM-GITHUB-green?logo=github&logoColor=white)](https://github.com/users/jtonynet/projects/5/views/1) ![Badge GitHubActions](https://github.com/jtonynet/go-products-api/actions/workflows/main.yml/badge.svg?branch=main) 
 
 ---
 
@@ -42,6 +42,7 @@
   11.  :brain: [ADR - Architecture Decision Records](#adr)
   12.  :1234: [Versões](#versions)
   13.  :robot: [Uso de AI](#ia)
+  14.  🏁 [Conclusão](#conclusion)
 
 <br/>
 
@@ -220,7 +221,7 @@ _*Diagrama geral com baixo nível de fidelidade_
 
 
 
-Para testar localmente, é necessário ter o Go v1.21.1 instalado. Execute o `tests`  (mais próximo de um teste de integração) para garantir o funcionamento correto da API e do banco de dados. Inicie o banco de dados na raiz do projeto usando docker-compose.
+Para testar localmente, é necessário ter o Go v1.21.1 instalado. Execute os para garantir o funcionamento correto da API e do banco de dados. Inicie o banco de dados na raiz do projeto usando docker-compose.
 
 ```bash
 docker compose up mysql-go-products-api
@@ -239,7 +240,7 @@ obtendo uma saida similar a seguinte:<br/>
 <br/>
 
 <details>
-  <summary>Os testes também são executados como parte da rotina minima de <b>CI</b> do <a href="https://github.com/jtonynet/go-products-api/actions">GitHub Actions</a>, garantindo que versões estáveis sejam mescladas na branch principal. O badge <i>tests</i> no cabeçalho do arquivo readme é uma ajuda visual para verificar rapidamente a integridade do desenvolvimento.</summary>
+  <summary>Os testes também são executados como parte da rotina minima de <b>CI</b> do <a href="https://github.com/jtonynet/go-products-api/actions">GitHub Actions</a>, garantindo que versões estáveis sejam mescladas na branch principal. O badge <i>TESTS_CI</i> no cabeçalho do arquivo readme é uma ajuda visual para verificar rapidamente a integridade do desenvolvimento.</summary>
   <img src="./docs/assets/images/screen_captures/testing_ci.png">
 </details>
 
@@ -457,6 +458,36 @@ __Foi utilizado os seguinte prompt para sua criação no [Bing IA:](https://www.
 IA também é utilizada em minhas pesquisas e estudos como ferramenta de apoio; no entanto, __artes e desenvolvimento são, sobretudo, atividades criativas humanas.__
 
 Contrate artistas para projetos comerciais ou mais elaborados e Aprenda Engenhosidade!
+
+<br/>
+
+[:arrow_heading_up: de volta ao índice](#index)
+
+---
+
+<a id="conclusion"></a>
+### 🏁 Conclusão
+
+Conduzi o desafio no espírito do TDD e das melhores práticas que conheço. Preocupando-me com a coleta de métricas visando expansão futura, caso os dados apontem essa necessidade, e utilização de ferramentas que fazem parte do parque de tecnologias do proponente do desafio. Mantive-me focado nos prazos das tarefas e na qualidade do código desenvolvido.
+
+Aqui deixo alguns pontos que imagino serem melhorias possíveis (alguns merecem seus próprios ADRs):
+
+- Bug do Swagger, cuja solução manual que adotei impediu a geração da documentação automaticamente a cada subida da aplicação.
+- Melhoria no script do Postman para melhor compartilhamento entre equipes.
+- Montagem do `docker-compose` que poderia incluir automaticamente o Dashboard Grafana.
+- Testes de Performance e Carga que poderiam rodar em conjunto com nossa monitoria local. Gostaria de ter utilizado o Gatling com essa finalidade.
+- A partir de tais testes, poderíamos decidir escalar:
+  - Implementação de um cache defensivo com Redis para consultas.
+  - Criação de produtos em fila RabbitMQ ou outro, com workers, permitindo o aumento de requisições na rota POST, se necessário.
+  
+Algumas das melhorias citadas (Gatling, Cache Defensivo e Filas) desenvolvi como POC em [outro projeto](https://github.com/jtonynet/api-gin-rest) que não está na solução "ótima", mas servem para nortear possibilidades que tive a oportunidade de colocar em produção.
+
+Terei prazer em discutir sobre o assunto e sinta-se à vontade para visitar outros dos meus repositórios.
+
+😊🚀
+
+
+
 
 <br/>
 
