@@ -53,7 +53,11 @@ func (suite *ValidationSuite) SetupSuite() {
 }
 
 func (suite *ValidationSuite) TearDownSuite() {
-	fmt.Println("ValidadionSuite Finished")
+	deleteProduct := fmt.Sprintf(
+		`delete from products where uuid = "%s";`,
+		suite.productUUID.String(),
+	)
+	suite.DB.Exec(deleteProduct)
 }
 
 func (suite *ValidationSuite) TearDownTest() {
@@ -64,11 +68,11 @@ func (suite *ValidationSuite) TearDownTest() {
 	suite.DB.Exec(deleteProduct)
 }
 
-func (suite *ValidationSuite) TestCreateSameProductTwice() {
+func (suite *ValidationSuite) TestCreateSameProductTwiceAndAfterSoftDeletion() {
 	// Create Product
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
+	suite.createProductSuccesfull()
 
+	// Create Same Product Again
 	suite.echoRouter = helpers.SetupEchoRouter()
 	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
 
@@ -91,24 +95,9 @@ func (suite *ValidationSuite) TestCreateSameProductTwice() {
 	respProductCreate := httptest.NewRecorder()
 
 	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
-	assert.Equal(suite.T(), http.StatusCreated, respProductCreate.Code)
-
-	respBody := respProductCreate.Body.String()
-	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "resource created successfully")
-
-	// Create Same Product Again
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
-
-	reqProductCreate, err = http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
-	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
-	assert.NoError(suite.T(), err)
-	respProductCreate = httptest.NewRecorder()
-
-	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
 	assert.Equal(suite.T(), http.StatusConflict, respProductCreate.Code)
 
-	respBody = respProductCreate.Body.String()
+	respBody := respProductCreate.Body.String()
 	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "resource conflict")
 
 	// Delete Product
@@ -272,6 +261,108 @@ func (suite *ValidationSuite) TestCreateProductWithPriceIsZero() {
 
 	respBody := respProductCreate.Body.String()
 	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "field Price is invalid")
+}
+
+func (suite *ValidationSuite) TestUpdateProductWithNameLengthLessThanThreeChars() {
+	// Create Product
+	suite.createProductSuccesfull()
+
+	// Update Product
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.PATCH("/products/:product_id", suite.productHandler.UpdateProductById)
+
+	requestProduct := `{"name":"ab"}`
+
+	productUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
+	reqProductUpdate, err := http.NewRequest("PATCH", productUUIDRoute, bytes.NewBuffer([]byte(requestProduct)))
+	reqProductUpdate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	assert.NoError(suite.T(), err)
+	respProductUpdate := httptest.NewRecorder()
+
+	suite.echoRouter.ServeHTTP(respProductUpdate, reqProductUpdate)
+	assert.Equal(suite.T(), http.StatusBadRequest, respProductUpdate.Code)
+
+	respBody := respProductUpdate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "field Name is invalid")
+}
+
+func (suite *ValidationSuite) TestUpdateProductWithDescriptionLengthLessThanThreeChars() {
+	// Create Product
+	suite.createProductSuccesfull()
+
+	// Update Product
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.PATCH("/products/:product_id", suite.productHandler.UpdateProductById)
+
+	requestProduct := `{"description":"ab"}`
+
+	productUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
+	reqProductUpdate, err := http.NewRequest("PATCH", productUUIDRoute, bytes.NewBuffer([]byte(requestProduct)))
+	reqProductUpdate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	assert.NoError(suite.T(), err)
+	respProductUpdate := httptest.NewRecorder()
+
+	suite.echoRouter.ServeHTTP(respProductUpdate, reqProductUpdate)
+	assert.Equal(suite.T(), http.StatusBadRequest, respProductUpdate.Code)
+
+	respBody := respProductUpdate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "field Description is invalid")
+}
+
+func (suite *ValidationSuite) TestUpdateProductWithPriceIsZero() {
+	// Create Product
+	suite.createProductSuccesfull()
+
+	// Update Product
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.PATCH("/products/:product_id", suite.productHandler.UpdateProductById)
+
+	requestProduct := `{"price":0}`
+
+	productUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
+	reqProductUpdate, err := http.NewRequest("PATCH", productUUIDRoute, bytes.NewBuffer([]byte(requestProduct)))
+	reqProductUpdate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	assert.NoError(suite.T(), err)
+	respProductUpdate := httptest.NewRecorder()
+
+	suite.echoRouter.ServeHTTP(respProductUpdate, reqProductUpdate)
+	assert.Equal(suite.T(), http.StatusBadRequest, respProductUpdate.Code)
+
+	respBody := respProductUpdate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "field Price is invalid")
+}
+
+func (suite *ValidationSuite) createProductSuccesfull() {
+	// Create Product
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
+
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
+
+	requestProduct := fmt.Sprintf(
+		`{
+			"uuid":"%s",
+			"name":"%s",
+			"description":"%s",
+			"price":%v
+		}`,
+		suite.productUUID,
+		suite.productName,
+		suite.productDescription,
+		suite.productPrice,
+	)
+
+	reqProductCreate, err := http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
+	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	assert.NoError(suite.T(), err)
+	respProductCreate := httptest.NewRecorder()
+
+	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
+	assert.Equal(suite.T(), http.StatusCreated, respProductCreate.Code)
+
+	respBody := respProductCreate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "resource created successfully")
 }
 
 func TestValidadionSuite(t *testing.T) {

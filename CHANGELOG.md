@@ -10,11 +10,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 
+### Fixed
+
+---
+## [0.0.9] - 2023-02-11
+### Added
+
 - Finalizada __[Issue-19](https://github.com/jtonynet/go-products-api/issues/19)__
 - Utilizando a biblioteca [go-playground/validator](https://github.com/go-playground/validator) para validar as solicitações de criação e atualização.
 - Adicionado teste productHandler_integration_test para validar os corner cases de create e update dos requests de produtos que aplicam o `validator` no handler
-
-### Fixed
 
 ---
 
