@@ -18,6 +18,8 @@
 
 ![Badge Status](https://img.shields.io/badge/STATUS-AGUARDANDO_AVALIA&Ccedil;&Atilde;O-yellow) [![Github Project](https://img.shields.io/badge/PROJECT%20VIEW%20KANBAM-GITHUB-green?logo=github&logoColor=white)](https://github.com/users/jtonynet/projects/5/views/1) ![Badge GitHubActions](https://github.com/jtonynet/go-products-api/actions/workflows/main.yml/badge.svg?branch=main) 
 
+_*Status `AGUARDANDO AVALIAÇÃO` - A partir deste momento, novos Pull Requests serão apenas mesclados após avaliação do proponente do case/teste._
+
 ---
 
 #### 🕸️ Encontre-me na web:

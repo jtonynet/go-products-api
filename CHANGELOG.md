@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ---
+## [0.1.0] - 2023-02-12
+### Added
+
+- Alteração de status para `AGUARDANDO AVALIAÇÃO`.
+- A partir deste momento, novos Pull Requests serão apenas mesclados após avaliação do proponente do case/teste.
+- Primeira versão estável funcional encerrada.
+- Melhorias nos testes e na documentação.
+---
 ## [0.0.9] - 2023-02-11
 ### Added
 
@@ -95,6 +103,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Sabemos o que fazer, graças às definições do arquivo __README.md__. Sabemos como fazer graças aos __ADRs__ e documentações vinculadas. Devemos nos organizar em estrutura __Kanban__, guiados pelo modelo Agile, em nosso __Github Project__, e dar o devido prosseguimento às tarefas.
 
 
+[0.1.0]: https://github.com/jtonynet/go-products-api/compare/v0.0.9...v0.1.0
 [0.0.9]: https://github.com/jtonynet/go-products-api/compare/v0.0.8...v0.0.9
 [0.0.8]: https://github.com/jtonynet/go-products-api/compare/v0.0.7...v0.0.8
 [0.0.7]: https://github.com/jtonynet/go-products-api/compare/v0.0.6...v0.0.7
