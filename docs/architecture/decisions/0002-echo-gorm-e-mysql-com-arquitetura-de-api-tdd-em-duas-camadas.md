@@ -34,7 +34,7 @@ Dada sua simplicidade, uma vez que se trata de um __CRUD simples__. Faz sentido 
 
 __GORM__ foi escolhido como ORM por facilitar a integração aos principais BDs e oferecer facilidades como observabilidade, que poderemos adotar no futuro.
 
-Utilizei __Smoke Test__ (mais próximo do Integration do que do Unit) e iniciamos a construção de nosso sistema através dele, no espírito do __TDD__. Para que haja forte integração ao GithubActions, que adotaremos como processo de __CI__. [Consulte este artigo para mais informações](https://novateus.com/blog/8-functional-testing-types-explained-with-examples/)
+Utilizaremos __Smoke Test__ (mais próximo do Integration do que do Unit) e iniciamos a construção de nosso sistema através dele, no espírito do __TDD__. Para que haja forte integração ao GithubActions, que adotaremos como processo de __CI__. [Consulte este artigo para mais informações](https://novateus.com/blog/8-functional-testing-types-explained-with-examples/)
 
 Também faz sentido adotar ferramentas de documentação e design de APIs, como o __Swagger__, utilizando a implementação __OpenAPI__, devido ao seu amplo histórico de utilização.
 
