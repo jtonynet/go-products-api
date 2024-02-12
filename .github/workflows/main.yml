@@ -1,4 +1,4 @@
-name: smoke_test
+name: tests
 
 on:
   push:
@@ -26,4 +26,4 @@ jobs:
       run: sleep 8
 
     - name: Test
-      run: go test -v main_smoke_test.go
+      run: go test -v ./ ./internal/handlers/

@@ -220,7 +220,7 @@ _*Diagrama geral com baixo nível de fidelidade_
 
 
 
-Para testar localmente, é necessário ter o Go v1.21.1 instalado. Execute o `smoke test`  (mais próximo de um teste de integração) para garantir o funcionamento correto da API e do banco de dados. Inicie o banco de dados na raiz do projeto usando docker-compose.
+Para testar localmente, é necessário ter o Go v1.21.1 instalado. Execute o `tests`  (mais próximo de um teste de integração) para garantir o funcionamento correto da API e do banco de dados. Inicie o banco de dados na raiz do projeto usando docker-compose.
 
 ```bash
 docker compose up mysql-go-products-api
@@ -239,7 +239,7 @@ obtendo uma saida similar a seguinte:<br/>
 <br/>
 
 <details>
-  <summary>Os testes também são executados como parte da rotina minima de <b>CI</b> do <a href="https://github.com/jtonynet/go-products-api/actions">GitHub Actions</a>, garantindo que versões estáveis sejam mescladas na branch principal. O badge <i>smoke_test</i> no cabeçalho do arquivo readme é uma ajuda visual para verificar rapidamente a integridade do desenvolvimento.</summary>
+  <summary>Os testes também são executados como parte da rotina minima de <b>CI</b> do <a href="https://github.com/jtonynet/go-products-api/actions">GitHub Actions</a>, garantindo que versões estáveis sejam mescladas na branch principal. O badge <i>tests</i> no cabeçalho do arquivo readme é uma ajuda visual para verificar rapidamente a integridade do desenvolvimento.</summary>
   <img src="./docs/assets/images/screen_captures/testing_ci.png">
 </details>
 
@@ -267,11 +267,19 @@ Utilizando o VSCode como editor de código ([maiores informações aqui](https:/
             "trace": "verbose",
         },
         {
-            "name": "Test go-products-api",
+            "name": "Test Smoke Happy Path",
             "type": "go",
             "request": "launch",
             "mode": "test",
             "program":"${workspaceFolder}/main_smoke_test.go",
+            "trace": "verbose",
+        },
+        {
+            "name": "Test Integration Corner Cases",
+            "type": "go",
+            "request": "launch",
+            "mode": "test",
+            "program":"${workspaceFolder}/internal/handlers/productHandler_integration_test.go",
             "trace": "verbose",
         }
     ]

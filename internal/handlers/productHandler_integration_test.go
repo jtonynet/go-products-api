@@ -62,7 +62,6 @@ func (suite *ValidationSuite) TearDownTest() {
 		suite.productUUID.String(),
 	)
 	suite.DB.Exec(deleteProduct)
-	fmt.Println("One test Finished")
 }
 
 func (suite *ValidationSuite) TestCreateSameProductTwice() {
@@ -141,6 +140,138 @@ func (suite *ValidationSuite) TestCreateSameProductTwice() {
 
 	respBody = respProductCreate.Body.String()
 	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "resource conflict")
+}
+
+func (suite *ValidationSuite) TestCreateProductWithIncorrectUUID() {
+	// Create Product
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
+
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
+
+	requestProduct := fmt.Sprintf(
+		`{
+			"uuid":"%s",
+			"name":"%s",
+			"description":"%s",
+			"price":%v
+		}`,
+		"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+		suite.productName,
+		suite.productDescription,
+		suite.productPrice,
+	)
+
+	reqProductCreate, err := http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
+	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	assert.NoError(suite.T(), err)
+	respProductCreate := httptest.NewRecorder()
+
+	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
+	assert.Equal(suite.T(), http.StatusBadRequest, respProductCreate.Code)
+
+	respBody := respProductCreate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "field UUID is invalid")
+}
+
+func (suite *ValidationSuite) TestCreateProductWithNameLengthLessThanThreeChars() {
+	// Create Product
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
+
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
+
+	requestProduct := fmt.Sprintf(
+		`{
+			"uuid":"%s",
+			"name":"%s",
+			"description":"%s",
+			"price":%v
+		}`,
+		suite.productUUID,
+		"ab",
+		suite.productDescription,
+		suite.productPrice,
+	)
+
+	reqProductCreate, err := http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
+	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	assert.NoError(suite.T(), err)
+	respProductCreate := httptest.NewRecorder()
+
+	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
+	assert.Equal(suite.T(), http.StatusBadRequest, respProductCreate.Code)
+
+	respBody := respProductCreate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "field Name is invalid")
+}
+
+func (suite *ValidationSuite) TestCreateProductWithDescriptionLengthLessThanThreeChars() {
+	// Create Product
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
+
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
+
+	requestProduct := fmt.Sprintf(
+		`{
+			"uuid":"%s",
+			"name":"%s",
+			"description":"%s",
+			"price":%v
+		}`,
+		suite.productUUID,
+		suite.productName,
+		"ab",
+		suite.productPrice,
+	)
+
+	reqProductCreate, err := http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
+	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	assert.NoError(suite.T(), err)
+	respProductCreate := httptest.NewRecorder()
+
+	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
+	assert.Equal(suite.T(), http.StatusBadRequest, respProductCreate.Code)
+
+	respBody := respProductCreate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "field Description is invalid")
+}
+
+func (suite *ValidationSuite) TestCreateProductWithPriceIsZero() {
+	// Create Product
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
+
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
+
+	requestProduct := fmt.Sprintf(
+		`{
+			"uuid":"%s",
+			"name":"%s",
+			"description":"%s",
+			"price":%v
+		}`,
+		suite.productUUID,
+		suite.productName,
+		suite.productDescription,
+		0,
+	)
+
+	reqProductCreate, err := http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
+	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	assert.NoError(suite.T(), err)
+	respProductCreate := httptest.NewRecorder()
+
+	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
+	assert.Equal(suite.T(), http.StatusBadRequest, respProductCreate.Code)
+
+	respBody := respProductCreate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "field Price is invalid")
 }
 
 func TestValidadionSuite(t *testing.T) {
