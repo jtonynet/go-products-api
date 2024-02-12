@@ -84,6 +84,8 @@ Foco em garantir estabilidade com __TDD__ e uma implementação minima de __CI__
 
 Exatamente por parecer ser "simples", é necessário ter um bom nível de qualidade.
 
+O desenvolvimento e os testes foram executados no sistema __Linux Ubuntu 20.04.6 LTS__ e testada em __Linux Ubuntu 22.04.3 LTS__.
+
 
 <br/>
 
