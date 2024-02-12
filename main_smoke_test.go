@@ -23,7 +23,7 @@ import (
 type HappyPathSuite struct {
 	suite.Suite
 	echoRouter *echo.Echo
-	DB         *gorm.DB
+	db         *gorm.DB
 
 	productHandler *handlers.ProductHandler
 
@@ -39,9 +39,9 @@ type HappyPathSuite struct {
 
 func (suite *HappyPathSuite) SetupSuite() {
 	cfg := helpers.SetupConfig()
-	suite.DB, _ = helpers.SetupDB(&cfg.Database)
+	suite.db, _ = helpers.SetupDB(&cfg.Database)
 
-	productDB := database.NewProductsDB(suite.DB)
+	productDB := database.NewProductsDB(suite.db)
 	suite.productHandler = handlers.NewProductHandler(productDB)
 
 	suite.productUUID, _ = uuid.Parse("37ad0486-5ba5-47a5-b352-408b077e12c6")
@@ -59,7 +59,7 @@ func (suite *HappyPathSuite) TearDownSuite() {
 		`delete from products where uuid = "%s";`,
 		suite.productUUID.String(),
 	)
-	suite.DB.Exec(deleteProduct)
+	suite.db.Exec(deleteProduct)
 }
 
 func (suite *HappyPathSuite) TestSmokeHappyPath() {

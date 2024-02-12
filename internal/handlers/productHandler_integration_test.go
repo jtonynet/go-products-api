@@ -21,7 +21,7 @@ import (
 type ValidationSuite struct {
 	suite.Suite
 	echoRouter *echo.Echo
-	DB         *gorm.DB
+	db         *gorm.DB
 
 	productHandler *handlers.ProductHandler
 
@@ -37,9 +37,9 @@ type ValidationSuite struct {
 
 func (suite *ValidationSuite) SetupSuite() {
 	cfg := helpers.SetupConfig()
-	suite.DB, _ = helpers.SetupDB(&cfg.Database)
+	suite.db, _ = helpers.SetupDB(&cfg.Database)
 
-	productDB := database.NewProductsDB(suite.DB)
+	productDB := database.NewProductsDB(suite.db)
 	suite.productHandler = handlers.NewProductHandler(productDB)
 
 	suite.productUUID, _ = uuid.Parse("d16384f2-4640-4e53-88f6-d873dfc0b80c")
@@ -57,7 +57,7 @@ func (suite *ValidationSuite) TearDownSuite() {
 		`delete from products where uuid = "%s";`,
 		suite.productUUID.String(),
 	)
-	suite.DB.Exec(deleteProduct)
+	suite.db.Exec(deleteProduct)
 }
 
 func (suite *ValidationSuite) TearDownTest() {
@@ -65,7 +65,7 @@ func (suite *ValidationSuite) TearDownTest() {
 		`delete from products where uuid = "%s";`,
 		suite.productUUID.String(),
 	)
-	suite.DB.Exec(deleteProduct)
+	suite.db.Exec(deleteProduct)
 }
 
 func (suite *ValidationSuite) TestCreateSameProductTwiceAndAfterSoftDeletion() {
