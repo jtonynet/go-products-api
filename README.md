@@ -101,27 +101,6 @@ $ docker compose up
 
 <br/>
 
-> :writing_hand: **Nota**:
->
->__Solução de Problemas com [Volumes do Docker](https://betterstack.com/community/questions/what-is-the-best-way-to-manage-permissions-for-docker-shared-volumes/)__
->Ao configurar o ambiente local, é possível que você encontre problemas de permissão na pasta `.docker`, que armazena os volumes dos componentes necessários para executar o ambiente. O docker-compose cria essa pasta, mas não concede as permissões necessárias para gerenciar esses volumes. A abordagem que estamos usando atualmente para lidar com isso, caso você encontre um erro na primeira tentativa de `docker compose up` como:
->```bash
->prometheus-go-products-api  | goroutine 1 [running]:
->prometheus-go-products-api  | github.com/prometheus/prometheus/promql.NewActiveQueryTracker({0x7fff5a1ffef7, 0xb}, 0x14, {0x3e94c60, 0xc0008b6370})
->prometheus-go-products-api  |   /app/promql/query_logger.go:123 +0x411
->prometheus-go-products-api  | main.main()
->prometheus-go-products-api  |   /app/cmd/prometheus/main.go:645 +0x7812
->prometheus-go-products-api exited with code 2
->```
->
->  ou problemas ao subir o Grafana, basta executar o seguinte comando:
->```bash
->sudo chmod -R 777 .docker
->```
-> e liberar as permissões para os volumes das imagens necessárias, lembrando que o desenvolvimento e os testes foram executados no sistema __Linux Ubuntu 20.04.6 LTS__ e testada em __Linux Ubuntu 22.04.3 LTS__.
-
-<br/>
-
 ####  <img src="./docs/assets/images/icons/postman.svg" width="20px" height="20px" alt="Swagger" title="Swagger">  Postman collection:
 
 <details>
@@ -327,7 +306,7 @@ A primeira vez que executarmos o Grafana, entramos com `usuário/senha` padrão 
 - Grafana - http://localhost:3000/ (usuário/senha: admin/admin | admin/12345)
   
 <details>
-  <summary>Uma vez dentro do Grafana em sua primeira execução, também precisamos criar uma conexão Datasource com o Prometheus (que acessamos acima). Procure por <i>`Connection > Add New Connection`</i> digite <i>Prometheus</i> no campo de Search, selecione-o, clique em <i>`Add New Datasource`</i> e configure-o com a URL: <i>http://prometheus-go-products-api:9090</i></summary>
+  <summary>Uma vez dentro do Grafana em sua primeira execução, também precisamos criar uma conexão Datasource com o Prometheus (que acessamos acima). Procure por <i>`Connections > Add New Connection`</i> digite <i>Prometheus</i> no campo de Search, selecione-o, clique em <i>`Add New Datasource`</i> e configure-o com a URL: <i>http://prometheus-go-products-api:9090</i> e clique no botão <i>Save & test</i> no final da página</summary>
   <img src="./docs/assets/images/screen_captures/grafana_create_prometheus_conn.png">
 </details>
 
