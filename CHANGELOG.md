@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.0.8] - 2023-02-11
+### Fixed
+
+- Acertos no Dockerfile da imagem da API e tornado os volumes das dependências externas, eliminando a necessidade da pasta .docker
+
+---
+
 ## [0.0.7] - 2023-02-11
 ### Added
 
@@ -80,6 +87,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Sabemos o que fazer, graças às definições do arquivo __README.md__. Sabemos como fazer graças aos __ADRs__ e documentações vinculadas. Devemos nos organizar em estrutura __Kanban__, guiados pelo modelo Agile, em nosso __Github Project__, e dar o devido prosseguimento às tarefas.
 
 
+[0.0.8]: https://github.com/jtonynet/go-products-api/compare/v0.0.7...v0.0.8
 [0.0.7]: https://github.com/jtonynet/go-products-api/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/jtonynet/go-products-api/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/jtonynet/go-products-api/compare/v0.0.4...v0.0.5
