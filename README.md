@@ -37,10 +37,10 @@
   6.   :white_check_mark: [Testes](#tests)
   7.   :beetle: [Debug](#debug)
   8.   :detective: [Observabilidade](#observability)
-  9.   :toolbox: [Ferramentas](#tools)
-  10.  :clap: [Boas Práticas](#best-practices)
-  11.  :brain: [ADR - Architecture Decision Records](#adr)
-  12.  :1234: [Versões](#versions)
+  9.   :clap: [Boas Práticas](#best-practices)
+  10.  :brain: [ADR - Architecture Decision Records](#adr)
+  11.  :1234: [Versões](#versions)
+  12.  :toolbox: [Ferramentas](#tools)
   13.  :robot: [Uso de AI](#ia)
   14.  🏁 [Conclusão](#conclusion)
 
@@ -366,6 +366,53 @@ Nossas decisões de `Arquitetura` e `Design de Sistemas` devem sempre ser basead
 
 ---
 
+<a id="best-practices"></a>
+## 👏 Boas Práticas
+
+- [Swagger](https://swagger.io/)
+- [Github Project - Kanbam](https://github.com/users/jtonynet/projects/5/views/1)
+- [Layout padrão de projetos em Go](https://github.com/golang-standards/project-layout/blob/master/README_ptBR.md)
+- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+- [ADR - Architecture Decision Records](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions)
+- [Mermaid Diagrams](https://mermaid.js.org)
+- [Observabilidade](https://en.wikipedia.org/wiki/Observability_(software)) com:
+  - [Prometheus](https://prometheus.io/docs/guides/go-application/)
+  - [Grafana](https://grafana.com/)
+
+<br/>
+
+[:arrow_heading_up: de volta ao índice](#index)
+
+---
+
+<a id="adr"></a> 
+## 🧠 ADR - Architecture Decision Records:
+
+- [0001: Registro de Decisões de Arquitetura (ADR)](./docs/architecture/decisions/0001-registro-de-decisoes-de-arquitetura.md)
+- [0002: Echo, Gorm e MySQL em API TDD com Arquitetura de Duas camadas](./docs/architecture/decisions/0002-echo-gorm-e-mysql-com-arquitetura-de-api-tdd-em-duas-camadas.md)
+- [0003: Observabilidade com Prometheus e Grafana](./docs/architecture/decisions/0003-observabilidade-com-prometheus-e-api-tdd-em-duas-camadas.md)
+
+
+<br/>
+
+[:arrow_heading_up: de volta ao índice](#index)
+
+---
+
+<a id="versions"></a>
+## 🔢 Versões:
+
+As tags de versões estão sendo criadas manualmente a medida que o projeto avança com melhorias notáveis. Cada funcionalidade é desenvolvida em uma branch a parte (Branch Based, [feature branch](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)) quando finalizadas é gerada tag e mergeadas em master.
+
+Para obter mais informações, consulte o [Histórico de Versões](./CHANGELOG.md).
+
+<br/>
+
+[:arrow_heading_up: de volta ao índice](#index)
+
+---
+
 <a id="tools"></a>
 ## 🧰 Ferramentas
 
@@ -401,54 +448,6 @@ Nossas decisões de `Arquitetura` e `Design de Sistemas` devem sempre ser basead
   - [VsCode](https://code.visualstudio.com/)
   - [Postman](https://blog.postman.com/introducing-the-postman-vs-code-extension/)
   - [MySQL Workbench](https://www.mysql.com/products/workbench/)
-
-<br/>
-
-[:arrow_heading_up: de volta ao índice](#index)
-
----
-
-<a id="best-practices"></a>
-## 👏 Boas Práticas
-
-- [Swagger](https://swagger.io/)
-- [Github Project - Kanbam](https://github.com/users/jtonynet/projects/5/views/1)
-- [Layout padrão de projetos em Go](https://github.com/golang-standards/project-layout/blob/master/README_ptBR.md)
-- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-- [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
-- [ADR - Architecture Decision Records](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions)
-- [Mermaid Diagrams](https://mermaid.js.org)
-- [Observabilidade](https://en.wikipedia.org/wiki/Observability_(software)) com:
-  - [Prometheus](https://prometheus.io/docs/guides/go-application/)
-  - [Grafana](https://grafana.com/)
-
-<br/>
-
-[:arrow_heading_up: de volta ao índice](#index)
-
----
-
-<a id="adr"></a> 
-## 🧠 ADR - Architecture Decision Records:
-
-- [0001: Registro de Decisões de Arquitetura (ADR)](./docs/architecture/decisions/0001-registro-de-decisoes-de-arquitetura.md)
-- [0002: Echo, Gorm e MySQL em API TDD com Arquitetura de Duas camadas](./docs/architecture/decisions/0002-echo-gorm-e-mysql-com-arquitetura-de-api-tdd-em-duas-camadas.md)
-- [0003: Observabilidade com Prometheus e Grafana](./docs/architecture/decisions/0003-observabilidade-com-prometheus-e-api-tdd-em-duas-camadas.md)
-
-
-
-<br/>
-
-[:arrow_heading_up: de volta ao índice](#index)
-
----
-
-<a id="versions"></a>
-## 🔢 Versões:
-
-As tags de versões estão sendo criadas manualmente a medida que o projeto avança com melhorias notáveis. Cada funcionalidade é desenvolvida em uma branch a parte (Branch Based, [feature branch](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)) quando finalizadas é gerada tag e mergeadas em master.
-
-Para obter mais informações, consulte o [Histórico de Versões](./CHANGELOG.md).
 
 <br/>
 
