@@ -337,9 +337,6 @@ func (suite *ValidationSuite) createProductSuccesfully() {
 	suite.echoRouter = helpers.SetupEchoRouter()
 	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
 
-	suite.echoRouter = helpers.SetupEchoRouter()
-	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
-
 	requestProduct := fmt.Sprintf(
 		`{
 			"uuid":"%s",
