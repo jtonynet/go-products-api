@@ -2,8 +2,6 @@ package main_smoke_test
 
 import (
 	"bytes"
-	"encoding/json"
-	"errors"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
@@ -64,7 +62,7 @@ func (suite *HappyPathSuite) TearDownSuite() {
 	suite.DB.Exec(deleteProduct)
 }
 
-func (suite *HappyPathSuite) TestSmoke() {
+func (suite *HappyPathSuite) TestSmokeHappyPath() {
 	suite.createAndRetrieveProductSuccessful()
 	suite.updateAndRetrieveProductListSuccessful()
 	suite.deleteProductSuccessful()
@@ -152,7 +150,7 @@ func (suite *HappyPathSuite) updateAndRetrieveProductListSuccessful() {
 	assert.Equal(suite.T(), http.StatusOK, respProductsRetrieve.Code)
 
 	bodyProducts := respProductsRetrieve.Body.String()
-	productInList, err := getProductJSONByUUID(bodyProducts, suite.productUUID.String())
+	productInList, err := helpers.GetProductFromItemsListByUUID(bodyProducts, suite.productUUID.String())
 	assert.NoError(suite.T(), err)
 	assert.Equal(suite.T(), gjson.Get(productInList, "name").String(), suite.productUpdateName)
 	assert.Equal(suite.T(), gjson.Get(productInList, "description").String(), suite.productUpdateDescription)
@@ -168,6 +166,7 @@ func (suite *HappyPathSuite) deleteProductSuccessful() {
 	reqProductDelete, err := http.NewRequest("DELETE", productUUIDRoute, nil)
 	assert.NoError(suite.T(), err)
 	respProductDelete := httptest.NewRecorder()
+
 	suite.echoRouter.ServeHTTP(respProductDelete, reqProductDelete)
 	assert.Equal(suite.T(), http.StatusNoContent, respProductDelete.Code)
 
@@ -181,26 +180,6 @@ func (suite *HappyPathSuite) deleteProductSuccessful() {
 
 	suite.echoRouter.ServeHTTP(respProductRetrieve, reqProductRetrieve)
 	assert.Equal(suite.T(), http.StatusNotFound, respProductRetrieve.Code)
-}
-
-func getProductJSONByUUID(bodyProductsJSON string, uuidToFind string) (string, error) {
-	productItems := gjson.Get(bodyProductsJSON, "items").String()
-	var products []map[string]interface{}
-	err := json.Unmarshal([]byte(productItems), &products)
-	if err != nil {
-		return "", err
-	}
-
-	for _, p := range products {
-		if p["uuid"].(string) == uuidToFind {
-			productJSON, err := json.Marshal(p)
-			if err != nil {
-				return "", err
-			}
-			return string(productJSON), nil
-		}
-	}
-	return "", errors.New("json document not found")
 }
 
 func TestSmokeSuite(t *testing.T) {

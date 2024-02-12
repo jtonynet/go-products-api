@@ -360,7 +360,7 @@ Nossas decisões de `Arquitetura` e `Design de Sistemas` devem sempre ser basead
   - [Echo-Swagger](https://github.com/swaggo/echo-swagger)
   - [Exponential Backoff](https://github.com/cenkalti/backoff)
   - [Gopsutil]("github.com/shirou/gopsutil)
-  - [Client-Prometheus](https://github.com/prometheus/client_golang)
+  - [Client Prometheus](https://github.com/prometheus/client_golang)
   - [GORM Prometheus](https://github.com/go-gorm/prometheus)
   <!-- [Zap log](https://github.com/uber-go/zap)  -->
 

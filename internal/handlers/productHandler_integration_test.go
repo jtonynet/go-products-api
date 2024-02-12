@@ -14,6 +14,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
+	"github.com/tidwall/gjson"
 	"gorm.io/gorm"
 )
 
@@ -53,7 +54,15 @@ func (suite *ValidationSuite) SetupSuite() {
 
 func (suite *ValidationSuite) TearDownSuite() {
 	fmt.Println("ValidadionSuite Finished")
+}
 
+func (suite *ValidationSuite) TearDownTest() {
+	deleteProduct := fmt.Sprintf(
+		`delete from products where uuid = "%s";`,
+		suite.productUUID.String(),
+	)
+	suite.DB.Exec(deleteProduct)
+	fmt.Println("One test Finished")
 }
 
 func (suite *ValidationSuite) TestCreateSameProductTwice() {
@@ -85,17 +94,54 @@ func (suite *ValidationSuite) TestCreateSameProductTwice() {
 	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
 	assert.Equal(suite.T(), http.StatusCreated, respProductCreate.Code)
 
-	respProductCreate = httptest.NewRecorder()
-	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
-	suite.T().Log(respProductCreate.Code)
-}
+	respBody := respProductCreate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "resource created successfully")
 
-/*
-func (suite *ValidationSuite) TestValidation() {
-	suite.createSameProductTwice()
-	assert.Equal(suite.T(), http.StatusCreated, 201)
+	// Create Same Product Again
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
+
+	reqProductCreate, err = http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
+	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	assert.NoError(suite.T(), err)
+	respProductCreate = httptest.NewRecorder()
+
+	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
+	assert.Equal(suite.T(), http.StatusConflict, respProductCreate.Code)
+
+	respBody = respProductCreate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "resource conflict")
+
+	// Delete Product
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.DELETE("/products/:product_id", suite.productHandler.DeleteProductById)
+
+	productUUIDRoute := fmt.Sprintf("/products/%s", suite.productUUID)
+	reqProductDelete, err := http.NewRequest("DELETE", productUUIDRoute, nil)
+	assert.NoError(suite.T(), err)
+	respProductDelete := httptest.NewRecorder()
+
+	suite.echoRouter.ServeHTTP(respProductDelete, reqProductDelete)
+	assert.Equal(suite.T(), http.StatusNoContent, respProductDelete.Code)
+
+	respBody = respProductDelete.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "resource deleted successfully")
+
+	// Create Same Product Deleted
+	suite.echoRouter = helpers.SetupEchoRouter()
+	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
+
+	reqProductCreate, err = http.NewRequest("POST", "/products", bytes.NewBuffer([]byte(requestProduct)))
+	reqProductCreate.Header.Set(echo.HeaderContentType, echo.MIMEApplicationJSON)
+	assert.NoError(suite.T(), err)
+	respProductCreate = httptest.NewRecorder()
+
+	suite.echoRouter.ServeHTTP(respProductCreate, reqProductCreate)
+	assert.Equal(suite.T(), http.StatusConflict, respProductCreate.Code)
+
+	respBody = respProductCreate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "resource conflict")
 }
-*/
 
 func TestValidadionSuite(t *testing.T) {
 	suite.Run(t, new(ValidationSuite))

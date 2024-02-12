@@ -45,10 +45,14 @@ func (ph *ProductHandler) CreateProduct(c echo.Context) error {
 	)
 
 	if err := ph.productDB.DB.Create(&productEntity).Error; err != nil {
+		if ph.productDB.ErrIsDuplicateKey(err) {
+			return c.JSON(http.StatusConflict, response.Result{Msg: "resource conflict"})
+		}
+
 		return c.JSON(http.StatusInternalServerError, response.Result{Msg: "an error occurred, please try again later"})
 	}
 
-	return c.JSON(http.StatusCreated, response.Result{Msg: "product created successfully"})
+	return c.JSON(http.StatusCreated, response.Result{Msg: "resource created successfully"})
 }
 
 // @Summary Retrieve Product By UUID
@@ -170,14 +174,14 @@ func (ph *ProductHandler) DeleteProductById(c echo.Context) error {
 
 	p := entity.Product{UUID: productUUID}
 	if err := ph.productDB.DB.Where(&entity.Product{UUID: productUUID}).First(&p).Error; err != nil {
-		return c.JSON(http.StatusNotFound, response.Result{Msg: "product not found"})
+		return c.JSON(http.StatusNotFound, response.Result{Msg: "resource not found"})
 	}
 
 	if delP := ph.productDB.DB.Delete(&p); delP.Error != nil {
 		return c.JSON(http.StatusInternalServerError, response.Result{Msg: "an error occurred, please try again later"})
 	}
 
-	return c.JSON(http.StatusNoContent, response.Result{Msg: "product removed successfully"})
+	return c.JSON(http.StatusNoContent, response.Result{Msg: "resource deleted successfully"})
 }
 
 func isValidUUID(u string) bool {
