@@ -488,6 +488,7 @@ Aqui deixo alguns pontos que imagino serem melhorias possíveis (alguns merecem 
 - Melhoria no script do Postman para melhor compartilhamento entre equipes.
 - Montagem do `docker-compose` que poderia incluir automaticamente o Dashboard Grafana.
 - Testes de Performance e Carga que poderiam rodar em conjunto com nossa monitoria local. Gostaria de ter utilizado o Gatling com essa finalidade.
+- Melhorias no Log e utilização do Grafana Loki
 - A partir de tais testes, poderíamos decidir escalar:
   - Implementação de um cache defensivo com Redis para consultas.
   - Criação de produtos em fila RabbitMQ ou outro, com workers, permitindo o aumento de requisições na rota POST, se necessário.
@@ -497,9 +498,6 @@ Algumas das melhorias citadas (Gatling, Cache Defensivo e Filas) desenvolvi como
 Terei prazer em discutir sobre o assunto e sinta-se à vontade para visitar outros dos meus repositórios.
 
 😊🚀
-
-
-
 
 <br/>
 
