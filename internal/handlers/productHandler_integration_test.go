@@ -70,7 +70,7 @@ func (suite *ValidationSuite) TearDownTest() {
 
 func (suite *ValidationSuite) TestCreateSameProductTwiceAndAfterSoftDeletion() {
 	// Create Product
-	suite.createProductSuccesfull()
+	suite.createProductSuccesfully()
 
 	// Create Same Product Again
 	suite.echoRouter = helpers.SetupEchoRouter()
@@ -265,7 +265,7 @@ func (suite *ValidationSuite) TestCreateProductWithPriceIsZero() {
 
 func (suite *ValidationSuite) TestUpdateProductWithNameLengthLessThanThreeChars() {
 	// Create Product
-	suite.createProductSuccesfull()
+	suite.createProductSuccesfully()
 
 	// Update Product
 	suite.echoRouter = helpers.SetupEchoRouter()
@@ -288,7 +288,7 @@ func (suite *ValidationSuite) TestUpdateProductWithNameLengthLessThanThreeChars(
 
 func (suite *ValidationSuite) TestUpdateProductWithDescriptionLengthLessThanThreeChars() {
 	// Create Product
-	suite.createProductSuccesfull()
+	suite.createProductSuccesfully()
 
 	// Update Product
 	suite.echoRouter = helpers.SetupEchoRouter()
@@ -311,7 +311,7 @@ func (suite *ValidationSuite) TestUpdateProductWithDescriptionLengthLessThanThre
 
 func (suite *ValidationSuite) TestUpdateProductWithPriceIsZero() {
 	// Create Product
-	suite.createProductSuccesfull()
+	suite.createProductSuccesfully()
 
 	// Update Product
 	suite.echoRouter = helpers.SetupEchoRouter()
@@ -332,7 +332,7 @@ func (suite *ValidationSuite) TestUpdateProductWithPriceIsZero() {
 	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "field Price is invalid")
 }
 
-func (suite *ValidationSuite) createProductSuccesfull() {
+func (suite *ValidationSuite) createProductSuccesfully() {
 	// Create Product
 	suite.echoRouter = helpers.SetupEchoRouter()
 	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
