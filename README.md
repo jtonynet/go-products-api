@@ -130,7 +130,7 @@ Acesse-a para realizar validações, caso prefira ao usar o Postman. Utilizar o 
 <br/>
 
 __Gerando a Documentação:__
-Para gerar a documentação, você precisa ter o Golang e o projeto instalados localmente e executar o seguinte comando no diretório raiz do projeto:
+Para gerar a documentação, você precisa ter o Golang, o [Swaggo](https://github.com/swaggo/swag) e o projeto instalados localmente e executar o seguinte comando no diretório raiz do projeto:
 
 ```bash
 swag init --generalInfo cmd/api/main.go -o ./api
@@ -146,6 +146,8 @@ swag init --generalInfo cmd/api/main.go -o ./api
 >	LeftDelim:        "{{",
 >	RightDelim:       "}}",
 >```
+> <i>*A geração da documentação necessita de mais testes no S.O. Windows</i>
+>
 
 <br/>
 
