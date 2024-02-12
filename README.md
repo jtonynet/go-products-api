@@ -123,9 +123,14 @@ Com a aplicação em execução, a rota de documentação Swagger fica disponív
 
 Acesse-a para realizar validações, caso prefira ao usar o Postman. Utilizar o Swagger-API também é uma boa maneira de tornar a aplicação aderente às boas práticas e ao design de API.
 
+O cliente deve informar o UUID do recurso, seguindo as modernas práticas de desenvolvimento. Para validações, você pode utilizar um [site gerador de UUIDs](https://www.uuidgenerator.net/). Outras restrições e características dos recursos que podem ser criados, obtidos, listados e deletados podem ser visualizadas na seção 'Models' do Swagger.
+
 ####  <img src="./docs/assets/images/icons/swagger.svg" width="20px" height="20px" alt="Swagger" title="Swagger"/> Swagger docs:
 
-<img src="./docs/assets/images/screen_captures/swagger.png"/>
+<img src="./docs/assets/images/screen_captures/swagger_routes.png"/>
+
+<img src="./docs/assets/images/screen_captures/swagger_models.png"/>
+
 
 <br/>
 
@@ -489,7 +494,9 @@ Aqui deixo alguns pontos que imagino serem melhorias possíveis (alguns merecem 
 - Bug do Swagger, cuja solução manual que adotei impediu a geração da documentação automaticamente a cada subida da aplicação.
 - Melhoria no script do Postman para melhor compartilhamento entre equipes.
 - Montagem do `docker-compose` que poderia incluir automaticamente o Dashboard Grafana.
-- Melhorias no Log e utilização do Grafana Loki
+- Melhorias no Log e utilização de algum centralizador de Logs como Grafana Loki ou Logstash
+- Utilização de algum APM
+- Processo de CD
 - Testes de Performance e Carga que poderiam rodar em conjunto com nossa monitoria local. Gostaria de ter utilizado o Gatling com essa finalidade.
 - A partir de tais testes, poderíamos decidir escalar:
   - Implementação de um cache defensivo com Redis para consultas.

@@ -2,10 +2,13 @@ definitions:
   request.Product:
     properties:
       description:
-        example: Next Gen powerful videogame
+        example: Most Powerful MicroSoft video game
+        minLength: 3
         type: string
       name:
-        example: Exis Boxis Series G
+        example: XBox 720 Series G
+        maxLength: 255
+        minLength: 3
         type: string
       price:
         example: 5000
@@ -22,18 +25,17 @@ definitions:
   request.UpdateProduct:
     properties:
       description:
-        example: The best experience of Powerfull
+        example: Even more powerful than its predecessor
+        minLength: 3
         type: string
       name:
-        example: Exis Boxis Series S
+        example: XBox 1080 Series Z
+        maxLength: 255
+        minLength: 3
         type: string
       price:
         example: 6500
         type: integer
-    required:
-    - description
-    - name
-    - price
     type: object
   response.Product:
     properties:
@@ -106,6 +108,10 @@ paths:
           description: Bad Request
           schema:
             $ref: '#/definitions/response.Result'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/response.Result'
         "500":
           description: Internal Server Error
           schema:
@@ -127,14 +133,6 @@ paths:
       responses:
         "204":
           description: No Content
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/response.Result'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/response.Result'
         "500":
           description: Internal Server Error
           schema:
@@ -163,6 +161,10 @@ paths:
             $ref: '#/definitions/response.Result'
         "404":
           description: Not Found
+          schema:
+            $ref: '#/definitions/response.Result'
+        "410":
+          description: Gone
           schema:
             $ref: '#/definitions/response.Result'
       summary: Retrieve Product By UUID

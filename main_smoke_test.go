@@ -179,7 +179,7 @@ func (suite *HappyPathSuite) deleteProductSuccessful() {
 	respProductRetrieve := httptest.NewRecorder()
 
 	suite.echoRouter.ServeHTTP(respProductRetrieve, reqProductRetrieve)
-	assert.Equal(suite.T(), http.StatusNotFound, respProductRetrieve.Code)
+	assert.Equal(suite.T(), http.StatusGone, respProductRetrieve.Code)
 }
 
 func TestSmokeSuite(t *testing.T) {

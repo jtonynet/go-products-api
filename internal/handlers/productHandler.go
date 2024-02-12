@@ -29,6 +29,7 @@ func NewProductHandler(productDB *database.ProductDB) *ProductHandler {
 // @Param request body request.Product true "Request body for create"
 // @Success 201 {object} response.Result
 // @Failure 400 {object} response.Result
+// @Failure 409 {object} response.Result
 // @Failure 500 {object} response.Result
 // @Router /products [post]
 func (ph *ProductHandler) CreateProduct(c echo.Context) error {
@@ -68,6 +69,7 @@ func (ph *ProductHandler) CreateProduct(c echo.Context) error {
 // @Success 200 {object} response.Product
 // @Failure 400 {object} response.Result
 // @Failure 404 {object} response.Result
+// @Failure 410 {object} response.Result
 // @Router /products/{product_id} [get]
 func (ph *ProductHandler) RetrieveProductById(c echo.Context) error {
 	productId := c.Param("product_id")
@@ -77,8 +79,12 @@ func (ph *ProductHandler) RetrieveProductById(c echo.Context) error {
 	productUUID := uuid.MustParse(productId)
 
 	p := entity.Product{UUID: productUUID}
-	if err := ph.productDB.DB.Where(&entity.Product{UUID: productUUID}).First(&p).Error; err != nil {
-		return c.JSON(http.StatusNotFound, response.Result{Msg: "product not found"})
+	if err := ph.productDB.DB.Unscoped().Where(&entity.Product{UUID: productUUID}).First(&p).Error; err != nil {
+		return c.JSON(http.StatusNotFound, response.Result{Msg: "resource not found"})
+	}
+
+	if p.DeletedAt.Valid {
+		return c.JSON(http.StatusGone, response.Result{Msg: "resource gone"})
 	}
 
 	respP := response.NewProduct(p)
@@ -106,7 +112,7 @@ func (ph *ProductHandler) UpdateProductById(c echo.Context) error {
 
 	p := entity.Product{UUID: productUUID}
 	if err := ph.productDB.DB.Where(&entity.Product{UUID: productUUID}).First(&p).Error; err != nil {
-		return c.JSON(http.StatusNotFound, response.Result{Msg: "product not found"})
+		return c.JSON(http.StatusNotFound, response.Result{Msg: "resource not found"})
 	}
 
 	reqP := new(request.UpdateProduct)
@@ -171,27 +177,31 @@ func (ph *ProductHandler) RetriveProductList(c echo.Context) error {
 // @Produce json
 // @Param product_id path string true "Product UUID"
 // @Success 204
-// @Failure 400 {object} response.Result
-// @Failure 404 {object} response.Result
 // @Failure 500 {object} response.Result
 // @Router /products/{product_id} [delete]
 func (ph *ProductHandler) DeleteProductById(c echo.Context) error {
+	/*
+		Disclaimer:
+		I always return 204 or 500 in case of an error because it is Idenpotent,
+		but there may be other approaches here depending on the needs of the project
+		Famous `It Depends`
+	*/
 	productId := c.Param("product_id")
 	if !isValidUUID(productId) {
-		return c.JSON(http.StatusBadRequest, response.Result{Msg: "bad request"})
+		return c.JSON(http.StatusNoContent, nil)
 	}
 	productUUID := uuid.MustParse(productId)
 
 	p := entity.Product{UUID: productUUID}
 	if err := ph.productDB.DB.Where(&entity.Product{UUID: productUUID}).First(&p).Error; err != nil {
-		return c.JSON(http.StatusNotFound, response.Result{Msg: "resource not found"})
+		return c.JSON(http.StatusNoContent, nil)
 	}
 
 	if delP := ph.productDB.DB.Delete(&p); delP.Error != nil {
 		return c.JSON(http.StatusInternalServerError, response.Result{Msg: "an error occurred, please try again later"})
 	}
 
-	return c.JSON(http.StatusNoContent, response.Result{Msg: "resource deleted successfully"})
+	return c.JSON(http.StatusNoContent, nil)
 }
 
 func isValidUUID(u string) bool {

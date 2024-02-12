@@ -108,9 +108,6 @@ func (suite *ValidationSuite) TestCreateSameProductAfterSoftDeletion() {
 	suite.echoRouter.ServeHTTP(respProductDelete, reqProductDelete)
 	assert.Equal(suite.T(), http.StatusNoContent, respProductDelete.Code)
 
-	respBody = respProductDelete.Body.String()
-	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "resource deleted successfully")
-
 	// Create Same Product After Soft Deleted
 	respProductCreate, err = suite.createProduct()
 	assert.NoError(suite.T(), err)

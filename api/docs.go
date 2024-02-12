@@ -76,6 +76,12 @@ const docTemplate = `{
                             "$ref": "#/definitions/response.Result"
                         }
                     },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/response.Result"
+                        }
+                    },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
@@ -122,6 +128,12 @@ const docTemplate = `{
                         "schema": {
                             "$ref": "#/definitions/response.Result"
                         }
+                    },
+                    "410": {
+                        "description": "Gone",
+                        "schema": {
+                            "$ref": "#/definitions/response.Result"
+                        }
                     }
                 }
             },
@@ -146,18 +158,6 @@ const docTemplate = `{
                 "responses": {
                     "204": {
                         "description": "No Content"
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/response.Result"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/response.Result"
-                        }
                     },
                     "500": {
                         "description": "Internal Server Error",
@@ -238,11 +238,14 @@ const docTemplate = `{
             "properties": {
                 "description": {
                     "type": "string",
-                    "example": "Next Gen powerful videogame"
+                    "minLength": 3,
+                    "example": "Most Powerful MicroSoft video game"
                 },
                 "name": {
                     "type": "string",
-                    "example": "Exis Boxis Series G"
+                    "maxLength": 255,
+                    "minLength": 3,
+                    "example": "XBox 720 Series G"
                 },
                 "price": {
                     "type": "integer",
@@ -256,19 +259,17 @@ const docTemplate = `{
         },
         "request.UpdateProduct": {
             "type": "object",
-            "required": [
-                "description",
-                "name",
-                "price"
-            ],
             "properties": {
                 "description": {
                     "type": "string",
-                    "example": "The best experience of Powerfull"
+                    "minLength": 3,
+                    "example": "Even more powerful than its predecessor"
                 },
                 "name": {
                     "type": "string",
-                    "example": "Exis Boxis Series S"
+                    "maxLength": 255,
+                    "minLength": 3,
+                    "example": "XBox 1080 Series Z"
                 },
                 "price": {
                     "type": "integer",
