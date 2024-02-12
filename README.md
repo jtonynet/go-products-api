@@ -130,6 +130,7 @@ Acesse-a para realizar validações, caso prefira ao usar o Postman. Utilizar o 
 <br/>
 
 __Gerando a Documentação:__
+
 Para gerar a documentação, você precisa ter o Golang, o [Swaggo](https://github.com/swaggo/swag) e o projeto instalados localmente e executar o seguinte comando no diretório raiz do projeto:
 
 ```bash
