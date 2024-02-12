@@ -362,6 +362,7 @@ Nossas decisões de `Arquitetura` e `Design de Sistemas` devem sempre ser basead
   - [Gopsutil]("github.com/shirou/gopsutil)
   - [Client Prometheus](https://github.com/prometheus/client_golang)
   - [GORM Prometheus](https://github.com/go-gorm/prometheus)
+  - [Go Playground Validator](https://github.com/go-playground/validator)
   <!-- [Zap log](https://github.com/uber-go/zap)  -->
 
 - Infra & Technologias

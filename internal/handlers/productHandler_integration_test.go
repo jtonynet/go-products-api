@@ -75,11 +75,11 @@ func (suite *ValidationSuite) TestCreateSameProductTwice() {
 
 	requestProduct := fmt.Sprintf(
 		`{
-				"uuid":"%s",
-				"name":"%s",
-				"description":"%s",
-				"price":%v
-			}`,
+			"uuid":"%s",
+			"name":"%s",
+			"description":"%s",
+			"price":%v
+		}`,
 		suite.productUUID,
 		suite.productName,
 		suite.productDescription,

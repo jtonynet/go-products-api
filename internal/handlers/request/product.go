@@ -1,18 +1,44 @@
 package request
 
 import (
-	"github.com/google/uuid"
+	"fmt"
+	"strings"
+
+	"github.com/go-playground/validator"
 )
 
 type Product struct {
-	UUID        uuid.UUID `json:"uuid" form:"uuid" binding:"required" example:"7829cc30-1d6e-4a5d-bcc1-ec65c8c338ab"`
-	Name        string    `json:"name" form:"name" binding:"required" example:"Exis Boxis Series G"`
-	Description string    `json:"description" form:"description" binding:"required" example:"Next Gen powerful videogame"`
-	Price       *int64    `json:"price" form:"price" binding:"required" example:"5000"`
+	UUID        string `json:"uuid" validate:"required,uuid" binding:"required" example:"7829cc30-1d6e-4a5d-bcc1-ec65c8c338ab"`
+	Name        string `json:"name" validate:"required,min=3,max=255" binding:"required" example:"Exis Boxis Series G"`
+	Description string `json:"description" validate:"required,min=3" binding:"required" example:"Next Gen powerful videogame"`
+	Price       *int64 `json:"price" validate:"gt=0" binding:"required" example:"5000"`
+}
+
+func (p *Product) IsValid() (string, bool) {
+	return isValid(p)
 }
 
 type UpdateProduct struct {
-	Name        string `json:"name" binding:"required" form:"name" example:"Exis Boxis Series S"`
-	Description string `json:"description"  binding:"required" form:"description" example:"The best experience of Powerfull"`
-	Price       *int64 `json:"price" binding:"required" form:"price" example:"6500"`
+	Name        string `json:"name" validate:"omitempty,min=3,max=255" example:"Exis Boxis Series S"`
+	Description string `json:"description" validate:"omitempty,min=3" example:"The best experience of Powerfull"`
+	Price       *int64 `json:"price" validate:"omitempty,gt=0" example:"6500"`
+}
+
+func (up *UpdateProduct) IsValid() (string, bool) {
+	return isValid(up)
+}
+
+func isValid(a any) (string, bool) {
+	validate := validator.New()
+
+	err := validate.Struct(a)
+	if err != nil {
+		var errMsgs []string
+		for _, err := range err.(validator.ValidationErrors) {
+			errMsgs = append(errMsgs, fmt.Sprintf("field %s is invalid", err.Field()))
+		}
+		return strings.Join(errMsgs, ", "), false
+	}
+
+	return "", true
 }

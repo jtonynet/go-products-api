@@ -18,7 +18,8 @@ func NewProductsDB(db *gorm.DB) *ProductDB {
 }
 
 func (pDB ProductDB) ErrIsDuplicateKey(err error) bool {
-	// I dont find better way Has seen: https://github.com/go-gorm/gorm/issues/4037
+	// I haven't found a better way than this:
+	// https://github.com/go-gorm/gorm/issues/4037
 	var mysqlErr *mysql.MySQLError
 	return errors.As(err, &mysqlErr) && mysqlErr.Number == 1062
 }

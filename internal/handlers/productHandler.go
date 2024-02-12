@@ -37,8 +37,13 @@ func (ph *ProductHandler) CreateProduct(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, response.Result{Msg: "bad request"})
 	}
 
+	errMsg, ok := reqP.IsValid()
+	if !ok {
+		return c.JSON(http.StatusBadRequest, response.Result{Msg: errMsg})
+	}
+
 	productEntity := entity.NewProduct(
-		reqP.UUID,
+		uuid.MustParse(reqP.UUID),
 		reqP.Name,
 		reqP.Description,
 		*reqP.Price,
@@ -109,6 +114,11 @@ func (ph *ProductHandler) UpdateProductById(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, response.Result{Msg: "bad request"})
 	}
 
+	errMsg, ok := reqP.IsValid()
+	if !ok {
+		return c.JSON(http.StatusBadRequest, response.Result{Msg: errMsg})
+	}
+
 	if reqP.Name != "" {
 		p.Name = reqP.Name
 	}
@@ -137,7 +147,7 @@ func (ph *ProductHandler) UpdateProductById(c echo.Context) error {
 // @Router /products [get]
 func (ph *ProductHandler) RetriveProductList(c echo.Context) error {
 	products := []entity.Product{}
-	if err := ph.productDB.DB.Find(&products).Order("id desc").Error; err != nil {
+	if err := ph.productDB.DB.Find(&products).Order("id asc").Error; err != nil {
 		return c.JSON(http.StatusInternalServerError, response.Result{Msg: "an error occurred, please try again later"})
 	}
 
