@@ -9,8 +9,8 @@ import (
 
 type Product struct {
 	UUID        string `json:"uuid" validate:"required,uuid" binding:"required" example:"7829cc30-1d6e-4a5d-bcc1-ec65c8c338ab"`
-	Name        string `json:"name" validate:"required,min=3,max=255" binding:"required" example:"Exis Boxis Series G"`
-	Description string `json:"description" validate:"required,min=3" binding:"required" example:"Next Gen powerful videogame"`
+	Name        string `json:"name" validate:"required,min=3,max=255" binding:"required" example:"XBox 720 Series G"`
+	Description string `json:"description" validate:"required,min=3" binding:"required" example:"Most Powerful MicroSoft video game"`
 	Price       *int64 `json:"price" validate:"gt=0" binding:"required" example:"5000"`
 }
 
@@ -19,8 +19,8 @@ func (p *Product) IsValid() (string, bool) {
 }
 
 type UpdateProduct struct {
-	Name        string `json:"name" validate:"omitempty,min=3,max=255" example:"Exis Boxis Series S"`
-	Description string `json:"description" validate:"omitempty,min=3" example:"The best experience of Powerfull"`
+	Name        string `json:"name" validate:"omitempty,min=3,max=255" example:"XBox 1080 Series Z"`
+	Description string `json:"description" validate:"omitempty,min=3" example:"Even more powerful than its predecessor"`
 	Price       *int64 `json:"price" validate:"omitempty,gt=0" example:"6500"`
 }
 

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 
 	"github.com/google/uuid"
@@ -227,6 +228,22 @@ func (suite *ValidationSuite) TestUpdateProductWithNameLengthLessThanThreeChars(
 	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "field Name is invalid")
 }
 
+func (suite *ValidationSuite) TestUpdateProductWithNameLengthGreaterThanTwoHundredAndFiftyFiveChars() {
+	// Create Product
+	respProductCreate, err := suite.createProduct()
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), http.StatusCreated, respProductCreate.Code)
+
+	// Update Product
+	requestProductJSON := `{"name":"` + strings.Repeat("x", 300) + `"}`
+	respProductUpdate, err := suite.updateProductWithParams(suite.productUUID, requestProductJSON)
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), http.StatusBadRequest, respProductUpdate.Code)
+
+	respBody := respProductUpdate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "field Name is invalid")
+}
+
 func (suite *ValidationSuite) TestUpdateProductWithDescriptionLengthLessThanThreeChars() {
 	// Create Product
 	respProductCreate, err := suite.createProduct()
@@ -259,8 +276,23 @@ func (suite *ValidationSuite) TestUpdateProductWithPriceIsZero() {
 	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "field Price is invalid")
 }
 
-func (suite *ValidationSuite) createProduct() (*httptest.ResponseRecorder, error) {
+func (suite *ValidationSuite) TestUpdateProductWithPriceIsNegative() {
 	// Create Product
+	respProductCreate, err := suite.createProduct()
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), http.StatusCreated, respProductCreate.Code)
+
+	// Update Product
+	requestProductJSON := `{"price":-1}`
+	respProductUpdate, err := suite.updateProductWithParams(suite.productUUID, requestProductJSON)
+	assert.NoError(suite.T(), err)
+	assert.Equal(suite.T(), http.StatusBadRequest, respProductUpdate.Code)
+
+	respBody := respProductUpdate.Body.String()
+	assert.Equal(suite.T(), gjson.Get(respBody, "msg").String(), "field Price is invalid")
+}
+
+func (suite *ValidationSuite) createProduct() (*httptest.ResponseRecorder, error) {
 	requestProductJSON := fmt.Sprintf(
 		`{
 			"uuid":"%s",
@@ -280,7 +312,6 @@ func (suite *ValidationSuite) createProduct() (*httptest.ResponseRecorder, error
 }
 
 func (suite *ValidationSuite) createProductWithJSONParam(requestProductJSON string) (*httptest.ResponseRecorder, error) {
-	// Create Product
 	suite.echoRouter = helpers.SetupEchoRouter()
 	suite.echoRouter.POST("/products", suite.productHandler.CreateProduct)
 
@@ -298,7 +329,6 @@ func (suite *ValidationSuite) createProductWithJSONParam(requestProductJSON stri
 }
 
 func (suite *ValidationSuite) updateProductWithParams(productUUID uuid.UUID, requestProductJSON string) (*httptest.ResponseRecorder, error) {
-	// Update Product
 	suite.echoRouter = helpers.SetupEchoRouter()
 	suite.echoRouter.PATCH("/products/:product_id", suite.productHandler.UpdateProductById)
 
