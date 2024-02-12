@@ -1,4 +1,4 @@
-name: TESTES
+name: TESTES_CI
 
 on:
   push:
