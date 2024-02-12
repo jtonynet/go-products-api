@@ -17,7 +17,7 @@ import (
 func Init(cfg *config.API, productHandler *handlers.ProductHandler) {
 	e := echo.New()
 	e.Use(echoMiddleware.CORS())
-	e.Use(echoMiddleware.Logger())
+	// e.Use(echoMiddleware.Logger())
 
 	initializeRoutes(cfg, productHandler, e)
 
