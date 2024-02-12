@@ -493,7 +493,7 @@ Aqui deixo alguns pontos que imagino serem melhorias possíveis (alguns merecem 
   - Implementação de um cache defensivo com Redis para consultas.
   - Criação de produtos em fila RabbitMQ ou outro, com workers, permitindo o aumento de requisições na rota POST, se necessário.
   
-Algumas das melhorias citadas (Gatling, Cache Defensivo e Filas) desenvolvi como POC em [outro projeto](https://github.com/jtonynet/api-gin-rest) que não está na solução "ótima", mas servem para nortear possibilidades que tive a oportunidade de colocar em produção.
+Algumas das melhorias citadas (Gatling, Cache Defensivo e Filas) desenvolvi como POC em [outro projeto](https://github.com/jtonynet/api-gin-rest) que não está na solução "ótima", mas servem para nortear possibilidades.
 
 Terei prazer em discutir sobre o assunto e sinta-se à vontade para visitar outros dos meus repositórios.
 
