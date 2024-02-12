@@ -4,6 +4,14 @@ networks:
   go-products-network:
     driver: bridge
 
+volumes:
+  mysql-go-products-api-data:
+    external: false
+  prometheus-data:
+    external: false
+  grafana-data:
+    external: false
+
 services:
   mysql-go-products-api:
     image: mysql:latest
@@ -17,7 +25,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - .docker/mysql-go-products-api:/var/lib/mysql
+      - mysql-go-products-api-data:/var/lib/mysql
     networks:
       - go-products-network
 
@@ -25,15 +33,12 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-      target: api
     depends_on:
       - mysql-go-products-api
     container_name: go-products-api
     hostname: go-products-api
     ports: 
       - "8080:8080"
-    volumes: 
-      - ./:/usr/src/app/
     tty: true
     networks:
       - go-products-network
@@ -44,7 +49,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./tools/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - .docker/prometheus/prometheus_data:/prometheus
+      - prometheus-data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -62,7 +67,7 @@ services:
     image: grafana/grafana
     container_name: grafana-go-products-api
     volumes:
-      - .docker/grafana:/var/lib/grafana
+      - grafana-data:/var/lib/grafana
     restart: unless-stopped
     ports:
       - 3000:3000
@@ -70,3 +75,5 @@ services:
       - go-products-network
     depends_on:
       - prometheus-go-products-api
+
+

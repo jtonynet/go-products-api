@@ -1,19 +1,25 @@
-# Primeira etapa: construção
-FROM golang:1.21.1-alpine AS api
-
+FROM golang:1.21.1-alpine AS builder
 WORKDIR /usr/src/app
 
-COPY .env  ./
 COPY go.mod ./
 COPY go.sum ./
 
 RUN go mod download
 
-COPY . .
+COPY api ./api
+COPY cmd ./cmd
+COPY config ./config
+COPY internal ./internal
 
-# TODO: Fix to compile and run binary in another Dockerfile step
-# RUN go build -o main ./cmd/api/main.go
-# CMD["./main"]
+RUN go build ./cmd/api/main.go
+RUN chmod a+x main
 
-CMD ["go", "run", "cmd/api/main.go"]
+FROM alpine:latest
+WORKDIR /usr/src/app
 
+COPY .env .env
+COPY api ./api
+
+COPY --from=builder /usr/src/app/main /usr/src/app/main
+
+CMD ["./main"]
