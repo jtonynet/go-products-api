@@ -56,7 +56,7 @@ _*Status `ENCERRADO` - Primeiro commit dia: 07/02/2024 Ultimo commit dia 12/02/2
 ---
 
 <a id="about"></a>
-### 📗 Sobre:
+### 📗 Sobre
 
 Este repositório foi criado com a intenção de propor uma possível solução para o seguinte desafio:
 
@@ -109,7 +109,7 @@ $ docker compose up
 
 <br/>
 
-####  <img src="./docs/assets/images/icons/postman.svg" width="20px" height="20px" alt="Swagger" title="Swagger">  Postman collection:
+####  <img src="./docs/assets/images/icons/postman.svg" width="20px" height="20px" alt="Swagger" title="Swagger">  Postman collection
 
 <details>
   <summary>Dentro da pasta <a href="./scripts/postman-collections/go-products-api.postman_collection.json">./scripts/postman-collection/go-products-api.postman_collection.json</a> encontra-se o arquivo JSON básico que pode ser importado no seu <i>Postman</i> para auxiliar em testes manuais e desenvolvimento.</summary>
@@ -130,7 +130,7 @@ Acesse-a para realizar validações, caso prefira ao usar o Postman. Utilizar o 
 
 O cliente deve informar o UUID do recurso, seguindo as modernas práticas de desenvolvimento. Para validações, você pode utilizar um [site gerador de UUIDs](https://www.uuidgenerator.net/). Outras restrições e características dos recursos que podem ser criados, obtidos, listados e deletados podem ser visualizadas na seção 'Models' do Swagger.
 
-####  <img src="./docs/assets/images/icons/swagger.svg" width="20px" height="20px" alt="Swagger" title="Swagger"/> Swagger docs:
+####  <img src="./docs/assets/images/icons/swagger.svg" width="20px" height="20px" alt="Swagger" title="Swagger"/> Swagger docs
 
 <img src="./docs/assets/images/screen_captures/swagger_routes.png"/>
 
@@ -167,7 +167,7 @@ swag init --generalInfo cmd/api/main.go -o ./api
 ---
 
 <a id="diagrams"></a>
-### 📊 Diagramas do Sistema:
+### 📊 Diagramas do Sistema
 
 <!-- 
     diagrams by:
@@ -324,7 +324,7 @@ docker compose up mysql-go-products-api
 ---
 
 <a id="observability"></a>
-### 🕵️ Observabilidade:
+### 🕵️ Observabilidade
 
 __Prometheus:__
 
@@ -396,7 +396,7 @@ Nossas decisões de `Arquitetura` e `Design de Sistemas` devem sempre ser basead
 ---
 
 <a id="adr"></a> 
-### 🧠 ADR - Architecture Decision Records:
+### 🧠 ADR - Architecture Decision Records
 
 - [0001: Registro de Decisões de Arquitetura (ADR)](./docs/architecture/decisions/0001-registro-de-decisoes-de-arquitetura.md)
 - [0002: Echo, Gorm e MySQL em API TDD com Arquitetura de Duas camadas](./docs/architecture/decisions/0002-echo-gorm-e-mysql-com-arquitetura-de-api-tdd-em-duas-camadas.md)
@@ -410,7 +410,7 @@ Nossas decisões de `Arquitetura` e `Design de Sistemas` devem sempre ser basead
 ---
 
 <a id="versions"></a>
-### 🔢 Versões:
+### 🔢 Versões
 
 As tags de versões estão sendo criadas manualmente a medida que o projeto avança com melhorias notáveis. Cada funcionalidade é desenvolvida em uma branch a parte (Branch Based, [feature branch](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)) quando finalizadas é gerada tag e mergeadas em master.
 
@@ -465,7 +465,7 @@ Para obter mais informações, consulte o [Histórico de Versões](./CHANGELOG.m
 ---
 
 <a id="ia"></a>
-### 🤖 Uso de AI:
+### 🤖 Uso de AI
 
 A [imagem do cabeçalho](#go-products-api) desta página foi criada com o auxílio de inteligência artificial e um mínimo de retoque e construção no Gimp [<img src="./docs/assets/images/icons/gimp.svg" width="30" height="30 " title="Gimp" alt="Gimp Logo" />](https://www.gimp.org/)
 
