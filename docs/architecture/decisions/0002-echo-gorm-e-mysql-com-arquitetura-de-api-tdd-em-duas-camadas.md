@@ -1,4 +1,4 @@
-# 2. Echo, Gorm e MySQL em API TDD com arquitetura de Três Camadas
+# 2. Echo, Gorm e MySQL em API TDD com arquitetura de Duas Camadas
 
 Data: 07 de fevereiro de 2024
 
