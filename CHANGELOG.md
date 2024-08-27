@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 ---
-## [0.1.0] - 2023-02-12
+## [0.1.0] - 2024-02-12
 ### Added
 
 - Alteração de status para `AGUARDANDO AVALIAÇÃO`.
@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Primeira versão estável funcional encerrada.
 - Melhorias nos testes e na documentação.
 ---
-## [0.0.9] - 2023-02-11
+## [0.0.9] - 2024-02-11
 ### Added
 
 - Finalizada __[Issue-19](https://github.com/jtonynet/go-products-api/issues/19)__
@@ -30,14 +30,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.0.8] - 2023-02-11
+## [0.0.8] - 2024-02-11
 ### Fixed
 
 - Acertos no Dockerfile da imagem da API e tornado os volumes das dependências externas, eliminando a necessidade da pasta .docker
 
 ---
 
-## [0.0.7] - 2023-02-11
+## [0.0.7] - 2024-02-11
 ### Added
 
 - Solução de __Observabilidade__ minima para __[Issue-17](https://github.com/jtonynet/go-products-api/issues/17)__
@@ -50,7 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.0.6] - 2023-02-10
+## [0.0.6] - 2024-02-10
 ### Fixed
 
 - Corrigido comportamento de a aplicação iniciar mas o banco ainda não estar respondendo a solicitações, comportamento conhecido do docker-compose quando liveness e readness não estão configurados (configurar no futuro). Para tanto foi adicionado [Exponential Backoff](https://github.com/cenkalti/backoff), que tenta se conectar ao banco por `API_RETRY_MAX_ELAPSED_TIME_IN_MS` __[Issue-14](https://github.com/jtonynet/go-products-api/issues/14)__ 
@@ -58,14 +58,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.0.5] - 2023-02-10
+## [0.0.5] - 2024-02-10
 ### Added
 
 - Adicionado swagger __[Issue-12](https://github.com/jtonynet/go-products-api/issues/12)__ 
 
 ---
 
-## [0.0.4] - 2023-02-10
+## [0.0.4] - 2024-02-10
 ### Added
 
 - Criação do `cmd/api/main.go` entrypoint da `API` com suas rotas integrado as variáveis de ambiente com `Viper` e sendo Dockerizada na __[Issue-10](https://github.com/jtonynet/go-products-api/issues/10)__ do projeto.
@@ -73,14 +73,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.0.3] - 2023-02-09
+## [0.0.3] - 2024-02-09
 ### Added
 
 - Criação do handler de remoção de Produto conforme descrito na __[Issue-8](https://github.com/jtonynet/go-products-api/issues/8)__ do projeto.
 
 ---
 
-## [0.0.2] - 2023-02-09
+## [0.0.2] - 2024-02-09
 ### Added
 
 - Utilizando GithubAction para performar o Smoke Test a cada commit e push na main conforma descrito na __[Issue-4](https://github.com/jtonynet/go-products-api/issues/4)__ do projeto.
@@ -88,7 +88,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.0.1] - 2023-02-09
+## [0.0.1] - 2024-02-09
 ### Added
 
 - Criação dos Endpoints de Criação e Obtenção de um Produto conforme descrito na __[Issue-2](https://github.com/jtonynet/go-products-api/issues/2)__ do projeto.
@@ -96,7 +96,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Criado `docker-compose.yml` para acesso à base de dados local, de `DEV`, também utilizada no `Smoke Test`.
 ---
 
-## [0.0.0] - 2023-02-07
+## [0.0.0] - 2024-02-07
 ### Added
 
 - Iniciado o [Projeto](https://github.com/users/jtonynet/projects/3) com o commit inicial. Documentação base: Readme Rico, ADRs: [0001: Registro de Decisões de Arquitetura (ADR)](./docs/architecture/decisions/registro-de-decisoes-de-arquitetura.md) e [0002: Echo, Gorm e MySQL em API TDD com arquitetura de Duas camadas](./docs/architecture/decisions/0002-echo-gorm-e-mysql-com-arquitetura-de-api-tdd-em-duas-camadas.md), e [Diagramas Mermaid](https://github.com/jtonynet/go-products-api/tree/main#diagrams)
